@@ -1,6 +1,6 @@
 # Caldova CRM Frontier foundation
 
-Date: 2026-11-05. Trace: US-007 / ADR-0041.
+Date: 2026-11-05. Trace: US-007 / ADR-0042.
 
 The user directed autonomous implementation of the staged in-place refactor.
 GitHub remains source/PR authority and existing workflow definitions are retained.

@@ -29,7 +29,7 @@ Dataverse and React/TypeScript reference branding.
    environment approval. Keep source commit identity with the artifact.
 5. Migrate legacy branding and affected paths/imports, preserve technical names,
    ignored raw imports, existing edits and accurate third-party provenance.
-6. Document ADR-0041, US-007, environments, configuration, bootstrap and rollback.
+6. Document ADR-0042, US-007, environments, configuration, bootstrap and rollback.
 7. Run focused and integrated Pester suites, Terraform fmt/validate and branding
    typecheck. Repeat authenticated discovery/WhoAmI against all three targets.
    Record unperformed solution deployment and any live identity prerequisites.

@@ -1,6 +1,6 @@
 # Caldova Terraform foundation
 
-Trace: US-007 / [ADR-0041](../../docs/adr/ADR-0041-caldova-platform-foundation.md).
+Trace: US-007 / [ADR-0042](../../docs/adr/ADR-0042-caldova-platform-foundation.md).
 
 ## State and ownership boundary
 

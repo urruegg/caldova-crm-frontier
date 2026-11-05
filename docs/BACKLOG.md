@@ -10,7 +10,7 @@ Story IDs are stable. Priorities move; IDs do not.
 
 | ID | Story | ADR | Status |
 | --- | --- | --- | --- |
-| US-007 | Rebrand as Caldova CRM Frontier; connect existing DEV/TEST/PROD with private configuration, scoped identity and controlled managed promotion | [ADR-0041](./adr/ADR-0041-caldova-platform-foundation.md) | Foundation implemented; solution release remains gated |
+| US-007 | Rebrand as Caldova CRM Frontier; connect existing DEV/TEST/PROD with private configuration, scoped identity and controlled managed promotion | [ADR-0042](./adr/ADR-0042-caldova-platform-foundation.md) | Foundation implemented; solution release remains gated |
 
 ## Epic 1 — Golden thread runnable end to end
 

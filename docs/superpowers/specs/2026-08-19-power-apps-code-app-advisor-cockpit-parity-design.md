@@ -2,7 +2,7 @@
 
 | Field | Value |
 | --- | --- |
-| **Status** | Approved design; written-spec review pending |
+| **Status** | Approved design and written specification |
 | **Date** | 2026-08-19 |
 | **Story** | US-301 — AG-F-01 Next-Best-Action / Advisor Cockpit |
 | **Use case** | UC-01 — Advisor Cockpit |

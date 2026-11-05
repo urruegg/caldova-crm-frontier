@@ -26,7 +26,7 @@ BeforeAll {
         $_ -notmatch '^(infra/|\.github/workflows/)' -and
         $_ -notin @('.env.example', '.gitignore', 'docs/ENVIRONMENTS.md', 'docs/BACKLOG.md',
             'scripts/solution/tests/ReviewedRefControls.Tests.ps1') -and
-        $_ -notmatch '^docs/adr/ADR-0041-' -and
+        $_ -notmatch '^docs/adr/ADR-0042-' -and
         $_ -notmatch '^docs/superpowers/(specs|plans)/2026-11-05-' -and
         $_ -notmatch '(^|/)(source|\.raw|\.scan|node_modules|dist|out|build|obj|bin)/' -and
         $_ -notmatch '\.(png|jpg|jpeg|gif|ico|pdf|zip|woff2?)$' -and

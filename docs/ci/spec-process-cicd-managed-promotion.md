@@ -9,7 +9,7 @@ tags: [process, cicd, github-actions, dataverse]
 
 ## Workflow overview
 
-Trace: US-007 / [ADR-0041](../adr/ADR-0041-caldova-platform-foundation.md).
+Trace: US-007 / [ADR-0042](../adr/ADR-0042-caldova-platform-foundation.md).
 Scope: `cd-solution-test.yml` and `cd-solution-prod.yml`.
 Both are manually dispatched from reviewed main. No PR run receives cloud identity.
 

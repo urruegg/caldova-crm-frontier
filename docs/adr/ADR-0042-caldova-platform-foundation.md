@@ -1,4 +1,4 @@
-# ADR-0041 - Caldova CRM Frontier platform foundation
+# ADR-0042 - Caldova CRM Frontier platform foundation
 
 | Field | Value |
 | --- | --- |
@@ -16,6 +16,10 @@
 | Responsible AI | Existing synthetic-data, human-accountability and advisory boundaries unchanged |
 
 ## Context and options
+
+The existing main branch had already assigned ADR-0041 to the Code Apps UX
+decision. During integration this new foundation record was assigned ADR-0042;
+the existing Code Apps decision retains its identifier.
 
 The existing repository is now `caldova-crm-frontier`. The user supplied a
 Caldova tenant shared with HR and three existing Power Platform environment URLs.

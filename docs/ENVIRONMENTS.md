@@ -1,6 +1,6 @@
 # Environments - Caldova CRM Frontier
 
-Trace: [US-007](./BACKLOG.md) / [ADR-0041](./adr/ADR-0041-caldova-platform-foundation.md).
+Trace: [US-007](./BACKLOG.md) / [ADR-0042](./adr/ADR-0042-caldova-platform-foundation.md).
 
 ## Private configuration
 
