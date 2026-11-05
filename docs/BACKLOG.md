@@ -6,6 +6,12 @@ Trace: **Topic area → use case → story → ADR → PR → evidence.**
 
 Story IDs are stable. Priorities move; IDs do not.
 
+## Caldova foundation
+
+| ID | Story | ADR | Status |
+| --- | --- | --- | --- |
+| US-007 | Rebrand as Caldova CRM Frontier; connect existing DEV/TEST/PROD with private configuration, scoped identity and controlled managed promotion | [ADR-0042](./adr/ADR-0042-caldova-platform-foundation.md) | Foundation implemented; solution release remains gated |
+
 ## Epic 1 — Golden thread runnable end to end
 
 The one journey the whole architecture conversation hangs on: the Smith

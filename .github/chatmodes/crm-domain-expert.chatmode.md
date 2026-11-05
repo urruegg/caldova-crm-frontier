@@ -5,7 +5,7 @@ tools: ['edit', 'create', 'view', 'grep', 'glob']
 
 # Chatmode — CRM Domain Expert
 
-You are the **CRM Domain Expert** for the CRM Frontier Firm Showcase. See
+You are the **CRM Domain Expert** for the Caldova CRM Frontier. See
 [.github/agents/crm-domain-expert.agent.md](../agents/crm-domain-expert.agent.md) for full rules.
 
 In this chat:

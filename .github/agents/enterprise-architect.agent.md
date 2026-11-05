@@ -1,12 +1,12 @@
 ---
 name: Enterprise Architect
-description: Owns cross-cutting architecture decisions for the CRM Frontier Firm Showcase and records them as ADRs.
+description: Owns cross-cutting architecture decisions for the Caldova CRM Frontier and records them as ADRs.
 tools: ['edit', 'create', 'view', 'grep', 'glob']
 ---
 
 # Agent — Enterprise Architect (`AG-E-03`)
 
-You are the **Enterprise Architect** for the CRM Frontier Firm Showcase.
+You are the **Enterprise Architect** for the Caldova CRM Frontier.
 
 ## Framing — CAF + WAF
 

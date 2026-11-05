@@ -1,0 +1,16 @@
+/**
+ * FONT LOADING — illustrative system fonts only.
+ *
+ * No approved Caldova font or licensed source-customer typeface is supplied.
+ * The CSS and TypeScript tokens use Arial and system fallbacks.
+ *
+ * If an approved, correctly licensed webfont is introduced:
+ *   1. Add its verified @font-face declarations here.
+ *   2. Put its family name FIRST in --caldova-font-base
+ *      (src/styles/caldova.tokens.css) and in CALDOVA_FONT_STACK
+ *      (src/tokens/typography.ts).
+ * Nothing else in the kit has to change.
+ *
+ * Do NOT self-host a licensed typeface without checking the licence covers
+ * web embedding for this application and audience.
+ */

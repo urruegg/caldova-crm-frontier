@@ -76,7 +76,7 @@ solution/
 
 | Field | Value |
 | --- | --- |
-| Display name | CRM Showcase |
+| Display name | Caldova CRM Frontier |
 | Unique name | `CRMShowcase` |
 | Prefix | `crmshow` |
 | Customization option value prefix | `10000` |
@@ -118,7 +118,7 @@ reads for names, versions, dependency order, and publisher. Its shape:
 {
   "$schema": "./manifest.schema.json",
   "publisher": {
-    "displayName": "CRM Showcase",
+    "displayName": "Caldova CRM Frontier",
     "uniqueName": "CRMShowcase",
     "prefix": "crmshow",
     "customizationOptionValuePrefix": 10000
@@ -134,24 +134,24 @@ reads for names, versions, dependency order, and publisher. Its shape:
     }
   },
   "solutions": [
-    { "uniqueName": "crmshow_Foundation", "displayName": "CRM Showcase - Foundation",
+    { "uniqueName": "crmshow_Foundation", "displayName": "Caldova CRM Frontier - Foundation",
       "path": "core/foundation", "version": "1.0.0.0", "dependsOn": [],
       "owner": "AG-E-08" },
-    { "uniqueName": "crmshow_DataModel", "displayName": "CRM Showcase - Data Model",
+    { "uniqueName": "crmshow_DataModel", "displayName": "Caldova CRM Frontier - Data Model",
       "path": "core/datamodel", "version": "1.0.0.0",
       "dependsOn": ["crmshow_Foundation"], "owner": "AG-E-08" },
-    { "uniqueName": "crmshow_Integration", "displayName": "CRM Showcase - Integration",
+    { "uniqueName": "crmshow_Integration", "displayName": "Caldova CRM Frontier - Integration",
       "path": "core/integration", "version": "1.0.0.0",
       "dependsOn": ["crmshow_Foundation"], "owner": "AG-E-09" },
-    { "uniqueName": "crmshow_Sales", "displayName": "CRM Showcase - Sales",
+    { "uniqueName": "crmshow_Sales", "displayName": "Caldova CRM Frontier - Sales",
       "path": "apps/sales", "version": "1.0.0.0",
       "dependsOn": ["crmshow_Foundation", "crmshow_DataModel", "crmshow_Integration"],
       "owner": "AG-E-01" },
-    { "uniqueName": "crmshow_Service", "displayName": "CRM Showcase - Service",
+    { "uniqueName": "crmshow_Service", "displayName": "Caldova CRM Frontier - Service",
       "path": "apps/service", "version": "1.0.0.0",
       "dependsOn": ["crmshow_Foundation", "crmshow_DataModel", "crmshow_Integration"],
       "owner": "AG-E-01" },
-    { "uniqueName": "crmshow_Marketing", "displayName": "CRM Showcase - Marketing",
+    { "uniqueName": "crmshow_Marketing", "displayName": "Caldova CRM Frontier - Marketing",
       "path": "apps/marketing", "version": "1.0.0.0",
       "dependsOn": ["crmshow_Foundation", "crmshow_DataModel", "crmshow_Integration"],
       "owner": "AG-E-01" }

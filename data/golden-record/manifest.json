@@ -2,7 +2,7 @@
   "$schema": "./manifest.schema.json",
   "name": "contoso-book",
   "title": "Contoso Insurance — golden-record master dataset",
-  "description": "The canonical, synthetic master data record set (the 'golden record') that validates the CRM Frontier Firm Showcase controls. Single source of truth is the typed fixtures under data/scenarios/advisor-cockpit/; this manifest declares the record set, load order, keys, relationships and publish targets. No real customer data (ADR-0026, copilot-instructions §3).",
+  "description": "The canonical, synthetic master data record set (the 'golden record') that validates the Caldova CRM Frontier controls. Single source of truth is the typed fixtures under data/scenarios/advisor-cockpit/; this manifest declares the record set, load order, keys, relationships and publish targets. No real customer data (ADR-0026, copilot-instructions §3).",
   "version": "1.0.0",
   "classification": "synthetic-demo",
   "source": "data/scenarios/advisor-cockpit",

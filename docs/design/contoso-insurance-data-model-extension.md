@@ -1,4 +1,4 @@
-# Contoso Insurance Prototype to CRM Showcase Data-Model Design
+# Contoso Insurance Prototype to Caldova CRM Frontier Data-Model Design
 
 | Field | Value |
 | --- | --- |
@@ -24,7 +24,7 @@ custom HTML workspaces, native Sales/Service/Marketing customizations, search
 configuration, environment settings, and a Copilot Studio bot in one
 prototype solution.
 
-The CRM Showcase will therefore rebuild selected capabilities on the existing
+The Caldova CRM Frontier will therefore rebuild selected capabilities on the existing
 six-solution architecture. It will not import the source solution, retain its
 publisher, or preserve its parallel party tables.
 

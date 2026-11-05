@@ -2,7 +2,7 @@
 
 | Field | Value |
 | --- | --- |
-| Product | CRM Frontier Firm Showcase |
+| Product | Caldova CRM Frontier |
 | Document | Agent Registry (runtime `AG-F-##` + engineering `AG-E-##`) |
 | Version | 0.3 (Draft) |
 | Status | Draft |

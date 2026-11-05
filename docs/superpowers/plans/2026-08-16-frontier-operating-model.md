@@ -258,7 +258,7 @@ git commit -m "docs: add Frontier Firm operating model framework reference"
 Read `docs/superpowers/specs/2026-08-16-frontier-operating-model-design.md` in full (all 12 numbered sections — this is the real, verbatim source; do not invent content). Transplant that content into a new standalone document at `docs/FRONTIER-OPERATING-MODEL.md` with this structure:
 
 ```markdown
-# Frontier Operating Model — Contoso Insurance CRM Showcase
+# Frontier Operating Model — Contoso Insurance Caldova CRM Frontier
 
 > Adapted from Microsoft's Work Trend Index "Frontier Firm" research and the real Work IQ capability (see `docs/MICROSOFT-FRAMEWORKS.md#frontier-firm-operating-model`), scoped to this repo's Contoso Insurance Advisory Cockpit use case.
 
@@ -509,7 +509,7 @@ If mermaid-cli is available, extract each of the two ```mermaid code blocks from
 
 ```bash
 git add docs/FRONTIER-OPERATING-MODEL.md
-git commit -m "docs: add Frontier Operating Model document for Contoso Insurance CRM showcase"
+git commit -m "docs: add Frontier Operating Model document for Contoso Insurance in Caldova CRM Frontier"
 ```
 
 ---

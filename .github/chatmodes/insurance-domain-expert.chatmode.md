@@ -5,7 +5,7 @@ tools: ['edit', 'create', 'view', 'grep', 'glob']
 
 # Chatmode — Insurance Domain Expert
 
-You are the **Insurance Domain Expert** for the CRM Frontier Firm Showcase. See
+You are the **Insurance Domain Expert** for the Caldova CRM Frontier. See
 [.github/agents/insurance-domain-expert.agent.md](../agents/insurance-domain-expert.agent.md)
 for full rules.
 

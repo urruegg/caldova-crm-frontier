@@ -16,6 +16,7 @@ on:
         options:
           - dev
           - test
+          - prod
         default: dev
 
 permissions:
@@ -23,6 +24,7 @@ permissions:
 
 jobs:
   bootstrap:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     permissions:
@@ -32,6 +34,8 @@ jobs:
       AZURE_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
       AZURE_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
       POWER_PLATFORM_ENV_URL: ${{ vars.POWER_PLATFORM_ENV_URL }}
+      POWER_PLATFORM_ORG_ID: ${{ vars.POWER_PLATFORM_ORG_ID }}
+      TARGET_SLOT: ${{ inputs.environment }}
     steps:
       - name: Check out reviewed commit
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
@@ -44,6 +48,12 @@ jobs:
           client-id: ${{ env.AZURE_CLIENT_ID }}
           tenant-id: ${{ env.AZURE_TENANT_ID }}
           allow-no-subscriptions: true
+
+      - name: Verify target identity before mutation
+        shell: pwsh
+        run: |
+          ./infra/scripts/Test-PlatformConnection.ps1 -Slot $env:TARGET_SLOT -TenantId $env:AZURE_TENANT_ID `
+            -EnvironmentUrl $env:POWER_PLATFORM_ENV_URL -OrganizationId $env:POWER_PLATFORM_ORG_ID
 
       - name: Reconcile security roles
         shell: pwsh

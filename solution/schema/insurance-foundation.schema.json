@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/urruegg/CRMShowcase/main/solution/schema/insurance-foundation.schema.json",
-  "title": "CRM Showcase Insurance Foundation metadata contract",
+  "$id": "https://raw.githubusercontent.com/urruegg/caldova-crm-frontier/main/solution/schema/insurance-foundation.schema.json",
+  "title": "Caldova CRM Frontier Insurance Foundation metadata contract",
   "type": "object",
   "additionalProperties": false,
   "required": ["$schema", "contractId", "version", "languages", "solutions", "choices", "nativeExtensions", "tables", "roles"],

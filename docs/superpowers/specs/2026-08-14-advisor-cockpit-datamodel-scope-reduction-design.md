@@ -5,7 +5,7 @@
 | **Status** | Draft v2 — pending owner review (produced autonomously; see "Open questions") |
 | **Date** | 2026-08-14 |
 | **Deciders** | Repo owner (async review pending) · cross-checked against the AG-E-03 Enterprise Architect and AG-E-08 Dataverse Modeler agent rule files (independent review round, see "Correction note") |
-| **Related** | [ADR-0019](../../adr/ADR-0019-provisional-insurance-data-model-shape.md) · [ADR-0006](../../adr/ADR-0006-account-centre-of-gravity.md) · [ADR-0007](../../adr/ADR-0007-portfolio-at-account.md) · [ADR-0008](../../adr/ADR-0008-thin-crm-over-systems-of-record.md) · [ADR-0009](../../adr/ADR-0009-lead-as-interest-on-existing-person.md) · [ADR-0010](../../adr/ADR-0010-consent-per-contact-per-channel.md) · [mobiliar-data-model-extension](../../design/mobiliar-data-model-extension.md) · [2026-08-11-advisor-cockpit-design](./2026-08-11-advisor-cockpit-design.md) · [plan](../plans/2026-08-11-advisor-cockpit.md) · [STATUS](../sprints/sprint-003-advisor-cockpit/STATUS.md) |
+| **Related** | [ADR-0019](../../adr/ADR-0019-provisional-insurance-data-model-shape.md) · [ADR-0006](../../adr/ADR-0006-account-centre-of-gravity.md) · [ADR-0007](../../adr/ADR-0007-portfolio-at-account.md) · [ADR-0008](../../adr/ADR-0008-thin-crm-over-systems-of-record.md) · [ADR-0009](../../adr/ADR-0009-lead-as-interest-on-existing-person.md) · [ADR-0010](../../adr/ADR-0010-consent-per-contact-per-channel.md) · [caldova-data-model-extension](../../design/caldova-data-model-extension.md) · [2026-08-11-advisor-cockpit-design](./2026-08-11-advisor-cockpit-design.md) · [plan](../plans/2026-08-11-advisor-cockpit.md) · [STATUS](../sprints/sprint-003-advisor-cockpit/STATUS.md) |
 | **Licence** | 🧩 configuration / own build |
 | **Upgrade impact** | Low — every reduction below is a pure deferral (additive columns/tables later), not a breaking redesign |
 | **Maturity** | Design addendum. Does not change any approved runtime AI capability. |
@@ -67,7 +67,7 @@ schema committed in `solution/schema/insurance-foundation.json`; the rest
 (`crmshow_accountownership`, `crmshow_leadcluster`, `crmshow_claimprojection`,
 `crmshow_claimpartyrole`, `crmshow_consent`, the cockpit tables, and
 `crmshow_measuresnapshot`) are genuinely unbuilt and still shaped only by the
-aspirational target in ADR-0019 Option C / `mobiliar-data-model-extension.md`.
+aspirational target in ADR-0019 Option C / `caldova-data-model-extension.md`.
 This addendum proposes: **keep the already-authored tables exactly as
 designed**, close two small gaps they have against the committed seed fixtures
 (the productline/premium fields on `crmshow_policyprojection`), and for the
@@ -144,7 +144,7 @@ Build all originally-planned custom tables and all native extensions
 (including the ones with zero fixture evidence), stripping only alternate
 keys and effective-dating *validation*.
 
-- **Pros:** Zero divergence from `mobiliar-data-model-extension.md` as
+- **Pros:** Zero divergence from `caldova-data-model-extension.md` as
   written; every future scenario already has a home.
 - **Cons:** Still means authoring/testing `crmshow_accountownership`,
   `crmshow_claimpartyrole`, and a `quote` extension with **zero** sample data
@@ -301,7 +301,7 @@ additive only, does not reopen #56:
    `crmshow_claimprojection` via a new discriminator. Independent review
    objected: native `incident` is zero-authoring-cost (already OOB) versus
    adding a choice + discriminator to a CDM-`Claim`-aligned table,
-   `mobiliar-data-model-extension.md` already assigns this split ("Rebuild in
+   `caldova-data-model-extension.md` already assigns this split ("Rebuild in
    `crmshow_Service` on native Case plus ClaimProjection"), and mixing the two
    creates a permanent reporting-correctness trap (every "claims by product
    line" view must remember to exclude non-claim rows). **Owner-confirmed:**

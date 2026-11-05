@@ -4,6 +4,10 @@
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
 # User-specific files
+.platform.local.json
+.terraform-caldova/
+# Unapproved legacy reference image; preserved locally, never published as Caldova branding.
+docs/brandkit/docs/palette.png
 *.rsuser
 *.suo
 *.user

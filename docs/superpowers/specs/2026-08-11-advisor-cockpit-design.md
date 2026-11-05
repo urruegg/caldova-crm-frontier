@@ -14,7 +14,7 @@
 
 Rebuild the business analyst's HTML **Sales Advisory Cockpit** and **Sales Leader
 Dashboard** as a governed, pixel-faithful **Model-Driven App "Advisor Cockpit"**
-on the CRM Showcase six-solution architecture — proving the whole chain from
+on the Caldova CRM Frontier six-solution architecture — proving the whole chain from
 Dataverse data model → mocked data-platform analytics → React/Fluent PCF →
 Copilot NBA agent → MDA app, end to end through the pipeline to TEST.
 

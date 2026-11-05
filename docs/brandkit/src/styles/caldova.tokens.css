@@ -1,0 +1,124 @@
+/**
+ * Illustrative Caldova tokens adapted from sanitized legacy design inputs.
+ * Retained styles are not approved corporate identity.
+ *
+ * For anything that is NOT a Fluent React component: plain CSS in a PCF
+ * control, a canvas-app HTML block, an email template, a Power BI custom
+ * visual. Values are identical to the TypeScript tokens — both are generated
+ * from the same source ramp, so they cannot drift.
+ */
+:root {
+  /* --- illustrative ramp (stop 80 = retained legacy accent) --- */
+  --caldova-brand-10: #550000;
+  --caldova-brand-20: #6A0000;
+  --caldova-brand-30: #7E0000;
+  --caldova-brand-40: #920000;
+  --caldova-brand-50: #A50008;
+  --caldova-brand-60: #B80010;
+  --caldova-brand-70: #CA1019;
+  --caldova-brand-80: #DB2323;
+  --caldova-brand-90: #E7413A;
+  --caldova-brand-100: #F25B52;
+  --caldova-brand-110: #FC746A;
+  --caldova-brand-120: #FF8C83;
+  --caldova-brand-130: #FFA49D;
+  --caldova-brand-140: #FFBCB7;
+  --caldova-brand-150: #FFD5D1;
+  --caldova-brand-160: #FFEDEB;
+  --caldova-brand-primary: #DB2323;
+
+  /* --- warm neutral ramp --- */
+  --caldova-neutral-2: #0C0606;
+  --caldova-neutral-4: #120D0D;
+  --caldova-neutral-6: #161212;
+  --caldova-neutral-8: #1A1717;
+  --caldova-neutral-10: #1E1B1B;
+  --caldova-neutral-12: #221F1F;
+  --caldova-neutral-16: #2A2727;
+  --caldova-neutral-20: #323030;
+  --caldova-neutral-24: #3B3838;
+  --caldova-neutral-28: #444242;
+  --caldova-neutral-32: #4D4B4B;
+  --caldova-neutral-36: #565454;
+  --caldova-neutral-38: #5B5959;
+  --caldova-neutral-40: #605E5E;
+  --caldova-neutral-44: #696868;
+  --caldova-neutral-48: #737272;
+  --caldova-neutral-52: #7D7C7C;
+  --caldova-neutral-56: #878685;
+  --caldova-neutral-60: #91918F;
+  --caldova-neutral-68: #A6A6A4;
+  --caldova-neutral-76: #BCBBB9;
+  --caldova-neutral-84: #D2D1D0;
+  --caldova-neutral-88: #DEDDD9;
+  --caldova-neutral-92: #EAE8E3;
+  --caldova-neutral-94: #F0EEE8;
+  --caldova-neutral-96: #F6F3EE;
+  --caldova-neutral-98: #FCF9F3;
+
+  /* --- retained legacy reference surfaces, not Caldova corporate assets --- */
+  --caldova-paper-0: #FFFFFF;
+  --caldova-paper-1: #FBFAF8;
+  --caldova-paper-2: #F6F5F2;
+  --caldova-paper-3: #F4F3F0;
+  --caldova-paper-4: #EFEDE9;
+  --caldova-sand-1:  #EEECE8;
+  --caldova-sand-2:  #EEEAE5;
+  --caldova-rule:      #D5D5CF;
+  --caldova-hairline:  #DDDDDD;
+  --caldova-ink:       #171717;
+  --caldova-ink-panel: #111111;
+
+  /* --- semantic (brand red is accent only, never status) --- */
+  --caldova-danger:  #A4262C;  --caldova-danger-bg:  #FDF3F4;
+  --caldova-warning: #8A6100;  --caldova-warning-bg: #FDF6E3;
+  --caldova-success: #0E6C41;  --caldova-success-bg: #EFF7F1;
+  --caldova-info:    #2B5B8C;  --caldova-info-bg:    #F0F5FA;
+
+  /* --- type --- */
+  --caldova-font-base: Arial, 'Helvetica Neue', Helvetica, 'Segoe UI', system-ui, sans-serif;
+  --caldova-font-mono: 'Cascadia Mono', 'SF Mono', Consolas, monospace;
+
+  /* --- shape: flat and rectilinear, per corporate material --- */
+  --caldova-radius-sm: 2px;
+  --caldova-radius-md: 3px;
+  --caldova-radius-lg: 4px;
+  --caldova-accent-rule: 3px;
+
+  /* --- spacing --- */
+  --caldova-space-xs: 4px;  --caldova-space-s: 8px;   --caldova-space-m: 12px;
+  --caldova-space-l: 16px;  --caldova-space-xl: 24px; --caldova-space-xxl: 32px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-caldova-theme="auto"] {
+    --caldova-paper-0: #1A1717;
+    --caldova-paper-1: #221F1F;
+    --caldova-paper-2: #2A2727;
+    --caldova-ink:     #F6F3EE;
+    --caldova-rule:    #444242;
+    /* brand 80 is only 3.65:1 on ink — promote it on dark surfaces */
+    --caldova-brand-primary: #F25B52;
+  }
+}
+
+/** Signature device: brand accent rule on a panel's leading edge. */
+.caldova-surface {
+  position: relative;
+  background: var(--caldova-paper-1);
+  border: 1px solid var(--caldova-hairline);
+  border-radius: var(--caldova-radius-md);
+  padding: var(--caldova-space-l) 20px;
+  font-family: var(--caldova-font-base);
+  color: var(--caldova-ink);
+}
+.caldova-surface::before {
+  content: ""; position: absolute; inset-inline-start: 0; inset-block-start: 0;
+  inline-size: 100%; block-size: var(--caldova-accent-rule);
+  background: var(--caldova-brand-primary);
+}
+.caldova-kicker {
+  font-size: 11px; font-weight: 700; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--caldova-brand-primary);
+  display: block; margin-block-end: 10px;
+}

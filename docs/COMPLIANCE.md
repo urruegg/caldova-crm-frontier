@@ -10,7 +10,7 @@
 
 ## Scope
 
-The CRM Frontier Firm Showcase is a **demo**. It is not certified against any
+The Caldova CRM Frontier is a **demo**. It is not certified against any
 regulatory regime and it must not imply that it is.
 
 | Area | Status |

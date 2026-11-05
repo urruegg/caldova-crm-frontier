@@ -10,12 +10,12 @@
 | **Maturity** | Demo approach approved; target bootstrap remains a hypothesis |
 | **Licence** | Configuration / own build; Power Platform and Dynamics 365 entitlements must be validated per environment |
 | **Upgrade impact** | Medium - splits the initial authoring workflow into preflight, schema authoring, manual security bootstrap, and export gates |
-| **Related** | [Sprint 3 Insurance Foundation](./2026-08-08-insurance-foundation-design.md) - [ADR-0005](../../adr/ADR-0005-power-platform-application-users-for-ci.md) - [ADR-0017](../../adr/ADR-0017-alm-everything-through-the-pipeline.md) - [ADR-0021](../../adr/ADR-0021-multilingual-semantic-dataverse-metadata.md) - [Issue #8](https://github.com/urruegg/CRMShowcase/issues/8) - [Issue #40](https://github.com/urruegg/CRMShowcase/issues/40) |
+| **Related** | [Sprint 3 Insurance Foundation](./2026-08-08-insurance-foundation-design.md) - [ADR-0005](../../adr/ADR-0005-power-platform-application-users-for-ci.md) - [ADR-0017](../../adr/ADR-0017-alm-everything-through-the-pipeline.md) - [ADR-0021](../../adr/ADR-0021-multilingual-semantic-dataverse-metadata.md) - [Issue #8](https://github.com/urruegg/caldova-crm-frontier/issues/8) - [Issue #40](https://github.com/urruegg/caldova-crm-frontier/issues/40) |
 | **Frameworks** | CAF Ready, Adopt, Govern, Secure and Manage - WAF Reliability, Security and Operational Excellence - Zero Trust |
 
 ## 1. Outcome
 
-The CRM Showcase must demonstrate a multilingual Insurance Foundation in the
+The Caldova CRM Frontier must demonstrate a multilingual Insurance Foundation in the
 available demo tenant without pretending that every target-state platform
 operation is automatable under the current tenant permissions.
 
@@ -37,7 +37,7 @@ preconditions and scope decisions, not as transient GitHub Actions errors.
 ## 2. Evidence and root cause
 
 GitHub Actions run
-[31302762752](https://github.com/urruegg/CRMShowcase/actions/runs/31302762752/job/93218095999)
+[31302762752](https://github.com/urruegg/caldova-crm-frontier/actions/runs/31302762752/job/93218095999)
 successfully reconciled:
 
 - the four required languages;

@@ -1,0 +1,263 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "caldova": {
+    "brand": {
+      "10": {
+        "$value": "#550000",
+        "$type": "color"
+      },
+      "20": {
+        "$value": "#6A0000",
+        "$type": "color"
+      },
+      "30": {
+        "$value": "#7E0000",
+        "$type": "color"
+      },
+      "40": {
+        "$value": "#920000",
+        "$type": "color"
+      },
+      "50": {
+        "$value": "#A50008",
+        "$type": "color"
+      },
+      "60": {
+        "$value": "#B80010",
+        "$type": "color"
+      },
+      "70": {
+        "$value": "#CA1019",
+        "$type": "color"
+      },
+      "80": {
+        "$value": "#DB2323",
+        "$type": "color"
+      },
+      "90": {
+        "$value": "#E7413A",
+        "$type": "color"
+      },
+      "100": {
+        "$value": "#F25B52",
+        "$type": "color"
+      },
+      "110": {
+        "$value": "#FC746A",
+        "$type": "color"
+      },
+      "120": {
+        "$value": "#FF8C83",
+        "$type": "color"
+      },
+      "130": {
+        "$value": "#FFA49D",
+        "$type": "color"
+      },
+      "140": {
+        "$value": "#FFBCB7",
+        "$type": "color"
+      },
+      "150": {
+        "$value": "#FFD5D1",
+        "$type": "color"
+      },
+      "160": {
+        "$value": "#FFEDEB",
+        "$type": "color"
+      }
+    },
+    "neutral": {
+      "2": {
+        "$value": "#0C0606",
+        "$type": "color"
+      },
+      "4": {
+        "$value": "#120D0D",
+        "$type": "color"
+      },
+      "6": {
+        "$value": "#161212",
+        "$type": "color"
+      },
+      "8": {
+        "$value": "#1A1717",
+        "$type": "color"
+      },
+      "10": {
+        "$value": "#1E1B1B",
+        "$type": "color"
+      },
+      "12": {
+        "$value": "#221F1F",
+        "$type": "color"
+      },
+      "16": {
+        "$value": "#2A2727",
+        "$type": "color"
+      },
+      "20": {
+        "$value": "#323030",
+        "$type": "color"
+      },
+      "24": {
+        "$value": "#3B3838",
+        "$type": "color"
+      },
+      "28": {
+        "$value": "#444242",
+        "$type": "color"
+      },
+      "32": {
+        "$value": "#4D4B4B",
+        "$type": "color"
+      },
+      "36": {
+        "$value": "#565454",
+        "$type": "color"
+      },
+      "38": {
+        "$value": "#5B5959",
+        "$type": "color"
+      },
+      "40": {
+        "$value": "#605E5E",
+        "$type": "color"
+      },
+      "44": {
+        "$value": "#696868",
+        "$type": "color"
+      },
+      "48": {
+        "$value": "#737272",
+        "$type": "color"
+      },
+      "52": {
+        "$value": "#7D7C7C",
+        "$type": "color"
+      },
+      "56": {
+        "$value": "#878685",
+        "$type": "color"
+      },
+      "60": {
+        "$value": "#91918F",
+        "$type": "color"
+      },
+      "68": {
+        "$value": "#A6A6A4",
+        "$type": "color"
+      },
+      "76": {
+        "$value": "#BCBBB9",
+        "$type": "color"
+      },
+      "84": {
+        "$value": "#D2D1D0",
+        "$type": "color"
+      },
+      "88": {
+        "$value": "#DEDDD9",
+        "$type": "color"
+      },
+      "92": {
+        "$value": "#EAE8E3",
+        "$type": "color"
+      },
+      "94": {
+        "$value": "#F0EEE8",
+        "$type": "color"
+      },
+      "96": {
+        "$value": "#F6F3EE",
+        "$type": "color"
+      },
+      "98": {
+        "$value": "#FCF9F3",
+        "$type": "color"
+      }
+    },
+    "surface": {
+      "paper0": {
+        "$value": "#FFFFFF",
+        "$type": "color"
+      },
+      "paper1": {
+        "$value": "#FBFAF8",
+        "$type": "color"
+      },
+      "paper2": {
+        "$value": "#F6F5F2",
+        "$type": "color"
+      },
+      "paper3": {
+        "$value": "#F4F3F0",
+        "$type": "color"
+      },
+      "paper4": {
+        "$value": "#EFEDE9",
+        "$type": "color"
+      },
+      "sand1": {
+        "$value": "#EEECE8",
+        "$type": "color"
+      },
+      "sand2": {
+        "$value": "#EEEAE5",
+        "$type": "color"
+      },
+      "ink": {
+        "$value": "#171717",
+        "$type": "color"
+      },
+      "inkPanel": {
+        "$value": "#111111",
+        "$type": "color"
+      },
+      "rule": {
+        "$value": "#D5D5CF",
+        "$type": "color"
+      },
+      "hairline": {
+        "$value": "#DDDDDD",
+        "$type": "color"
+      }
+    },
+    "semantic": {
+      "danger": {
+        "$value": "#A4262C",
+        "$type": "color"
+      },
+      "warning": {
+        "$value": "#8A6100",
+        "$type": "color"
+      },
+      "success": {
+        "$value": "#0E6C41",
+        "$type": "color"
+      },
+      "info": {
+        "$value": "#2B5B8C",
+        "$type": "color"
+      }
+    },
+    "shape": {
+      "radiusSmall": {
+        "$value": "2px",
+        "$type": "dimension"
+      },
+      "radiusMedium": {
+        "$value": "3px",
+        "$type": "dimension"
+      },
+      "radiusLarge": {
+        "$value": "4px",
+        "$type": "dimension"
+      },
+      "accentRule": {
+        "$value": "3px",
+        "$type": "dimension"
+      }
+    }
+  }
+}

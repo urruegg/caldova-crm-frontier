@@ -9,6 +9,7 @@ variable "environments" {
     ci_tenant_id            = string
     powerplatform_env_id    = string
     powerplatform_env_url   = string
+    powerplatform_org_id    = string
     allowed_branch_patterns = optional(set(string), ["main"])
     reviewer_user_ids       = optional(set(number), [])
     reviewer_team_ids       = optional(set(number), [])

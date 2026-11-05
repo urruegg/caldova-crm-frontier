@@ -1,5 +1,5 @@
 // Captured 2026-08-15 from the "Code" tab of the AI-generated ("Describe your
-// page") Custom Page created for the Advisor Cockpit app in CRM Showcase - DEV
+// page") Custom Page created for the Advisor Cockpit app in Caldova CRM Frontier - DEV
 // (environment 36c1c7c2-e090-e6a4-96e1-dd02ae894e0e, crmshow_Sales solution).
 // Prompt used: "advisorcockpitpage blank to be ready for github copilot to add
 // the PCF Control advisorcockpit".

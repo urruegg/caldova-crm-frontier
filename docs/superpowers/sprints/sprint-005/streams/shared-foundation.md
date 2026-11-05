@@ -52,7 +52,7 @@ surface the question to the control-plane chat. Never self-approve.
 	capability contracts.
 - `cd4dafd` adds the user-approved Win32 desktop/mobile Playwright baseline and
 	responsive reflow coverage.
-- PR [#150](https://github.com/urruegg/CRMShowcase/pull/150) was human-merged
+- PR [#150](https://github.com/urruegg/caldova-crm-frontier/pull/150) was human-merged
 	into `main` at `6459c8c` after CI `gate1` passed.
 
 ### Final evidence
@@ -69,7 +69,7 @@ surface the question to the control-plane chat. Never self-approve.
 ### Resume tomorrow
 
 Post-merge status synchronization is tracked in PR
-[#151](https://github.com/urruegg/CRMShowcase/pull/151). Confirm that PR before
+[#151](https://github.com/urruegg/caldova-crm-frontier/pull/151). Confirm that PR before
 refreshing the host worktrees.
 
 ```powershell

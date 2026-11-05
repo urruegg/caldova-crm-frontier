@@ -3,6 +3,7 @@ variable "environments" {
     id                 = string
     display_name       = string
     domain             = string
+    url                = string
     location           = string
     env_type           = string
     currency           = string
@@ -24,5 +25,18 @@ variable "tenant_settings" {
     storage_capacity_warning_threshold  = number
     disable_new_env_creation_non_admins = bool
   })
-  description = "Tenant-wide Power Platform settings."
+  description = "Tenant-wide Power Platform settings, only used with explicit opt-in."
+  default     = null
+}
+
+variable "manage_tenant_settings" {
+  type        = bool
+  description = "Whether this CRM deployment owns shared tenant policy."
+  default     = false
+}
+
+variable "manage_environments" {
+  type        = bool
+  description = "Opt into managing environment metadata only after reviewing access-policy ownership."
+  default     = false
 }

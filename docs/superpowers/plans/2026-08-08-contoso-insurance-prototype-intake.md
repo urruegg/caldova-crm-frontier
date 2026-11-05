@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Export and sanitize the Contoso Insurance prototype solution, generate a reusable artefact BOM and domain map, and document the CRM Showcase target data-model delta without deploying prototype components or records.
+**Goal:** Export and sanitize the Contoso Insurance prototype solution, generate a reusable artefact BOM and domain map, and document the Caldova CRM Frontier target data-model delta without deploying prototype components or records.
 
 **Architecture:** The unmanaged source solution is exported to ignored temporary storage and unpacked into an ignored local `intake/contoso-insurance/source/` snapshot. Focused PowerShell scripts verify source-environment targeting, identify unsafe content, and derive deterministic sanitized JSON/CSV inventories from `Solution.xml`, entity metadata, and component folders. Review outputs map prototype evidence to the existing six target solution containers without changing those deployable solutions.
 
@@ -400,7 +400,7 @@ Every source table must appear in a source-to-target decision matrix.
 
 ```powershell
 git add intake/contoso-insurance/mappings/domain-map.csv docs/design/contoso-insurance-data-model-extension.md
-git commit -m "docs: map Contoso Insurance artefacts to CRM Showcase target model"
+git commit -m "docs: map Contoso Insurance artefacts to Caldova CRM Frontier target model"
 ```
 
 ---

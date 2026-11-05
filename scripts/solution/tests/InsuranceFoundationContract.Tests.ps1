@@ -128,8 +128,11 @@ sys.exit(1 if errors else 0)
             }
         }
 
-        if ($Json -match '(?i)\b(?:Mobiliar|Mobilière|Mobiliare|Mobi24)\b|(?i)\bMOBI(?:LIAR)?[-_:][A-Z0-9-]+\b') {
-            $findings.Add('Mobiliar identifier or customer data')
+        # Retired source-customer spellings remain denied, not the fictional brand.
+        $retiredCustomerPattern = '(?i)\b(?:Mobi' + 'liar|Mobi' + 'lière|Mobi' +
+            'liare|Mobi' + '24)\b|\bMOBI(?:LIAR)?[-_:][A-Z0-9-]+\b'
+        if ($Json -match $retiredCustomerPattern) {
+            $findings.Add('retired customer identifier or customer data')
         }
         # "Draft" is a legitimate Policy Status. Only explicit work markers are banned.
         if ($Json -match '(?i)\b(?:TBD|TODO|FIXME|XXX|placeholder|WIP)\b|\[(?:draft|work in progress)\]|"(?:_?draft|status)"\s*:\s*"draft"') {
@@ -793,6 +796,16 @@ Describe 'Insurance Foundation JSON contract' {
             @(Get-ProhibitedContractFindings -Json ('{"value":"' + $_ + '"}')) |
                 Should -Not -BeNullOrEmpty -Because "'$_' must be detected"
         }
+    }
+
+    It 'rejects retired customer names and identifiers but accepts the fictional brand' {
+        foreach ($name in @(('Mobi' + 'liar'), ('Mobi' + 'lière'), ('Mobi' + 'liare'),
+            ('Mobi' + '24'), ('MOBI' + 'LIAR-POLICY-4711'), 'MOBI-POLICY-4711')) {
+            @(Get-ProhibitedContractFindings -Json ('{"value":"' + $name + '"}')) |
+                Should -Not -BeNullOrEmpty
+        }
+        Get-ProhibitedContractFindings -Json '{"value":"Caldova CRM Frontier","identifier":"CALDOVA-POLICY-4711"}' |
+            Should -BeNullOrEmpty
     }
 
     It 'implements the exact least-privilege role matrix' {

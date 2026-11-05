@@ -3,7 +3,7 @@
   <SolutionManifest>
     <UniqueName>crmshow_Integration</UniqueName>
     <LocalizedNames>
-      <LocalizedName description="CRM Showcase - Integration" languagecode="1033" />
+      <LocalizedName description="Caldova CRM Frontier - Integration" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
     <Version>1.0.0.0</Version>
@@ -11,7 +11,7 @@
     <Publisher>
       <UniqueName>CRMShowcase</UniqueName>
       <LocalizedNames>
-        <LocalizedName description="CRM Showcase" languagecode="1033" />
+        <LocalizedName description="Caldova CRM Frontier" languagecode="1033" />
       </LocalizedNames>
       <Descriptions />
       <EMailAddress xsi:nil="true"></EMailAddress>

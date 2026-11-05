@@ -91,6 +91,15 @@ resource "github_actions_environment_variable" "pp_env_url" {
   value         = each.value.powerplatform_env_url
 }
 
+resource "github_actions_environment_variable" "pp_org_id" {
+  for_each = var.environments
+
+  repository    = var.repository
+  environment   = github_repository_environment.envs[each.key].environment
+  variable_name = "POWER_PLATFORM_ORG_ID"
+  value         = each.value.powerplatform_org_id
+}
+
 resource "github_branch_protection" "main" {
   repository_id = data.github_repository.self.node_id
   pattern       = "main"

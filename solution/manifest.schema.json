@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/urruegg/CRMShowcase/main/solution/manifest.schema.json",
-  "title": "CRM Showcase Solution Manifest",
+  "$id": "https://raw.githubusercontent.com/urruegg/caldova-crm-frontier/main/solution/manifest.schema.json",
+  "title": "Caldova CRM Frontier Solution Manifest",
   "type": "object",
   "required": ["publisher", "versioning", "solutions"],
   "additionalProperties": false,

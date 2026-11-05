@@ -1,11 +1,11 @@
 ---
 mode: agent
-description: Scaffold a new CRM Frontier Firm showcase feature end-to-end (story → design → code stub → tests → docs).
+description: Scaffold a new Caldova CRM Frontier feature end-to-end (story → design → code stub → tests → docs).
 ---
 
-# Prompt — Scaffold a CRM showcase feature
+# Prompt — Scaffold a Caldova CRM Frontier feature
 
-Use this prompt to add a new feature to the CRM Frontier Firm Showcase.
+Use this prompt to add a new feature to the Caldova CRM Frontier.
 
 ## Inputs I need from you
 

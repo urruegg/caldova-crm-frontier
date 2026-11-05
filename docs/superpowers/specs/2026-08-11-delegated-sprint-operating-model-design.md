@@ -17,7 +17,7 @@
 
 ## 1. Outcome
 
-The CRM Showcase needs one **standard, repeatable sprint process** that is
+The Caldova CRM Frontier needs one **standard, repeatable sprint process** that is
 itself part of the demonstration: *"here is how humans and agents run a sprint
 as a team — brainstorm and design on the trunk, delegate parallel build streams
 to local Copilot CLI sessions, and merge back through the same governance gates

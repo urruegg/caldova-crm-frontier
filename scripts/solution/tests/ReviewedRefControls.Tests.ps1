@@ -76,7 +76,7 @@ Describe 'GitHub environment reviewed-ref policies' {
             'prevent_self_review\s*=\s*false'
         )
         ([regex]::Matches($script:terraformRoot, 'reviewer_user_ids\s*=')).Count |
-            Should -Be 1
+            Should -Be 2
     }
 }
 
@@ -143,22 +143,22 @@ Describe 'Terraform bootstrap/import runbook' {
         $script:terraformReadme | Should -Match (
             'module\.github\.github_repository_environment_deployment_policy\.allowed_branches\["dev:main"\]'
         )
-        $script:terraformReadme | Should -Match '56913774'
+        $script:terraformReadme | Should -Not -Match '56913774'
         $script:terraformReadme | Should -Match (
             'module\.github\.github_repository_environment_deployment_policy\.allowed_branches\["test:main"\]'
         )
-        $script:terraformReadme | Should -Match '56680080'
+        $script:terraformReadme | Should -Not -Match '56680080'
         $script:terraformReadme | Should -Match (
             'module\.github\.github_branch_protection\.main'
         )
-        $script:terraformReadme | Should -Match 'CRMShowcase:main'
+        $script:terraformReadme | Should -Match 'caldova-crm-frontier:main'
     }
 
     It 'records the live import evidence and plan checks operators must preserve before apply' {
-        $script:terraformReadme | Should -Match 'no reviewer removal'
-        $script:terraformReadme | Should -Match 'live evidence on 2026-08-10'
+        $script:terraformReadme | Should -Match 'No reviewer removal'
+        $script:terraformReadme | Should -Match 'No shared tenant-setting resource'
         $script:terraformReadme | Should -Match (
-            'recreated,\s*re-check the\s*current live policy ID'
+            'recreated,\s*re-check the current live\s*policy ID'
         )
         $script:terraformReadme | Should -Match 'required_linear_history = true'
         $script:terraformReadme | Should -Match 'dismiss_stale_reviews = true'

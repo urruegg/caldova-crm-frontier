@@ -1,6 +1,6 @@
-# CRM Showcase
+# Caldova CRM Frontier
 
-CRM Frontier Firm Showcase — a reference implementation for a modern CRM built
+Caldova CRM Frontier — a reference implementation for a modern CRM built
 with **human-agent teams** on top of Dynamics 365 / Dataverse / Power Platform
 / Copilot Studio / Azure AI Foundry. The illustrated vertical is **insurance**;
 the architecture patterns generalise to any regulated B2C/B2B CRM.

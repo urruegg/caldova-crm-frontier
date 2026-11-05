@@ -62,7 +62,7 @@ jobs:
       - name: Pester unit tests
         shell: pwsh
         run: |
-          $r = Invoke-Pester -Path ./scripts/solution/tests/ -PassThru -Output Detailed
+          $r = Invoke-Pester -Path ./scripts/solution/tests/, ./infra/scripts/tests/ -PassThru -Output Detailed
           if ($r.FailedCount -gt 0) { exit 1 }
 
       - name: Pack all solutions

@@ -23,7 +23,7 @@ Customizer` application user.
   local `python` and the `jsonschema` package are already present, and both
   `python --version` and `python -c "import jsonschema"` succeed. PowerShell 7
   uses `Test-Json` and does not require this fallback.
-- Approved delivery tracking: issue [#40](https://github.com/urruegg/CRMShowcase/issues/40).
+- Approved delivery tracking: issue [#40](https://github.com/urruegg/caldova-crm-frontier/issues/40).
 - No credentials or access tokens are copied into GitHub, the repository, or
   workflow inputs.
 

@@ -2,7 +2,7 @@
 
 | Field | Value |
 | --- | --- |
-| **Charter issue** | [#139](https://github.com/urruegg/CRMShowcase/issues/139) |
+| **Charter issue** | [#139](https://github.com/urruegg/caldova-crm-frontier/issues/139) |
 | **Story / use case** | US-301 / UC-01 Advisor Cockpit |
 | **Design** | [Power Apps Code Apps Foundation and Advisor Cockpit B1/B2 Parity Proof](../../specs/2026-08-19-power-apps-code-app-advisor-cockpit-parity-design.md) |
 | **Plan** | [Implementation plan](../../plans/2026-08-19-power-apps-code-app-advisor-cockpit-parity.md) |
@@ -21,14 +21,14 @@ without automatically selecting a winner.
 
 | Stream | Issue | Autonomy | Goal | Dependency |
 | --- | --- | --- | --- | --- |
-| governance | [#140](https://github.com/urruegg/CRMShowcase/issues/140) | DESIGN-SENSITIVE | Record the build rule and attended ALM exception | approved design |
-| shared-foundation | [#141](https://github.com/urruegg/CRMShowcase/issues/141) | DESIGN-SENSITIVE | Extract shared packages and capture parity baseline | governance |
-| b1-standalone | [#142](https://github.com/urruegg/CRMShowcase/issues/142) | DESIGN-SENSITIVE | Build standalone Code App | shared-foundation |
-| b2-embedded | [#143](https://github.com/urruegg/CRMShowcase/issues/143) | DESIGN-SENSITIVE | Build embedded Code App and MDA host | shared-foundation |
-| quality-gates | [#144](https://github.com/urruegg/CRMShowcase/issues/144) | EXECUTION-ONLY | Add deterministic CI and release checks | B1 and B2 |
-| dev-proof | [#145](https://github.com/urruegg/CRMShowcase/issues/145) | DESIGN-SENSITIVE | Publish and validate both hosts in DEV | implementation and gates |
-| test-proof | [#146](https://github.com/urruegg/CRMShowcase/issues/146) | DESIGN-SENSITIVE | Promote, validate, and roll back in TEST | DEV proof |
-| decision-evidence | [#147](https://github.com/urruegg/CRMShowcase/issues/147) | DESIGN-SENSITIVE | Score B1/B2 and recommend a host | DEV and TEST proof |
+| governance | [#140](https://github.com/urruegg/caldova-crm-frontier/issues/140) | DESIGN-SENSITIVE | Record the build rule and attended ALM exception | approved design |
+| shared-foundation | [#141](https://github.com/urruegg/caldova-crm-frontier/issues/141) | DESIGN-SENSITIVE | Extract shared packages and capture parity baseline | governance |
+| b1-standalone | [#142](https://github.com/urruegg/caldova-crm-frontier/issues/142) | DESIGN-SENSITIVE | Build standalone Code App | shared-foundation |
+| b2-embedded | [#143](https://github.com/urruegg/caldova-crm-frontier/issues/143) | DESIGN-SENSITIVE | Build embedded Code App and MDA host | shared-foundation |
+| quality-gates | [#144](https://github.com/urruegg/caldova-crm-frontier/issues/144) | EXECUTION-ONLY | Add deterministic CI and release checks | B1 and B2 |
+| dev-proof | [#145](https://github.com/urruegg/caldova-crm-frontier/issues/145) | DESIGN-SENSITIVE | Publish and validate both hosts in DEV | implementation and gates |
+| test-proof | [#146](https://github.com/urruegg/caldova-crm-frontier/issues/146) | DESIGN-SENSITIVE | Promote, validate, and roll back in TEST | DEV proof |
+| decision-evidence | [#147](https://github.com/urruegg/caldova-crm-frontier/issues/147) | DESIGN-SENSITIVE | Score B1/B2 and recommend a host | DEV and TEST proof |
 
 ## Guardrails
 

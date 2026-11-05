@@ -1,89 +1,94 @@
-# Environments — CRM Frontier Firm Showcase
+# Environments - Caldova CRM Frontier
 
-| Field | Value |
-| --- | --- |
-| Version | 0.2 (Draft) |
-| Status | Draft |
-| Classification | Public — anonymised demo |
+Trace: [US-007](./BACKLOG.md) / [ADR-0042](./adr/ADR-0042-caldova-platform-foundation.md).
 
-> **This file is public and anonymised.** Real tenant IDs, environment URLs, GUIDs,
-> and account names are never committed. See
-> [.env.example](../.env.example) for the shape and
-> [adr/ADR-0002-oidc-federation-for-github-actions-to-entra.md](./adr/ADR-0002-oidc-federation-for-github-actions-to-entra.md)
-> for the auth pattern.
+## Private configuration
 
-## 1. Where real values live
+This public repository contains no real tenant IDs, organisation/environment IDs,
+admin accounts, application IDs or target URLs. The verified values live in
+ignored `.platform.local.json`; copy the shape from
+[`infra/platform.example.json`](../infra/platform.example.json) for another checkout.
+Never commit the admin UPN or a password. Human access uses interactive Entra
+sign-in; automation uses environment-scoped workload identity federation.
 
-| Kind of value | Where it lives | Why |
-| --- | --- | --- |
-| Tenant / environment identifiers | Developer's local `.env.local` and `infra/terraform/terraform.tfvars` (both git-ignored) | Not secrets, but identifying — kept off a public repo |
-| Service-principal / workload-identity IDs | GitHub Actions **environment secrets & variables** | Rotatable, scoped, auditable |
-| Any actual credential | **Azure Key Vault** in the demo tenant | Single source of truth, rotation, RBAC |
-| Human sign-in for local dev | Interactive `az login` / Power Platform CLI | No stored password anywhere |
+The supplied tenant also hosts Caldova HR. CRM must not own or change shared
+tenant policy by default. `manage_tenant_settings` defaults to `false`.
 
-## 2. Environment slots
+## Three existing slots
 
-The showcase uses two Power Platform environments. Slot names below are the anonymised
-identifiers used throughout the repo. Real branded names (if any) live only in
-local `.env.local` and in the tenant admin console — never in Git.
+| Slot | Purpose | Solution mode | Identity and approval |
+| --- | --- | --- | --- |
+| DEV | Authoring and synthetic-data validation | Unmanaged | Dedicated DEV CI identity; protected main |
+| TEST | Integration and deployment validation | Managed | Dedicated TEST identity; reviewer approval retained |
+| PROD | Controlled demo release | Exact managed packages from a successful TEST run | Dedicated PROD identity; independent approval; no admin bypass |
 
-### `crmshowdev` (slot `DEV`) — **live**
-- **Purpose.** Developer environment. Dynamics 365 Foundation + custom solution
-  (**unmanaged**). Used for build and unit-level demo.
-- **Data classification.** Synthetic only.
-- **URL.** `https://crmshowdev.crm.dynamics.com/` — verified `HTTP 200` on 2026-08-06.
-- **Display name.** *CRM Showcase - DEV*.
-- **Placeholders in `.env.example`.** `${DEV_ENV_URL}`, `${DEV_ENV_ID}`, `${DEV_ORG_ID}`.
-- **Access model.** Least-privilege service principal for CI (see
-  [adr/ADR-0002-oidc-federation-for-github-actions-to-entra.md](./adr/ADR-0002-oidc-federation-for-github-actions-to-entra.md)).
-  Interactive human sign-in for local dev.
-- **Languages.** English (`1033`) is the base language. German (`1031`), French
-  (`1036`), and Italian (`1040`) must be enabled before Sprint 3 metadata is
-  deployed ([ADR-0021](./adr/ADR-0021-multilingual-semantic-dataverse-metadata.md)).
+All three existing environments were discovered in the supplied tenant and
+passed authenticated Dataverse `WhoAmI` on 2026-11-05. This proves human
+connectivity, not that CRM solutions, licensing, languages or CI deployment have
+already been validated. Environment display names, region, type, currency and
+languages must be read from existing metadata before any Terraform plan.
 
-### `crmshowtest` (slot `TEST`) — **live**
-- **Purpose.** Integration testing and demo environment. All **managed** solutions,
-  including the custom solution promoted from `crmshowdev`.
-- **Data classification.** Synthetic only.
-- **URL.** `https://crmshowtest.crm.dynamics.com/` — verified `HTTP 200` on 2026-08-06.
-- **Display name.** *CRM Showcase - TEST*.
-- **Placeholders in `.env.example`.** `${TEST_ENV_URL}`, `${TEST_ENV_ID}`, `${TEST_ORG_ID}`.
-- **Access model.** As `crmshowdev`. A separate app registration
-  (`crm-showcase-ci-test`) so a compromise of `crmshowdev` does not reach `crmshowtest`.
-- **Languages.** The enabled-language set must match DEV: EN base plus DE, FR
-  and IT. Promotion smoke tests verify the language set before managed imports.
+PROD is a release slot for this synthetic-data reference platform. Real business
+data requires a separate architecture/compliance decision; the name is not
+permission to process customer records.
 
-## 3. Rules
+## Local connectivity verification
 
-1. **Never commit real values** for any of the placeholders above. Not in code, not in
-   fixtures, not in workflow files, not in ADRs. Real values live in
-   [.env.local](../.env.example) locally or in GitHub Actions environment secrets/variables.
-2. **Never store an admin UPN or password in the repo.** GitHub Actions authenticate to
-   Entra via **workload identity federation (OIDC)** —
-   see [ADR-0002](./adr/ADR-0002-oidc-federation-for-github-actions-to-entra.md).
-3. **Least privilege per environment.** One app registration per environment slot,
-   with only the roles required for what CI actually does in that slot.
-4. **No cross-tenant paths.** These environments live in the demo tenant only. No
-   network path, no shared identity, no shared data plane with any other tenant.
-5. **Synthetic data only.** Every row in `DEV` and `TEST` must be synthetic. Never
-   copy real customer data into either environment
-   (see [DATA.md](./DATA.md) §1, [SECURITY.md](./SECURITY.md) §1).
+Live metadata additionally confirmed Switzerland hosting, CHF base currency,
+Sandbox DEV/TEST and Production PROD. Only EN (`1033`) is provisioned currently.
+DE/FR/IT remain deployment prerequisites, reconciled by the existing language
+workflow; they are not claimed active by this foundation.
 
-## 4. When a story needs new environment access
+The three scoped CI applications, environment-only federations, Dataverse
+application users/roles, and five variables per GitHub Environment have been
+created and read back. PROD's independent-review/no-bypass policy is configured.
+This is not yet a new-source CI run or a managed-solution deployment.
 
-- Open an ADR (or update ADR-0002) if the change adds a new app registration,
-  a new API permission, or a new environment slot.
-- Add the placeholder(s) to [.env.example](../.env.example) — shape only.
-- Add the real value(s) to your local `.env.local` and to the matching GitHub
-  Actions environment.
-- Never send the real values through a PR review comment, an issue, or a chat log.
+The existing scoped identities and GitHub controls were adopted into isolated
+Caldova Terraform state (31 resources). The verified plan has zero creates,
+deletes or replacements; ten in-place metadata/DEV self-review differences
+remain unapplied. No environment metadata, security groups or shared tenant
+policy were changed. The previous tenant's state was not copied.
 
-## 5. Escalation
+```powershell
+.\infra\scripts\Test-PlatformConnection.ps1
+```
 
-If you ever find a real tenant ID, environment URL, GUID, UPN, or credential in a
-commit or PR:
+The verifier acquires a tenant-scoped token in memory, checks its tenant claim,
+calls `WhoAmI`, and rejects a different organisation. No token is persisted.
+The loader rejects missing slots, invalid IDs, duplicate targets and unsafe URLs.
+The active Azure/PAC profile is never silently switched.
 
-1. **Rotate** the affected credential (or, for identifiers, decide whether the value
-   is materially sensitive — Global Admin UPNs are).
-2. **Rewrite history** with `git filter-repo` or GitHub's push-protection unblock flow.
-3. **Open a `governance-escalation` issue** citing this file.
+## Deployment configuration
+
+GitHub Actions execution is temporarily paused by the repository owner while
+the foundation is published. The configuration below is retained for later
+activation, not a claim that deployments currently run. See
+[Operations](./OPERATIONS.md#temporary-github-actions-pause).
+
+Each protected GitHub Environment (`dev`, `test`, `prod`) supplies:
+
+- `AZURE_TENANT_ID`
+- `AZURE_CLIENT_ID`
+- `POWER_PLATFORM_ENV_ID`
+- `POWER_PLATFORM_ENV_URL`
+- `POWER_PLATFORM_ORG_ID`
+
+Deployments verify tenant and organisation identity before mutation. OIDC
+federation must match the repository's actual immutable subject prefix and
+environment name after the GitHub rename. Pull requests receive no cloud trust.
+PROD promotion accepts only a successful main-branch TEST deployment, verifies
+source SHA and package hashes, and checks deployed managed versions. Staged
+holding solutions cannot be promoted as active releases.
+
+## Bootstrap and rollback
+
+See the [infrastructure runbook](../infra/README.md) for private configuration,
+safe application-user bootstrap and isolated Terraform state. Existing
+`CRMShowcase` publisher, `crmshow_` schema identifiers, solution unique names and
+security-role names remain stable. Renaming published schema is not branding.
+
+Do not delete environments to roll back. Stop deployment, retain the previous
+known-good managed artifacts, and use the reviewed Dataverse backup/restore or
+solution-upgrade recovery path. Managed package downgrades are not a general
+rollback mechanism. Shared tenant settings and HR resources are outside scope.

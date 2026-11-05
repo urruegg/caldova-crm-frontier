@@ -11,7 +11,7 @@
 
 ## 1. Purpose and scope
 
-Refine the CRM Frontier Firm Showcase's mental model so it explicitly answers
+Refine the Caldova CRM Frontier's mental model so it explicitly answers
 "how would a Frontier Company build and operate this with Microsoft's current
 agentic stack?" — grounded in Microsoft's real **Frontier Firm** concept (Work
 Trend Index 2025/2026) and the real **Work IQ** capability (Ignite 2025), not

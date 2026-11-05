@@ -1,11 +1,11 @@
 # Sprint 005 Status - Power Apps Code Apps Parity
 
-Live status for charter [#139](https://github.com/urruegg/CRMShowcase/issues/139).
+Live status for charter [#139](https://github.com/urruegg/caldova-crm-frontier/issues/139).
 
 | Stream | Issue | Autonomy | Branch | PR | Status |
 | --- | --- | --- | --- | --- | --- |
 | governance | #140 | DESIGN-SENSITIVE | `feat/sprint-005-governance` | #149 | merged |
-| shared-foundation | #141 | DESIGN-SENSITIVE | `feat/sprint-005-shared-foundation` | [#150](https://github.com/urruegg/CRMShowcase/pull/150) | merged |
+| shared-foundation | #141 | DESIGN-SENSITIVE | `feat/sprint-005-shared-foundation` | [#150](https://github.com/urruegg/caldova-crm-frontier/pull/150) | merged |
 | b1-standalone | #142 | DESIGN-SENSITIVE | `feat/sprint-005-b1-standalone` | - | ready to start |
 | b2-embedded | #143 | DESIGN-SENSITIVE | `feat/sprint-005-b2-embedded` | - | ready to start |
 | quality-gates | #144 | EXECUTION-ONLY | `feat/sprint-005-quality-gates` | - | blocked by B1/B2 |
@@ -36,7 +36,7 @@ Live status for charter [#139](https://github.com/urruegg/CRMShowcase/issues/139
 ## Restart checkpoint - 2026-08-21
 
 - Post-merge status synchronization is tracked in PR
-	[#151](https://github.com/urruegg/CRMShowcase/pull/151); confirm its state
+	[#151](https://github.com/urruegg/caldova-crm-frontier/pull/151); confirm its state
 	before refreshing the host worktrees.
 - Work stopped after human merge of shared-foundation PR #150. No B1, B2,
 	quality-gate, DEV, or TEST implementation started in this session.

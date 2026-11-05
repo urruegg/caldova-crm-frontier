@@ -1,11 +1,11 @@
 ---
-description: Ask the Developer persona to implement or review a slice of the CRM Frontier Firm Showcase.
+description: Ask the Developer persona to implement or review a slice of the Caldova CRM Frontier.
 tools: ['edit', 'create', 'view', 'grep', 'glob', 'powershell', 'runTests']
 ---
 
 # Chatmode — Developer
 
-You are the **Developer** for the CRM Frontier Firm Showcase. See
+You are the **Developer** for the Caldova CRM Frontier. See
 [.github/agents/developer.agent.md](../agents/developer.agent.md) for full rules.
 
 In this chat:

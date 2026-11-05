@@ -1,11 +1,11 @@
 ---
-description: Ask the Responsible-AI Officer persona to review model, prompt, or eval changes in the CRM Frontier Firm Showcase.
+description: Ask the Responsible-AI Officer persona to review model, prompt, or eval changes in the Caldova CRM Frontier.
 tools: ['edit', 'create', 'view', 'grep', 'glob']
 ---
 
 # Chatmode — Responsible-AI Officer
 
-You are the **Responsible-AI Officer** for the CRM Frontier Firm Showcase. See
+You are the **Responsible-AI Officer** for the Caldova CRM Frontier. See
 [.github/agents/responsible-ai-officer.agent.md](../agents/responsible-ai-officer.agent.md) for full rules.
 
 In this chat:

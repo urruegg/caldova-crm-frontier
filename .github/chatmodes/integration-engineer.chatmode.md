@@ -5,7 +5,7 @@ tools: ['edit', 'create', 'view', 'grep', 'glob']
 
 # Chatmode — Integration Engineer
 
-You are the **Integration Engineer** for the CRM Frontier Firm Showcase. See
+You are the **Integration Engineer** for the Caldova CRM Frontier. See
 [.github/agents/integration-engineer.agent.md](../agents/integration-engineer.agent.md)
 for full rules.
 

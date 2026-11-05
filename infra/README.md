@@ -1,52 +1,63 @@
-# Infrastructure as Code
+# Caldova CRM Frontier platform foundation
 
-The showcase's tenant, environment, identity, and GitHub configuration is captured
-as Terraform. Design: [../docs/adr/ADR-0003-terraform-as-iac-toolchain.md](../docs/adr/ADR-0003-terraform-as-iac-toolchain.md).
-Environment slot definitions: [../docs/ENVIRONMENTS.md](../docs/ENVIRONMENTS.md).
+Trace: US-007 / [ADR-0042](../docs/adr/ADR-0042-caldova-platform-foundation.md).
+The three existing environments are defined privately, not provisioned again.
 
-## Layout (target)
+## Local setup
 
-```
-infra/
-└── terraform/
-    ├── versions.tf              # required providers, pinned
-    ├── providers.tf             # provider configuration (OIDC in CI)
-    ├── variables.tf             # inputs (tenant, env slots, github repo)
-    ├── outputs.tf               # useful outputs
-    ├── main.tf                  # module wiring
-    ├── terraform.tfvars.example # placeholder values (committed)
-    ├── terraform.tfvars         # real values (GIT-IGNORED)
-    └── modules/
-        ├── powerplatform/       # environments, DLP, env settings
-        ├── entra/               # app registrations + federated credentials
-        ├── github/              # GitHub Environments + secrets/variables
-        └── azure/               # Key Vault, App Insights (added as needed)
-```
+1. Copy `platform.example.json` to the repository root as `.platform.local.json`.
+2. Fill verified tenant, DEV/TEST/PROD environment and organisation GUIDs and URLs.
+   Never add a password, token or admin UPN.
+3. Use your interactive Entra sign-in for the intended tenant.
+4. Run `.\infra\scripts\Test-PlatformConnection.ps1` from the repository root.
 
-## Status
+The migration populated the ignored local file from authenticated discovery.
+It is machine-local and must be securely backed up outside Git if needed.
+`.env.example` retains equivalent placeholders for tools using environment
+variables; it is not automatically synchronized with the platform JSON file.
 
-- **Layout:** planned, folder exists as a placeholder.
-- **Terraform files:** to be scaffolded in the next milestone step, once the current
-  tenant state has been read and the environments have been renamed to
-  `crmshowdev` / `crmshowtest`.
+## CI identity bootstrap
 
-## How to run (once files land)
+Each slot has a distinct Entra application and service principal named
+`caldova-crm-frontier-ci-<slot>`. Federation trusts only that slot's GitHub
+Environment using the actual repository OIDC subject, never a PR subject.
+No client secret is created.
+
+After setting each private `clientId`, bootstrap explicitly:
 
 ```powershell
-cd infra/terraform
-Copy-Item terraform.tfvars.example terraform.tfvars   # fill in real values locally
-terraform init
-terraform plan
-# Then, once reviewed:
-terraform apply
+.\infra\scripts\add-ci-app-users.ps1 -Slot all -WhatIf
+# Review the targets and requested roles before confirming:
+.\infra\scripts\add-ci-app-users.ps1 -Slot all
 ```
 
-## Guardrails
+The script selects service principals by application ID, verifies tenant and
+organisation before writing, and assigns the DEV System Customizer role or
+TEST/PROD System Administrator role needed for managed import. These are
+environment-local deployment identities, not tenant administrators. Runtime
+agents must never reuse them. Review a narrower custom deployment role before
+moving beyond the synthetic demo.
 
-- `terraform.tfvars` is **git-ignored** (see the repo `.gitignore`). Real tenant IDs,
-  environment IDs, and GitHub repo identifiers live only in that file locally.
-- Terraform authenticates via **workload identity federation (OIDC)** in CI, per
-  [ADR-0002](../docs/adr/ADR-0002-oidc-federation-for-github-actions-to-entra.md).
-- Locally, Terraform uses your `az login` session. No credentials in `terraform.tfvars`.
-- Any change to app registrations, Power Platform environment settings, or GitHub
-  Environments goes through a PR with a `terraform plan` output attached.
+GitHub environment variables are listed in
+[ENVIRONMENTS.md](../docs/ENVIRONMENTS.md). TEST retains its reviewer;
+PROD prohibits self-review and admin bypass. An independent authorized reviewer
+must be available before a PROD workflow can proceed.
+
+## Infrastructure as code
+
+See [terraform/README.md](./terraform/README.md). Never reuse the previous
+tenant's state, `.terraform` working data or private tfvars. Existing
+environments are reference-only by default. Opt-in management requires reviewed
+security-group ownership, declarative import and destruction protection.
+Shared tenant-wide settings are opt-in and remain disabled for CRM/HR coexistence.
+
+## Offline validation
+
+```powershell
+Import-Module Pester -MinimumVersion 5.5
+Invoke-Pester -Path .\infra\scripts\tests -Output Detailed
+terraform -chdir=infra\terraform fmt -check -recursive
+terraform -chdir=infra\terraform validate
+```
+
+No solutions or tenant policies are changed by these checks.

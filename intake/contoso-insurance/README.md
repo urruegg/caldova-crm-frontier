@@ -3,6 +3,11 @@
 This folder contains review artefacts derived from a local, unpacked snapshot
 of the Contoso Insurance rapid prototype.
 
+Contoso Insurance and Caldova are fictional aliases for sanitized legacy
+reference evidence, not claims of source ownership or customer endorsement.
+Published inventory identifiers and source paths are sanitized aliases;
+they are not literal paths into the untouched private source snapshot.
+
 ## Boundary
 
 - Evidence only: nothing in this folder is deployable.
@@ -14,8 +19,9 @@ of the Contoso Insurance rapid prototype.
   email-like values, and source-environment identifiers.
 - Only sanitized structural metadata, counts, classifications, and design
   decisions may be committed.
-- Source components are reviewed and redesigned under the CRM Showcase
-  publisher; they are never copied automatically into `solution/`.
+- Source components are reviewed and redesigned for Caldova CRM Frontier
+  under the unchanged `CRMShowcase` publisher; they are never copied
+  automatically into `solution/`.
 
 ## Regeneration
 

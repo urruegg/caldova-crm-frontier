@@ -6,7 +6,7 @@
 | **Date** | 2026-08-08 |
 | **Deciders** | Enterprise Architect, Dataverse Modeler, Integration Engineer, Data Engineer & Scientist; customer architecture confirmation required |
 | **Topic area** | A1 — Architecture vision · A2 — Data model · A3 — Integration · A7 — Analytics |
-| **Use case** | [GitHub issue #6](https://github.com/urruegg/CRMShowcase/issues/6) · UC-01 relocation across jurisdictions |
+| **Use case** | [GitHub issue #6](https://github.com/urruegg/caldova-crm-frontier/issues/6) · UC-01 relocation across jurisdictions |
 | **Licence** | 🧩 configuration / own build. CDM alignment is conceptual; no industry-accelerator licence or deployable table set is assumed. |
 | **Upgrade impact** | Medium — the logical boundaries are stable, but the physical projection mechanism and table set may change after integration discovery |
 | **CAF methodology** | Plan · Ready · Adopt · Govern |
@@ -70,7 +70,7 @@ candidate shapes and establishes a reversible working hypothesis.
 - `intake/contoso-insurance/ideas/Contoso Insurance - CRM Architecture Decisions.html`
 - `intake/contoso-insurance/ideas/Contoso Insurance - Demo Curveballs & Architecture.html`
 - [Contoso Insurance prototype data-model design](../design/contoso-insurance-data-model-extension.md)
-- [CRM Showcase data architecture](../DATA.md)
+- [Caldova CRM Frontier data architecture](../DATA.md)
 - [Microsoft Property and Casualty Data Model](https://learn.microsoft.com/common-data-model/schema/core/industrycommon/financialservices/propertyandcasualtydatamodel/overview)
 - [Microsoft Financial Services Common Data Model](https://learn.microsoft.com/common-data-model/schema/core/industrycommon/financialservices/financialservicescommondatamodel/overview)
 - [Data migration approaches, Power Platform](https://learn.microsoft.com/power-platform/architecture/key-concepts/data-migration/data-migration-approaches)

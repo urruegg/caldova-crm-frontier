@@ -2677,7 +2677,7 @@ Describe 'Unexpected metadata reverse inventory' {
         @($result.Details) -join ' ' | Should -Match 'actual reviewed solution membership: crmshow_DataModel'
     }
 
-    It 'classifies an additional CRM Showcase Insurance Foundation root role as ContractConflict' {
+    It 'classifies an additional Insurance Foundation root role as ContractConflict' {
         $fixture = script:New-ReadyConvergenceResponseMap `
             -Contract $script:contract `
             -Manifest $script:manifest `
@@ -2710,7 +2710,7 @@ Describe 'Unexpected metadata reverse inventory' {
         @($result.Unexpected) | Should -Contain 'crmshow_Foundation/role/CRM Showcase Insurance Escalation'
     }
 
-    It 'classifies an additional CRM Showcase Insurance DataModel root role as ContractConflict' {
+    It 'classifies an additional Insurance DataModel root role as ContractConflict' {
         $fixture = script:New-ReadyConvergenceResponseMap `
             -Contract $script:contract `
             -Manifest $script:manifest `

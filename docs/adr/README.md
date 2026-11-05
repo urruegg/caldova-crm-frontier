@@ -101,7 +101,7 @@ for perfect information. Use a **proposed hypothesis ADR**:
 6. update or supersede the ADR when evidence changes the decision.
 
 [ADR-0020](./ADR-0020-domain-ownership-within-six-solution-architecture.md)
-establishes this as the default decision pattern for CRM Showcase
+establishes this as the default decision pattern for Caldova CRM Frontier
 implementation sprints. A hypothesis may guide delivery, but it must not become
 an unreviewed permanent architecture through inertia.
 
