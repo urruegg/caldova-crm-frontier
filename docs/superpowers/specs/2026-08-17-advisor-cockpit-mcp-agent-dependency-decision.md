@@ -3,7 +3,7 @@
 | Field | Value |
 | --- | --- |
 | **Status** | Decided (2026-08-17) — mechanical removal step pending, requires an interactive Maker Portal action |
-| **Related** | [design spec](./2026-08-17-advisor-cockpit-demo-data-design.md) · [plan Task 2](../plans/2026-08-17-advisor-cockpit-demo-data.md#task-2-mcp-agent-decision-stream--resolve-121-design-sensitive) · [issue #121](https://github.com/urruegg/CRMShowcase/issues/121) · [ADR-0014](../../adr/ADR-0014-agents-advisory-by-design.md) |
+| **Related** | [design spec](./2026-08-17-advisor-cockpit-demo-data-design.md) · [plan Task 2](../plans/2026-08-17-advisor-cockpit-demo-data.md#task-2-mcp-agent-decision-stream--resolve-121-design-sensitive) · [issue #121](https://github.com/urruegg/caldova-crm-frontier/issues/121) · [ADR-0014](../../adr/ADR-0014-agents-advisory-by-design.md) |
 
 ## Decision
 

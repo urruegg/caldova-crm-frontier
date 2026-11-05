@@ -3,7 +3,7 @@
 | Field | Value |
 | --- | --- |
 | **Status** | Open — deferred from Sprint 3 |
-| **Feature** | [GitHub issue #9](https://github.com/urruegg/CRMShowcase/issues/9) |
+| **Feature** | [GitHub issue #9](https://github.com/urruegg/caldova-crm-frontier/issues/9) |
 | **Related sprint** | [Sprint 3 — Insurance Foundation](../superpowers/specs/2026-08-08-insurance-foundation-design.md) |
 | **Decision authority** | Enterprise Architect |
 | **Decision record** | [ADR-0024 — Effective-date integrity options](../adr/ADR-0024-effective-date-integrity-options.md) |

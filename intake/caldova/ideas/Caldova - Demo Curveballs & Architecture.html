@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mobiliar – Demo Curveballs & Architecture Map</title>
+<title>Caldova – Demo Curveballs & Architecture Map</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap">
 <style>
 :root{--brand:#0078d4;--brand-dark:#005a9e;--brand-light:#eff6fc;--n0:#fff;--n10:#faf9f8;--n20:#f3f2f1;--n30:#edebe9;--n60:#c8c6c4;--n90:#a19f9d;--n130:#605e5c;--n160:#323130;--n190:#201f1e;--green:#107c10;--amber:#9c5700;--red:#a4262c;--purple:#6b2fa0;--teal:#038387;--font:'Segoe UI',system-ui,sans-serif}
@@ -50,12 +50,13 @@ table.map td{padding:10px 14px;border-bottom:1px solid var(--n20);font-size:13px
 table.map tr:last-child td{border-bottom:0}
 @media(max-width:880px){.grid{grid-template-columns:1fr}}
 </style></head><body>
-<header><div class="logo">M</div><div><h1>Demo Curveballs &amp; Architecture Map</h1><p>Die Mobiliar · Commercial CRM on Dynamics 365 / Dataverse — anticipated "challenge" use cases &amp; the platform capabilities they probe</p></div></header>
+<aside role="note">Adapted sanitized legacy design reference. Caldova and Caldova24 are fictional demo aliases, not claims of source ownership or customer/vendor endorsement. Retained third-party product names identify their respective products.</aside>
+<header><div class="logo">M</div><div><h1>Demo Curveballs &amp; Architecture Map</h1><p>Die Caldova · Commercial CRM on Dynamics 365 / Dataverse — anticipated "challenge" use cases &amp; the platform capabilities they probe</p></div></header>
 <div class="wrap">
 
 <div class="intro"><h2><span class="material-symbols-outlined">sports_baseball</span>Why this exists</h2>
 <p>During competitive demos, customers throw <strong>"curveball" scenarios</strong> — a single attribute change that should cascade into premium recalculation, coverage re-evaluation, or relationship handoff. They reveal whether the platform is genuinely model-driven or just a pretty UI.</p>
-<p class="ref">Origin pattern (CSS / Krankenkasse): "Change of address to a different canton → premium recalculation." Under the KVG, basic-insurance premiums are rated by canton → premium region → age group → model, so a move legitimately forces a re-rate. Below are the equivalent — and arguably richer — curveballs for Mobiliar's P&amp;C book.</p></div>
+<p class="ref">Origin pattern (CSS / Krankenkasse): "Change of address to a different canton → premium recalculation." Under the KVG, basic-insurance premiums are rated by canton → premium region → age group → model, so a move legitimately forces a re-rate. Below are the equivalent — and arguably richer — curveballs for Caldova's P&amp;C book.</p></div>
 
 <div class="legend">
 <span class="tag t-data"><span class="material-symbols-outlined" style="font-size:14px">schema</span>Data Model</span>
@@ -83,15 +84,15 @@ table.map tr:last-child td{border-bottom:0}
 <div class="card">
 <div class="card-head"><div class="ic"><span class="material-symbols-outlined">home_work</span></div><div><h3>2 · Building insurance — monopoly vs. free market</h3><div class="sub">A coverage-<em>existence</em> question, not just a price change</div></div></div>
 <div class="card-body">
-<div class="block"><div class="k"><span class="material-symbols-outlined" style="font-size:15px">help</span>Scenario</div><p>The move crosses between a <strong>cantonal-monopoly canton</strong> (KGV, 19 cantons) and a <strong>free-market "GUSTAVO" canton</strong> (GE, UR, SZ, TI, AI, VS, OW). This changes whether Mobiliar can even <em>write</em> the building cover.</p></div>
+<div class="block"><div class="k"><span class="material-symbols-outlined" style="font-size:15px">help</span>Scenario</div><p>The move crosses between a <strong>cantonal-monopoly canton</strong> (KGV, 19 cantons) and a <strong>free-market "GUSTAVO" canton</strong> (GE, UR, SZ, TI, AI, VS, OW). This changes whether Caldova can even <em>write</em> the building cover.</p></div>
 <div class="block"><div class="k"><span class="material-symbols-outlined" style="font-size:15px">checklist</span>What it tests</div><p>Product eligibility rules driven by jurisdiction; the system must <strong>withdraw or originate</strong> a product, not silently re-price an invalid one.</p></div>
 <div class="block"><div class="k"><span class="material-symbols-outlined" style="font-size:15px">architecture</span>Architecture topics</div><div class="tags-row"><span class="tag t-rules">Product eligibility rules</span><span class="tag t-data">Jurisdiction model</span><span class="tag t-integ">Cantonal KGV registry</span></div></div>
 </div></div>
 
 <div class="card">
-<div class="card-head"><div class="ic"><span class="material-symbols-outlined">hub</span></div><div><h3>3 · General Agency reassignment on the move</h3><div class="sub">The Mobiliar-unique organisational curveball — no health insurer can show this</div></div><span class="swiss"><span class="material-symbols-outlined" style="font-size:14px">flag</span>Mobiliar</span></div>
+<div class="card-head"><div class="ic"><span class="material-symbols-outlined">hub</span></div><div><h3>3 · General Agency reassignment on the move</h3><div class="sub">The Caldova-unique organisational curveball — no health insurer can show this</div></div><span class="swiss"><span class="material-symbols-outlined" style="font-size:14px">flag</span>Caldova</span></div>
 <div class="card-body">
-<div class="block"><div class="k"><span class="material-symbols-outlined" style="font-size:15px">help</span>Scenario</div><p>Mobiliar's cooperative runs ~80 independent <strong>General Agencies</strong> that own the local relationship, advice and claims. A cross-region move reassigns the customer to a different agency.</p></div>
+<div class="block"><div class="k"><span class="material-symbols-outlined" style="font-size:15px">help</span>Scenario</div><p>Caldova's cooperative runs ~80 independent <strong>General Agencies</strong> that own the local relationship, advice and claims. A cross-region move reassigns the customer to a different agency.</p></div>
 <div class="block"><div class="k"><span class="material-symbols-outlined" style="font-size:15px">checklist</span>What it tests</div><p>Account ownership transfer, territory rules, commissioning, local-claims routing, and continuity of service across the handoff.</p></div>
 <div class="block"><div class="k"><span class="material-symbols-outlined" style="font-size:15px">architecture</span>Architecture topics</div><div class="tags-row"><span class="tag t-org">Territory management</span><span class="tag t-org">Ownership transfer</span><span class="tag t-data">Account / Household model</span><span class="tag t-rules">Commission rules</span></div></div>
 </div></div>
@@ -129,7 +130,7 @@ table.map tr:last-child td{border-bottom:0}
 </div></div>
 
 <div class="card">
-<div class="card-head"><div class="ic"><span class="material-symbols-outlined">verified_user</span></div><div><h3>8 · Shared phone / data-quality ambiguity</h3><div class="sub">Already modelled in the Mobi24 assistance screen</div></div></div>
+<div class="card-head"><div class="ic"><span class="material-symbols-outlined">verified_user</span></div><div><h3>8 · Shared phone / data-quality ambiguity</h3><div class="sub">Already modelled in the Caldova24 assistance screen</div></div></div>
 <div class="card-body">
 <div class="block"><div class="k"><span class="material-symbols-outlined" style="font-size:15px">help</span>Scenario</div><p>One inbound phone number resolves to multiple households/contacts (incl. a mismatched foreign household) — the agent must confirm the caller and a data-quality task is raised.</p></div>
 <div class="block"><div class="k"><span class="material-symbols-outlined" style="font-size:15px">checklist</span>What it tests</div><p>Identity resolution, duplicate/golden-record handling, and closed-loop data-quality remediation.</p></div>
@@ -152,9 +153,9 @@ table.map tr:last-child td{border-bottom:0}
 </tbody>
 </table>
 
-<h2 class="section" style="margin-top:30px">Telephony architecture — Sales Hub Dialer (GA) vs Luware (Mobi24)</h2>
+<h2 class="section" style="margin-top:30px">Telephony architecture — Sales Hub Dialer (GA) vs Luware (Caldova24)</h2>
 <div class="intro" style="margin-bottom:18px">
-<p>UC-AS1 happens at the <strong>Generalagentur</strong>, not at Mobi24 — so it is <strong>not</strong> a contact-center / ACD-queue journey. The two telephony stacks coexist on a single <strong>Teams Phone</strong> PSTN foundation but serve different populations and must be split by number/identity, never double-routing the same user's inbound through both.</p>
+<p>UC-AS1 happens at the <strong>Generalagentur</strong>, not at Caldova24 — so it is <strong>not</strong> a contact-center / ACD-queue journey. The two telephony stacks coexist on a single <strong>Teams Phone</strong> PSTN foundation but serve different populations and must be split by number/identity, never double-routing the same user's inbound through both.</p>
 </div>
 <div class="grid">
 
@@ -167,7 +168,7 @@ table.map tr:last-child td{border-bottom:0}
 </div></div>
 
 <div class="card">
-<div class="card-head"><div class="ic"><span class="material-symbols-outlined">support_agent</span></div><div><h3>Mobi24 · Luware Nimbus</h3><div class="sub">UC-Mobi24 — true contact center: ACD queues, IVR, skills</div></div></div>
+<div class="card-head"><div class="ic"><span class="material-symbols-outlined">support_agent</span></div><div><h3>Caldova24 · Luware Nimbus</h3><div class="sub">UC-Caldova24 — true contact center: ACD queues, IVR, skills</div></div></div>
 <div class="card-body">
 <div class="block"><div class="k"><span class="material-symbols-outlined" style="font-size:15px">help</span>What it is</div><p>Third-party contact center <strong>native on Microsoft Teams</strong>. Calls do <strong>not</strong> traverse the D365 voice channel; transcription is the Luware <strong>Companion</strong> feature (live caption preview; full transcript end-of-call) accessible via the Nimbus Power Automate connector. This is the genuine 24/7 assistance call-center stack (page-20 softphone scenario).</p></div>
 <div class="block"><div class="k"><span class="material-symbols-outlined" style="font-size:15px">key</span>Licensing</div><div class="lines"><span class="chip">Luware Nimbus (per agent)</span><span class="chip">Teams Phone + PSTN</span><span class="chip">Companion / Speech Recognizer</span></div></div>
@@ -177,12 +178,12 @@ table.map tr:last-child td{border-bottom:0}
 <div class="card hero" style="border-left-color:var(--brand-dark)">
 <div class="card-head"><div class="ic" style="background:var(--brand-dark);color:#fff"><span class="material-symbols-outlined">warning</span></div><div><h3>Coexistence watch-outs</h3><div class="sub">Both stacks share one Teams Phone PSTN foundation</div></div></div>
 <div class="card-body">
-<div class="block"><div class="k"><span class="material-symbols-outlined" style="font-size:15px">checklist</span>Plan for</div><p>A Teams Phone user has <strong>one PSTN identity</strong>; the dialer needs <strong>dedicated seller numbers via resource accounts</strong> — allocate numbers so a GA seller's dialer line and any Luware queue membership don't collide on inbound. Pick <strong>one owner per number/flow</strong> (don't put the same agent behind a Luware ACD queue and the Sales Hub Dialer for the same inbound). In CH, PSTN connectivity is realistically <strong>Operator Connect or Direct Routing</strong> via Mobiliar's telco (Microsoft Calling Plans have limited Swiss availability) — the same connectivity Luware already uses, which simplifies the story.</p></div>
-<div class="block"><div class="k"><span class="material-symbols-outlined" style="font-size:15px">campaign</span>Demo framing</div><p>"GA Sales Support uses the D365 Sales-native dialer (screen-pop, auto-log, AI summary) — no contact-center seat — while Mobi24 keeps Luware for true ACD." Label the dialer <strong>preview</strong> and flag entitlement validation; don't imply GA-readiness or Contact Center licensing.</p></div>
+<div class="block"><div class="k"><span class="material-symbols-outlined" style="font-size:15px">checklist</span>Plan for</div><p>A Teams Phone user has <strong>one PSTN identity</strong>; the dialer needs <strong>dedicated seller numbers via resource accounts</strong> — allocate numbers so a GA seller's dialer line and any Luware queue membership don't collide on inbound. Pick <strong>one owner per number/flow</strong> (don't put the same agent behind a Luware ACD queue and the Sales Hub Dialer for the same inbound). In CH, PSTN connectivity is realistically <strong>Operator Connect or Direct Routing</strong> via Caldova's telco (Microsoft Calling Plans have limited Swiss availability) — the same connectivity Luware already uses, which simplifies the story.</p></div>
+<div class="block"><div class="k"><span class="material-symbols-outlined" style="font-size:15px">campaign</span>Demo framing</div><p>"GA Sales Support uses the D365 Sales-native dialer (screen-pop, auto-log, AI summary) — no contact-center seat — while Caldova24 keeps Luware for true ACD." Label the dialer <strong>preview</strong> and flag entitlement validation; don't imply GA-readiness or Contact Center licensing.</p></div>
 </div></div>
 
 </div>
 
 </div>
-<div class="foot">Internal demo-preparation artifact · Die Mobiliar Commercial CRM on Dynamics 365 / Dataverse · Curveballs are illustrative and should be validated against current Mobiliar product &amp; underwriting rules. Sales Hub Dialer is a Microsoft <strong>preview</strong> feature — licensing subject to change at GA.</div>
+<div class="foot">Internal demo-preparation artifact · Die Caldova Commercial CRM on Dynamics 365 / Dataverse · Curveballs are illustrative and should be validated against current Caldova product &amp; underwriting rules. Sales Hub Dialer is a Microsoft <strong>preview</strong> feature — licensing subject to change at GA.</div>
 </body></html>

@@ -5,7 +5,7 @@
 | Status | Approved for implementation |
 | Date | 2026-08-08 |
 | Source | Contoso Insurance rapid-prototype solution in an isolated demo environment |
-| Target | CRM Frontier Firm Showcase development lifecycle |
+| Target | Caldova CRM Frontier development lifecycle |
 | Owners | AG-E-03 Enterprise Architect, AG-E-08 Dataverse Modeler |
 | Related | ADR-0006 through ADR-0010, ADR-0017, ADR-0019 |
 | Licence | Configuration and own build; individual imported capabilities require separate review |
@@ -14,12 +14,12 @@
 ## Purpose
 
 Preserve the Contoso Insurance RFP prototype as inspectable evidence, inventory its
-solution artefacts, map them to CRM Showcase domains, and define the target
+solution artefacts, map them to Caldova CRM Frontier domains, and define the target
 data-model extensions required to rebuild useful capabilities within the
-governed CRM Showcase architecture.
+governed Caldova CRM Frontier architecture.
 
 The prototype is an input to analysis, not the target architecture. No source
-component is imported into CRM Showcase DEV during this sprint.
+component is imported into Caldova CRM Frontier DEV during this sprint.
 
 ## Success criteria
 
@@ -33,14 +33,14 @@ component is imported into CRM Showcase DEV during this sprint.
 - Every BOM item has a domain, target solution container, review disposition,
   and rationale.
 - The data-model design identifies reuse, extension, redesign, and retirement
-  decisions against the CRM Showcase principles and ADRs.
+  decisions against the Caldova CRM Frontier principles and ADRs.
 - A GitHub feature issue links the design, implementation plan, BOM, domain
   map, and data-model design.
 
 ## Non-goals
 
 - Exporting or migrating Dataverse records.
-- Importing the Contoso Insurance solution into CRM Showcase DEV or TEST.
+- Importing the Contoso Insurance solution into Caldova CRM Frontier DEV or TEST.
 - Preserving the source publisher or schema prefix in the target model.
 - Rebuilding apps, flows, plug-ins, or integrations in this sprint.
 - Treating prototype behaviour as an approved requirement.
@@ -127,7 +127,7 @@ Each item contains:
 | `sourcePath` | Relative path in the sanitized snapshot |
 | `parent` | Owning table, app, process, or assembly |
 | `dependencies` | Referenced component identifiers where discoverable |
-| `domain` | CRM Showcase business or platform domain |
+| `domain` | Caldova CRM Frontier business or platform domain |
 | `targetSolution` | Foundation, DataModel, Integration, Sales, Service, Marketing, or None |
 | `disposition` | Reuse, Refactor, Redesign, Retire, or Investigate |
 | `rationale` | Reviewable reason for the disposition |
@@ -155,7 +155,7 @@ components to their relevant child artefacts.
 ## Disposition rules
 
 - **Reuse**: native component or configuration already aligned with target
-  principles; target implementation still uses the CRM Showcase publisher.
+  principles; target implementation still uses the Caldova CRM Frontier publisher.
 - **Refactor**: useful capability with acceptable semantics but unsuitable
   packaging, naming, ownership, or coupling.
 - **Redesign**: capability is valuable but conflicts with a target ADR, domain
@@ -214,7 +214,7 @@ the prototype.
 2. Local-only unpacked source snapshot with a committed safety summary.
 3. Machine-readable and reviewable BOM.
 4. Domain, target-container, and disposition mapping.
-5. CRM Showcase data-model extension design.
+5. Caldova CRM Frontier data-model extension design.
 6. Follow-up backlog grouped into reviewable delivery slices.
 7. GitHub feature issue linking all publishable evidence.
 

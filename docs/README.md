@@ -1,4 +1,4 @@
-# Documentation Index — CRM Frontier Firm Showcase
+# Documentation Index — Caldova CRM Frontier
 
 This folder holds product, design, AI, security, compliance, operations and
 test artefacts that the Copilot agents in [.github/agents/](../.github/agents/)

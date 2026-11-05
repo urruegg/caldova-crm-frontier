@@ -60,7 +60,7 @@ Describe 'publish-advisor-cockpit-app' {
         $body = ConvertTo-AppModuleUpsertBody -AppModule $contract.appModule -PublisherId '11111111-1111-1111-1111-111111111111'
         $body.name | Should -Be 'Advisor Cockpit'
         $body.uniquename | Should -Be 'crmshow_AdvisorCockpit'
-        $body.description | Should -Be 'Sales advisory cockpit and leader dashboard for the CRM Showcase.'
+        $body.description | Should -Be 'Sales advisory cockpit and leader dashboard for the Caldova CRM Frontier.'
         $body.clienttype | Should -Be 4
         $body.formfactor | Should -Be 1
         $body.navigationtype | Should -Be 0

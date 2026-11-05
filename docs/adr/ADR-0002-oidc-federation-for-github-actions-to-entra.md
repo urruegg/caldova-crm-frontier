@@ -10,7 +10,7 @@
 
 ## Context
 
-The CRM Frontier Firm Showcase runs against a Microsoft-provided demo tenant with
+The Caldova CRM Frontier runs against a Microsoft-provided demo tenant with
 two Power Platform environments (`DEV`, `TEST`). CI, automation, and — where a story
 scopes it — Copilot Studio agents need to authenticate to that tenant to:
 
@@ -45,7 +45,7 @@ Concretely:
 1. Create **one Entra App Registration per environment slot** (`crm-showcase-ci-dev`,
    `crm-showcase-ci-test`). No shared app across environments.
 2. Configure **federated credentials** on each app for the GitHub repo
-   `urruegg/CRMShowcase`, scoped to the matching GitHub **Environment**
+   `urruegg/caldova-crm-frontier`, scoped to the matching GitHub **Environment**
    (`dev`, `test`) and to specific refs (`main` or release branches).
 3. **No client secret** is created for these apps. Ever. Federation replaces it.
 4. Grant each app **only the roles the CI job actually uses** in its target

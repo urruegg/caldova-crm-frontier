@@ -165,7 +165,7 @@ Live status for the Advisor Cockpit (charter **#55**). See the
     it touches no guarded path). Closes #92 and #86.
   - **CD-DEV gate confirmed green live** - `cd-solution-dev.yml` dispatched
     from `main` at `0ff50ff` (run
-    [31695020608](https://github.com/urruegg/CRMShowcase/actions/runs/31695020608)):
+    [31695020608](https://github.com/urruegg/caldova-crm-frontier/actions/runs/31695020608)):
     `validate` + `author` both succeed; the convergence result has **68/68
     component/child `State` entries = `Ready`**, zero `ContractConflict`.
     **CD-DEV is fully green for the first time this sprint.**
@@ -278,7 +278,7 @@ Live status for the Advisor Cockpit (charter **#55**). See the
     decisions. Renumbered the PR's ADRs to 0030-0039, rebuilt
     `docs/adr/README.md`'s index, verified zero broken cross-references.
   - **CD-DEV run
-    [31805085480](https://github.com/urruegg/CRMShowcase/actions/runs/31805085480)**
+    [31805085480](https://github.com/urruegg/caldova-crm-frontier/actions/runs/31805085480)**
     dispatched against the rescoped schema (commit `d2e05e0`): `validate`
     12m22s, `author` 9m13s. This is the run that DEV-authored the #56
     addendum choices, `crmshow_leadcluster`/`crmshow_claimprojection` (#57),
@@ -794,7 +794,7 @@ bare claims.
 
 **DEV evidence — fresh run attempted (2026-08-16), failed; found a new,
 pre-existing bug.** Dispatched
-[31962217108](https://github.com/urruegg/CRMShowcase/actions/runs/31962217108)
+[31962217108](https://github.com/urruegg/caldova-crm-frontier/actions/runs/31962217108)
 against `main`: `validate` green (offline suite passed); `author` reached
 `Reconcile demo-safe metadata` and failed there —
 `Publish-InsuranceFoundation.ps1` POSTs the new `crmshow_leadclusterid`
@@ -806,7 +806,7 @@ metadata Web API rejects for Lookup-type attributes
 through the SDK`) — lookups must be created via the relationship-creation
 endpoint instead. This is the first live run to exercise this code path
 (the prior confirmed-green run,
-[31805085480](https://github.com/urruegg/CRMShowcase/actions/runs/31805085480)
+[31805085480](https://github.com/urruegg/caldova-crm-frontier/actions/runs/31805085480)
 from 2026-08-14, predates it). Everything the script reconciled *before*
 that step (account/contact fields incl. `crmshow_seedkey`,
 `crmshow_mastershipstatus`, `crmshow_mastersystem`, `crmshow_lastsyncedon`,
@@ -834,7 +834,7 @@ order (Foundation → DataModel → Integration → Sales).
 **TEST dispatch attempt #1 (2026-08-16), rejected by environment protection
 — confirms the governance model is working as intended.** Dispatching
 `cd-solution-test.yml` from PR #118's branch
-([31963834793](https://github.com/urruegg/CRMShowcase/actions/runs/31963834793))
+([31963834793](https://github.com/urruegg/caldova-crm-frontier/actions/runs/31963834793))
 was rejected outright by GitHub before any step ran: *"Branch
 'feat/s3-test-promote-sales' is not allowed to deploy to dev due to
 environment protection rules."* The `dev`/`test` GitHub Environments are
@@ -847,7 +847,7 @@ human merge"). Owner approved and merged both PRs 2026-08-16.
 evidence — 3 of 4 solutions promoted; `crmshow_Sales` blocked on a
 pre-flagged external dependency.** Re-dispatched
 `cd-solution-test.yml` from `main`
-([31964290915](https://github.com/urruegg/CRMShowcase/actions/runs/31964290915)):
+([31964290915](https://github.com/urruegg/caldova-crm-frontier/actions/runs/31964290915)):
 `export-from-dev` green (all four solutions exported). The `test`
 Environment required manual approval — dispatched ~20:20, approved
 overnight, `import-to-test` resumed ~05:58 the next morning. Imports then
@@ -906,12 +906,12 @@ the anchored policy, not a silent omission.
 - [x] Evidence captured in this STATUS.md under `## Live DEV + TEST evidence`
 - [ ] **DEV evidence — partially green.** `validate` (offline Pester suite)
       passes on every run. The live `author` job is **not** fully green:
-      run [31962217108](https://github.com/urruegg/CRMShowcase/actions/runs/31962217108)
+      run [31962217108](https://github.com/urruegg/caldova-crm-frontier/actions/runs/31962217108)
       failed at `Reconcile demo-safe metadata` (the pre-existing
       `crmshow_leadclusterid` Lookup-creation bug below). Everything before
       that step is live in DEV.
 - [ ] **TEST evidence — partially promoted.** Run
-      [31964290915](https://github.com/urruegg/CRMShowcase/actions/runs/31964290915):
+      [31964290915](https://github.com/urruegg/caldova-crm-frontier/actions/runs/31964290915):
       `crmshow_Foundation`/`crmshow_DataModel`/`crmshow_Integration` promoted
       and published successfully (first time this sprint). `crmshow_Sales`
       blocked on the MCP Server/Agent dependency below — **not** promoted.
@@ -920,11 +920,11 @@ the anchored policy, not a silent omission.
 
 | # | Item | Why it's open | Stream/root |
 | --- | --- | --- | --- |
-| [#120](https://github.com/urruegg/CRMShowcase/issues/120) | Fix `crmshow_leadclusterid` Lookup creation in `Publish-InsuranceFoundation.ps1` | Dataverse rejects Lookup attrs via a plain metadata Attributes POST (`0x80040203`); needs the relationship-creation endpoint | foundational-tables (#57) |
-| [#121](https://github.com/urruegg/CRMShowcase/issues/121) | Resolve the `crmshow_AdvisorCockpit_MCPServer`/`uxagentproject` dependency blocking `crmshow_Sales` TEST promotion | Stray Maker-Portal-added Copilot/agent dependency, pre-flagged `targetSolution=None` in the intake BOM, never resolved | e2e-verify (#65) |
-| [#122](https://github.com/urruegg/CRMShowcase/issues/122) | Bind the imported `AdvisorCockpit` PCF control to the `nickname` field on the "Advisory Cockpit" Contact form's "Cockpit" tab | This was the **original** motivating task for the whole PCF-import investigation; never completed once the control finally imported successfully | mda-app (#64) |
-| [#123](https://github.com/urruegg/CRMShowcase/issues/123) | Remove now-moot `pageUniqueName` references (`advisor-cockpit-app.json`) and dead `ConvertTo-ComponentTypeValue`/`$script:ComponentTypeValues` code (`publish-advisor-cockpit-app.ps1`) | Left over from the abandoned Custom Page hosting approach | mda-app (#64) |
-| [#124](https://github.com/urruegg/CRMShowcase/issues/124) | Intake-export the DEV-authored `foundational-tables`/`cockpit-tables` schema into `solution/core/datamodel` source | Schema was authored live in DEV (run 31805085480, 2026-08-14) but never round-tripped into the repo | foundational-tables/cockpit-tables (#57/#58) |
+| [#120](https://github.com/urruegg/caldova-crm-frontier/issues/120) | Fix `crmshow_leadclusterid` Lookup creation in `Publish-InsuranceFoundation.ps1` | Dataverse rejects Lookup attrs via a plain metadata Attributes POST (`0x80040203`); needs the relationship-creation endpoint | foundational-tables (#57) |
+| [#121](https://github.com/urruegg/caldova-crm-frontier/issues/121) | Resolve the `crmshow_AdvisorCockpit_MCPServer`/`uxagentproject` dependency blocking `crmshow_Sales` TEST promotion | Stray Maker-Portal-added Copilot/agent dependency, pre-flagged `targetSolution=None` in the intake BOM, never resolved | e2e-verify (#65) |
+| [#122](https://github.com/urruegg/caldova-crm-frontier/issues/122) | Bind the imported `AdvisorCockpit` PCF control to the `nickname` field on the "Advisory Cockpit" Contact form's "Cockpit" tab | This was the **original** motivating task for the whole PCF-import investigation; never completed once the control finally imported successfully | mda-app (#64) |
+| [#123](https://github.com/urruegg/caldova-crm-frontier/issues/123) | Remove now-moot `pageUniqueName` references (`advisor-cockpit-app.json`) and dead `ConvertTo-ComponentTypeValue`/`$script:ComponentTypeValues` code (`publish-advisor-cockpit-app.ps1`) | Left over from the abandoned Custom Page hosting approach | mda-app (#64) |
+| [#124](https://github.com/urruegg/caldova-crm-frontier/issues/124) | Intake-export the DEV-authored `foundational-tables`/`cockpit-tables` schema into `solution/core/datamodel` source | Schema was authored live in DEV (run 31805085480, 2026-08-14) but never round-tripped into the repo | foundational-tables/cockpit-tables (#57/#58) |
 
 nba-agent (#61) remains explicitly deferred (out of sprint scope, needs a
 use-case description) as already noted above — not a new carry-over.

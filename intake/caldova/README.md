@@ -1,9 +1,10 @@
-# Mobiliar prototype intake
+# Caldova — adapted legacy prototype intake
 
-This folder contains review artefacts derived from a local, unpacked snapshot
-of the Mobiliar reference environment's CRM prototype (the same environment
-referenced at the top of this sprint's design spec —
-[2026-08-17-advisor-cockpit-demo-data-design.md](../../docs/superpowers/specs/2026-08-17-advisor-cockpit-demo-data-design.md)).
+This folder contains sanitized review artefacts adapted from a legacy CRM
+prototype. Caldova is the fictional demo alias, not the source customer:
+renamed titles and paths do not imply Caldova ownership or source-customer
+endorsement. The historical review is referenced in the sprint design —
+[2026-08-17-advisor-cockpit-demo-data-design.md](../../docs/superpowers/specs/2026-08-17-advisor-cockpit-demo-data-design.md).
 
 ## Boundary
 
@@ -18,20 +19,21 @@ referenced at the top of this sprint's design spec —
   e-mail-like values, and source-environment identifiers — confirmed below.
 - Only sanitized structural metadata, counts, classifications, cross-
   references, and design decisions may be committed.
-- Source components are reviewed and redesigned under the CRM Showcase
-  publisher; they are never copied automatically into `solution/`.
+- Source components are reviewed and redesigned for Caldova CRM Frontier
+  under the unchanged `CRMShowcase` publisher; they are never copied
+  automatically into `solution/`.
 - The literal customer name must never appear in committed content — this
   repository already enforces that as a hard test assertion (see
   `scripts/solution/tests/InsuranceFoundationContract.Tests.ps1`'s
-  `Mobiliar identifier or customer data` scan). This README, `bom/`, and
+  `retired customer identifier or customer data` scan). This README, `bom/`, and
   `mappings/` avoid it accordingly; see "Key finding" below for the one place
   the raw export itself contains it.
 
 ## Key finding — this is the same underlying export already governed as `intake/contoso-insurance/`
 
-Generating a fresh BOM from this folder's `.raw/model` +`source/` snapshot
-(`scripts/solution/New-SolutionBom.ps1 -SourceFolder intake/mobiliar/source
--MetadataModelFolder intake/mobiliar/.raw/model`) produces **exactly 941
+The historical BOM review of the local ignored metadata and source snapshot
+(`scripts/solution/New-SolutionBom.ps1 -SourceFolder <local-ignored-source>
+-MetadataModelFolder <local-ignored-metadata>`) produced **exactly 941
 items** — the identical count, and identical `componentType` breakdown, as
 [`intake/contoso-insurance/bom/artefacts.csv`](../contoso-insurance/bom/artefacts.csv)'s
 already-published BOM (43 root components, 11 tables, 6 custom tables, 605
@@ -52,7 +54,8 @@ literal customer name is intentionally never written into this repository,
 consistent with the enforced scan in
 `scripts/solution/tests/InsuranceFoundationContract.Tests.ps1`). In other
 words: **this folder's raw export is the un-anonymized twin of the exact
-same solution snapshot**, and the generalization applied before publishing
+same solution snapshot** (not a raw snapshot published under the new alias),
+and the generalization applied before publishing
 `intake/contoso-insurance/` was precisely — and only — renaming the bot from
 the real customer name to `ContosoInsurance`.
 
@@ -70,34 +73,36 @@ domain/disposition classification.
 
 The genuinely new, non-duplicate value here is
 [`ideas/`](./ideas/): four narrative architecture/design documents (HTML,
-authored during the Mobiliar prototype review, already scanned for PII/
+adapted from the legacy prototype review, already scanned for PII/
 branding leaks below and found clean) that go beyond a flat component
 inventory:
 
 | File | Content |
 | --- | --- |
-| `Mobiliar - CRM Architecture Decisions.html` | ~50 architecture/UX decisions and platform gotchas. Cross-checked: already fully absorbed into this repo's ADRs (ADR-0006, ADR-0007, ADR-0008, ADR-0009, ADR-0010, ADR-0014, ADR-0015, ADR-0016) and into the `Known platform gotchas` section of `.github/copilot-instructions.md` (e.g. the `@odata.bind` casing gotcha is a near-verbatim match). No new decisions found. |
-| `Mobiliar - Demo Curveballs & Architecture.html` | 8 concrete "curveball" demo scenarios (cross-canton relocation cascade, building-insurance jurisdiction eligibility, GA reassignment, motor re-rating, life-event triggers, property/object changes, bundle/discount unwinding, shared-phone identity ambiguity) plus 2 contact-center integration patterns. **This is the concrete, actionable source for Task 5's fixture enrichment** — see [`mappings/curveball-to-fixture-map.md`](./mappings/curveball-to-fixture-map.md). |
-| `Mobiliar - Voice Integration Architecture.html` | Contact-center/voice architecture (Teams Phone, Mobi24/Luware Nimbus contact center, ACS). Already reflected in ADR-0015 (voice-channel-boundary) and ADR-0016 (governed-outbound); no new fixture-relevant content — Advisor Cockpit fixtures do not model voice/telephony state. |
+| `Caldova - CRM Architecture Decisions.html` | ~50 architecture/UX decisions and platform gotchas. Cross-checked: already fully absorbed into this repo's ADRs (ADR-0006, ADR-0007, ADR-0008, ADR-0009, ADR-0010, ADR-0014, ADR-0015, ADR-0016) and into the `Known platform gotchas` section of `.github/copilot-instructions.md` (e.g. the `@odata.bind` casing gotcha is a near-verbatim match). No new decisions found. |
+| `Caldova - Demo Curveballs & Architecture.html` | 8 concrete "curveball" demo scenarios (cross-canton relocation cascade, building-insurance jurisdiction eligibility, GA reassignment, motor re-rating, life-event triggers, property/object changes, bundle/discount unwinding, shared-phone identity ambiguity) plus 2 contact-center integration patterns. **This is the concrete, actionable source for Task 5's fixture enrichment** — see [`mappings/curveball-to-fixture-map.md`](./mappings/curveball-to-fixture-map.md). |
+| `Caldova - Voice Integration Architecture.html` | Contact-center/voice architecture (Teams Phone, Caldova24/Luware Nimbus contact center, ACS). Already reflected in ADR-0015 (voice-channel-boundary) and ADR-0016 (governed-outbound); no new fixture-relevant content — Advisor Cockpit fixtures do not model voice/telephony state. |
 | `00. ERD Visualizer.html` | Entity-relationship diagram tool over the prototype schema. Structural only — superseded by this repo's own `solution/schema/insurance-foundation.json` and ADR-0019 (provisional insurance data model shape). |
 
 ## PII / branding scan
 
-Re-running `scripts/solution/Test-IntakeSnapshot.ps1 -Path intake/mobiliar/source
--ForbiddenEnvironmentHost <redacted>` reproduces the existing
-[`.scan/source-scan.json`](./.scan/source-scan.json) exactly: 181 files
+The historical `scripts/solution/Test-IntakeSnapshot.ps1` review of the local
+ignored source snapshot recorded 181 files
 scanned, 13 matches (7 `EmailAddress`, 6 `SourceEnvironment`) — all inside the
 ignored `source/` snapshot, none in anything committed here. The same scan
 run against `ideas/*.html` found zero matches (the one apparent
-`EmailAddress` regex hit in `Mobiliar - CRM Architecture Decisions.html` is a
+`EmailAddress` regex hit in `Caldova - CRM Architecture Decisions.html` is a
 false positive on the literal string `@odata.bind`, not a real address).
 
 ## Regeneration
 
 1. Export with `scripts/solution/Export-Solution.ps1`, specifying the source
    environment and expected organization explicitly.
-2. Unpack locally to the ignored `intake/mobiliar/source/` folder with
-   `scripts/solution/Unpack-Solution.ps1`.
+2. Use `scripts/solution/Unpack-Solution.ps1` only with an explicitly chosen
+   ignored local source folder. Existing private snapshots remain at their
+   original locations; this branding migration does not move, edit or rescan
+   `.raw/`, `.scan/` or `source/` content. The new alias folder contains only
+   sanitized review files.
 3. Validate with `scripts/solution/Test-IntakeSnapshot.ps1`.
 4. Regenerate the cross-reference comparison documented in `bom/README.md`
    with `scripts/solution/New-SolutionBom.ps1` (no `-MappingPath` needed for
@@ -105,4 +110,4 @@ false positive on the literal string `@odata.bind`, not a real address).
 
 The governing design is
 [`docs/superpowers/specs/2026-08-17-advisor-cockpit-demo-data-design.md`](../../docs/superpowers/specs/2026-08-17-advisor-cockpit-demo-data-design.md)
-(sprint-004, stream `mobiliar-intake-governance`, issue #128).
+(sprint-004, stream `caldova-intake-governance`, issue #128).

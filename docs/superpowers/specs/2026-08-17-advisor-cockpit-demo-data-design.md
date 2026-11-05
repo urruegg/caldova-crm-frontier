@@ -1,5 +1,9 @@
 # Sprint-004 — Advisor Cockpit demo data realism
 
+> Branding note: references to the legacy intake below use fictional Caldova
+> aliases for adapted, sanitized design evidence, not ownership or endorsement
+> claims. Existing ignored snapshots remain at their original local locations.
+
 | Field | Value |
 | --- | --- |
 | **Status** | Draft — pending owner review |
@@ -18,9 +22,9 @@ fixture set and seed pipeline, but left three carry-over blockers (#120, #121,
 sprint makes the existing Advisor Cockpit demo data set genuinely
 demo-realistic end to end:
 
-1. Evaluate the Mobiliar reference environment intake (already partially
+1. Evaluate the sanitized legacy reference intake (already partially
    scanned, ungoverned) to decide what makes the fixtures more realistic.
-2. Inventory the CRM Showcase's own DEV/TEST tenant users so demo records can
+2. Inventory the Caldova CRM Frontier's own DEV/TEST tenant users so demo records can
    be owned by a real, loggable-in identity.
 3. Enrich the existing Advisor Cockpit fixtures accordingly.
 4. Wire owner assignment into the existing idempotent seed pipeline and ship
@@ -36,8 +40,8 @@ demo-realistic end to end:
 - Carry-over issues **#120**, **#121**, **#124** from sprint-003 are absorbed
   as prerequisite streams of this sprint (they directly block deployment/E2E,
   points 4–5 of the original ask).
-- Tenant-user reading is scoped **only** to the CRM Showcase's own DEV/TEST
-  Dataverse environments (e.g. `crmshowdev`/`crmshowtest`). The Mobiliar
+- Tenant-user reading is scoped **only** to the Caldova CRM Frontier's own DEV/TEST
+  Dataverse environments (e.g. `crmshowdev`/`crmshowtest`). The legacy
   source environment is **never** connected to for user data — only its
   already-exported, evidence-only intake artefacts are read (same boundary
   `intake/contoso-insurance/README.md` already documents for that source).
@@ -64,7 +68,7 @@ Autonomy classes per the
 | --- | --- | --- | --- | --- |
 | 1 | `prereq-fixes` — fix #120 (Lookup-attribute creation via the relationship-creation endpoint in `Publish-InsuranceFoundation.ps1`, not a plain Attributes POST) and #124 (intake-export the DEV-authored foundational/cockpit tables — `crmshow_leadcluster`, `crmshow_claimprojection`, `crmshow_nextbestaction`, `crmshow_nbaprovenance`, `crmshow_measuresnapshot` — back into `solution/core/datamodel` source) | prerequisite | EXECUTION-ONLY | none |
 | 2 | `mcp-agent-decision` — resolve #121: decide and implement either (a) remove the Copilot/AI-assistant feature from the `crmshow_AdvisorCockpit` app module in DEV to drop the `crmshow_AdvisorCockpit_MCPServer`/`uxagentproject` dependency, or (b) deliberately promote the MCP Server + Agent-Builder project to TEST as well | prerequisite | DESIGN-SENSITIVE | Stream 1 |
-| 3 | `mobiliar-intake-governance` — finish `intake/mobiliar/README.md` + `bom/` + `mappings/` mirroring the `intake/contoso-insurance/` pattern (regenerate via `Export-Solution.ps1` → `Unpack-Solution.ps1` → `Test-IntakeSnapshot.ps1` → `New-SolutionBom.ps1` if the existing `.raw`/`.scan` snapshot needs re-validating); produce a short evaluation report naming concrete Advisor Cockpit fixture enrichments | 1 | DESIGN-SENSITIVE | none |
+| 3 | `caldova-intake-governance` — finish `intake/caldova/README.md` + `bom/` + `mappings/` mirroring the `intake/contoso-insurance/` pattern (regenerate via `Export-Solution.ps1` → `Unpack-Solution.ps1` → `Test-IntakeSnapshot.ps1` → `New-SolutionBom.ps1` if the existing `.raw`/`.scan` snapshot needs re-validating); produce a short evaluation report naming concrete Advisor Cockpit fixture enrichments | 1 | DESIGN-SENSITIVE | none |
 | 4 | `tenant-user-inventory` — new `Get-DemoPresenterUser` function/script: queries `systemusers` (`$filter=isdisabled eq false`, `$expand=systemuserroles_association($select=name)`) filtered to the `System Administrator` role, excludes non-interactive/CI application users (ADR-0005), returns exactly one `systemuserid` per environment (deterministic tie-break + warning if >1; optional `-PresenterUserId` override, never a committed personal identifier) | 2 | DESIGN-SENSITIVE | none |
 | 5 | `fixture-enrichment` — enrich `accounts-contacts.json` / `leads.json` / `policies.json` / `claims.json` / `activities.json` using stream 3's findings; stays synthetic and Contoso-Insurance-branded (SUPERPOWERS_CONTRACT §1 rule 3); scope stays within the 7 existing fixture files — no new entity types | 3 | DESIGN-SENSITIVE | Stream 3 |
 | 6 | `seed-owner-wiring` — extend `Invoke-AdvisorCockpitSeed`/`ConvertTo-*UpsertBody` to set `ownerid@odata.bind` from stream 4's resolved presenter on account/lead/activity/NBA upserts; wire the enriched fixtures from stream 5; add the same "Seed Advisor Cockpit demo data" step (+ smoke-check) to `cd-solution-test.yml` that already exists in `cd-solution-dev.yml`; extend `SeedAdvisorCockpit.Tests.ps1` | 4 | EXECUTION-ONLY | Streams 4, 5 |
@@ -74,8 +78,8 @@ Autonomy classes per the
 
 ```mermaid
 flowchart LR
-    subgraph S3["Stream 3: mobiliar-intake-governance"]
-        A["intake/mobiliar/.raw + .scan\n(already present, uncommitted)"] --> B["README + bom/ + mappings/\n(pattern: intake/contoso-insurance)"]
+    subgraph S3["Stream 3: caldova-intake-governance"]
+        A["Local ignored legacy snapshot + scan\n(unchanged private locations)"] --> B["intake/caldova README + bom/ + mappings/\n(pattern: intake/contoso-insurance)"]
         B --> C["Evaluation report:\nwhich fixture fields to enrich?"]
     end
     subgraph S4["Stream 4: tenant-user-inventory"]
@@ -122,7 +126,7 @@ TEST is not left without demo data after owner-wiring lands.
   owner-assignment on the upsert bodies.
 - Enriched fixtures continue to validate against existing contracts (e.g.
   `api/advisor-cockpit/measure-snapshot.schema.json`).
-- Mobiliar intake governance artefacts validate via the existing
+- Caldova intake governance artefacts validate via the existing
   `Test-IntakeSnapshot.ps1` used for `intake/contoso-insurance/`.
 - E2E: live `cd-solution-dev.yml` dispatch with a smoke-check verifying
   seeded records' `ownerid` resolves to the expected presenter; the same for
@@ -141,17 +145,17 @@ resolved, since #121 currently fails `crmshow_Sales` TEST import outright.
 
 ## Guardrails
 
-- **No real customer data** — Mobiliar intake stays evidence-only (no
+- **No real customer data** — Caldova intake stays evidence-only (no
   Dataverse records exported, no branded/PII content committed — the
   existing `intake/contoso-insurance/README.md` boundary rules apply
-  identically to `intake/mobiliar/`); enriched fixtures remain synthetic and
+  identically to `intake/caldova/`); enriched fixtures remain synthetic and
   Contoso-Insurance-branded (SUPERPOWERS_CONTRACT.md §1 rule 3).
 - **No secrets** — owner resolution reuses the existing OIDC (`az rest`)
   authentication already used by `seed-advisor-cockpit.ps1`; no UPNs,
   e-mails, or other personal tenant identifiers are committed to the (public)
   repository — resolution is by role pattern at runtime only, as decided.
-- **Tenant isolation** — only the CRM Showcase's own DEV/TEST environments are
-  read for user data; the Mobiliar source tenant is never connected to for
+- **Tenant isolation** — only the Caldova CRM Frontier's own DEV/TEST environments are
+  read for user data; the Caldova source tenant is never connected to for
   this purpose.
 - **No new ADR required for owner-assignment itself** — `ownerid` is an
   out-of-box column; this is a seed-script behavior extension, not a data
@@ -172,5 +176,5 @@ resolved, since #121 currently fails `crmshow_Sales` TEST import outright.
   TEST — left for that stream's own attended, DESIGN-SENSITIVE session, since
   it needs a live look at the DEV app module and a licensing/governance call.
 - Concrete field-level fixture enrichments are deferred to stream 3's
-  evaluation report (cannot be predicted before the Mobiliar intake governance
+  evaluation report (cannot be predicted before the Caldova intake governance
   pass is actually done).

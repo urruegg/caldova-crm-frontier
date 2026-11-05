@@ -1,98 +1,74 @@
 <#
 .SYNOPSIS
-    Add the two CI service principals as Dataverse application users with a security role.
-
+    Add configured CI identities to verified Dataverse environments.
 .DESCRIPTION
-    Idempotent bootstrap. For each entry, creates a systemuser record with the SP's
-    applicationid field (that is how Dataverse recognises app users) and assigns the
-    given security role. Skips creation if the app user already exists.
-
-    This is the workaround for the microsoft/power-platform Terraform provider's
-    `powerplatform_user` resource which does not support creating service-principal
-    application users (returns 404 on first apply). See ADR-0005.
-
-.NOTES
-    Prerequisites
-      - az login into the target tenant with a Global / Power Platform Admin identity.
-      - The service principals must already exist (created by terraform apply).
-
-    Idempotency
-      - If a systemuser with the given applicationid already exists in the env,
-        creation is skipped. Role assignment is applied idempotently.
+    Uses private application IDs, never display-name selection or legacy URLs.
+    Verify the tenant and WhoAmI organization before any application-user write.
+    TEST and PROD require the deployment-administrator role for managed imports.
+    Run with -WhatIf to review the selected targets without authenticating.
 #>
-
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
 param(
-    [Parameter(Mandatory)]
-    [ValidateSet('dev', 'test', 'all')]
-    [string]$Slot = 'all'
+    [ValidateSet('dev', 'test', 'prod', 'all')] [string]$Slot = 'all',
+    [string]$ConfigurationPath = (Join-Path $PSScriptRoot '..\..\.platform.local.json')
 )
 
 $ErrorActionPreference = 'Stop'
-
-# Map: slot -> (env url, sp display name, role name).
-# Role IDs are looked up per-env at run time from the Dataverse Web API.
-$assignments = @(
-    @{ Slot = 'dev';  EnvUrl = 'https://crmshowdev.crm.dynamics.com';  SpDisplayName = 'crm-showcase-ci-dev';  RoleName = 'System Customizer' }
-    @{ Slot = 'test'; EnvUrl = 'https://crmshowtest.crm.dynamics.com'; SpDisplayName = 'crm-showcase-ci-test'; RoleName = 'System Administrator' }
-)
-
-if ($Slot -ne 'all') {
-    $assignments = $assignments | Where-Object { $_.Slot -eq $Slot }
+. (Join-Path $PSScriptRoot 'PlatformConnection.ps1')
+$config = Get-PlatformConfiguration -Path $ConfigurationPath
+$slots = if ($Slot -eq 'all') { @('dev', 'test', 'prod') } else { @($Slot) }
+foreach ($name in $slots) {
+    Assert-PlatformGuid $config.environments[$name].clientId "$name.clientId"
 }
+foreach ($name in $slots) {
+    $target = $config.environments[$name]
+    if (-not $PSCmdlet.ShouldProcess($target.url, "Bootstrap $name CI application user")) { continue }
+    $currentTenant = & az account show --query tenantId --output tsv --only-show-errors
+    if ($LASTEXITCODE -ne 0 -or $currentTenant.Trim() -ne $config.tenantId) {
+        throw 'Azure CLI default tenant does not match the configured tenant.'
+    }
+    $spJson = & az ad sp show --id $target.clientId --output json --only-show-errors
+    if ($LASTEXITCODE -ne 0) { throw "Cannot resolve the configured $name service principal." }
+    $sp = $spJson | ConvertFrom-Json
+    if ($sp.appId -ne $target.clientId -or -not $sp.id) { throw 'Service principal identity mismatch.' }
 
-foreach ($a in $assignments) {
-    Write-Host "`n=== Slot '$($a.Slot)' -> $($a.EnvUrl) ==="
-    $envRes = $a.EnvUrl + '/'
-
-    $sp = az ad sp list --display-name $a.SpDisplayName --output json --only-show-errors | ConvertFrom-Json
-    if (-not $sp -or $sp.Count -eq 0) { throw "Service principal '$($a.SpDisplayName)' not found." }
-    $appId = $sp[0].appId
-    $spObjectId = $sp[0].id
-    Write-Host ("  SP appId={0}  objectId={1}" -f $appId, $spObjectId)
-
-    $existing = az rest --method GET --url "$($a.EnvUrl)/api/data/v9.2/systemusers?%24filter=applicationid eq $appId&%24select=systemuserid,fullname" --resource $envRes --only-show-errors | ConvertFrom-Json
-    if ($existing.value.Count -gt 0) {
-        $userId = $existing.value[0].systemuserid
-        Write-Host "  App user already exists: $userId"
-    } else {
-        $buResp = az rest --method GET --url "$($a.EnvUrl)/api/data/v9.2/businessunits?%24filter=_parentbusinessunitid_value eq null&%24select=businessunitid,name" --resource $envRes --only-show-errors | ConvertFrom-Json
-        $rootBuId = $buResp.value[0].businessunitid
-        Write-Host ("  Root BU id: {0}" -f $rootBuId)
-
-        $bodyObj = @{
-            applicationid                              = $appId
-            azureactivedirectoryobjectid               = $spObjectId
-            'businessunitid@odata.bind'                = "/businessunits($rootBuId)"
+    $token = Get-PlatformAccessToken -TenantId $config.tenantId -EnvironmentUrl $target.url
+    try {
+        $headers = @{ Authorization = "Bearer $token"; 'OData-Version' = '4.0'; Prefer = 'return=representation' }
+        $base = "$($target.url)/api/data/v9.2"
+        $identity = Invoke-RestMethod "$base/WhoAmI" -Headers $headers
+        Assert-PlatformIdentity $config $name $config.tenantId $identity.OrganizationId
+        $units = Invoke-RestMethod "$base/businessunits?`$filter=_parentbusinessunitid_value eq null&`$select=businessunitid" -Headers $headers
+        if (@($units.value).Count -ne 1) { throw "Expected one root business unit for $name." }
+        $rootUnitId = $units.value[0].businessunitid
+        $users = Invoke-RestMethod "$base/systemusers?`$filter=applicationid eq $($target.clientId)&`$select=systemuserid" -Headers $headers
+        if (@($users.value).Count -gt 1) { throw "Ambiguous application user for $name." }
+        if (@($users.value).Count -eq 1) {
+            $userId = $users.value[0].systemuserid
+        } else {
+            $body = @{
+                applicationid = $target.clientId
+                azureactivedirectoryobjectid = $sp.id
+                'businessunitid@odata.bind' = "/businessunits($rootUnitId)"
+            } | ConvertTo-Json
+            $user = Invoke-RestMethod "$base/systemusers" -Method Post -Headers $headers `
+                -ContentType 'application/json' -Body $body
+            $userId = $user.systemuserid
+            Assert-PlatformGuid $userId 'Created application user ID'
         }
-        $bodyFile = New-TemporaryFile
-        ($bodyObj | ConvertTo-Json) | Set-Content -Path $bodyFile -Encoding utf8
-
-        Write-Host "  Creating app user..."
-        $createResp = az rest --method POST --url "$($a.EnvUrl)/api/data/v9.2/systemusers?%24select=systemuserid" --resource $envRes --body "@$bodyFile" --headers 'Content-Type=application/json' 'Prefer=return=representation' --only-show-errors | ConvertFrom-Json
-        Remove-Item $bodyFile -Force
-        $userId = $createResp.systemuserid
-        Write-Host "  Created systemuser: $userId"
-    }
-
-    $rolesResp = az rest --method GET --url "$($a.EnvUrl)/api/data/v9.2/roles?%24filter=name eq '$($a.RoleName)'&%24select=roleid" --resource $envRes --only-show-errors | ConvertFrom-Json
-    if ($rolesResp.value.Count -eq 0) { throw "Role '$($a.RoleName)' not found in env $($a.EnvUrl)." }
-    $roleId = $rolesResp.value[0].roleid
-    Write-Host ("  Role '{0}' id: {1}" -f $a.RoleName, $roleId)
-
-    $existingRolesResp = az rest --method GET --url "$($a.EnvUrl)/api/data/v9.2/systemusers%28$userId%29/systemuserroles_association?%24select=roleid" --resource $envRes --only-show-errors | ConvertFrom-Json
-    $hasRole = $existingRolesResp.value | Where-Object { $_.roleid -eq $roleId }
-    if ($hasRole) {
-        Write-Host "  Role already assigned."
-    } else {
-        $refBody = @{ '@odata.id' = "$($a.EnvUrl)/api/data/v9.2/roles($roleId)" }
-        $refFile = New-TemporaryFile
-        ($refBody | ConvertTo-Json) | Set-Content -Path $refFile -Encoding utf8
-        Write-Host "  Assigning role..."
-        az rest --method POST --url "$($a.EnvUrl)/api/data/v9.2/systemusers%28$userId%29/systemuserroles_association/%24ref" --resource $envRes --body "@$refFile" --headers 'Content-Type=application/json' --only-show-errors | Out-Null
-        Remove-Item $refFile -Force
-        Write-Host "  Role assigned."
+        $roleName = if ($name -eq 'dev') { 'System Customizer' } else { 'System Administrator' }
+        $roles = Invoke-RestMethod "$base/roles?`$filter=name eq '$roleName' and _businessunitid_value eq $rootUnitId&`$select=roleid" -Headers $headers
+        if (@($roles.value).Count -ne 1) { throw "Expected exactly one root $roleName role for $name." }
+        $roleId = $roles.value[0].roleid
+        $assigned = Invoke-RestMethod "$base/systemusers($userId)/systemuserroles_association?`$select=roleid" -Headers $headers
+        if ($roleId -notin @($assigned.value.roleid)) {
+            $body = @{ '@odata.id' = "$base/roles($roleId)" } | ConvertTo-Json
+            Invoke-RestMethod "$base/systemusers($userId)/systemuserroles_association/`$ref" `
+                -Method Post -Headers $headers -ContentType 'application/json' -Body $body | Out-Null
+        }
+        Write-Output "Application user and deployment role verified for $name."
+    } finally {
+        $token = $null
+        $headers = $null
     }
 }
-
-Write-Host "`nDone."

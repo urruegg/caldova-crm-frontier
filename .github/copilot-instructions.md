@@ -1,8 +1,8 @@
-# CRM Showcase — GitHub Copilot Custom Instructions
+# Caldova CRM Frontier — GitHub Copilot Custom Instructions
 
 | Field | Value |
 | --- | --- |
-| Product | CRM Frontier Firm Showcase |
+| Product | Caldova CRM Frontier |
 | Document | Repo-wide Copilot Custom Instructions |
 | Version | 0.2 (Draft) |
 | Status | Draft |
@@ -15,7 +15,7 @@ Deeper detail lives in ../docs/ and ../SUPERPOWERS_CONTRACT.md.
 Related: ../AGENTS.md · ../SUPERPOWERS_CONTRACT.md · ./agents/*.agent.md · ./instructions/superpowers.instructions.md
 -->
 
-You are helping build the **CRM Frontier Firm Showcase**: a reference
+You are helping build the **Caldova CRM Frontier**: a reference
 implementation of a modern **human-agent CRM** on top of a CRM data plane
 (Dynamics 365 / Dataverse / Power Platform / Copilot Studio / Azure AI Foundry).
 The illustrated vertical is **insurance**; the architecture patterns generalise
@@ -26,7 +26,7 @@ task in this repo.
 
 ## 1. Project context (read first)
 
-- **Product**: CRM Frontier Firm Showcase — a demo, not a production system.
+- **Product**: Caldova CRM Frontier — a demo, not a production system.
 - **Frontier Firm framing**: humans and agents work as a team; agents are
   teammates that reason, act, and hand off, while humans stay accountable for
   customer-facing decisions.

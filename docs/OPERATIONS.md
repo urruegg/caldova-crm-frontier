@@ -17,6 +17,36 @@ Operations of the showcase align with:
 Full framework-to-artefact mapping in
 [MICROSOFT-FRAMEWORKS.md](./MICROSOFT-FRAMEWORKS.md).
 
+## Temporary GitHub Actions pause
+
+On 2026-11-05 the repository owner requested a temporary pause of all GitHub
+workflows while the Caldova foundation is finished, committed and pushed.
+Repository-wide Actions execution is disabled. Workflow definitions remain in
+source, including PROD promotion; pushing a new definition does not enable it.
+No workflows were running or queued when the pause was verified.
+
+This is a user-authorized bootstrap exception, not successful CI evidence.
+Local validation continues. Main branch protection, required `gate1`,
+environment approval policies, secret scanning and push protection are not
+weakened. Do not merge around missing checks or deploy while Actions is paused.
+
+Check the current state:
+
+```powershell
+gh api repos/urruegg/caldova-crm-frontier/actions/permissions
+```
+
+After an explicit decision to resume, restore the previous Actions policy:
+
+```powershell
+gh api --method PUT repos/urruegg/caldova-crm-frontier/actions/permissions `
+  -F enabled=true -f allowed_actions=all
+```
+
+Re-enabling does not retroactively validate commits pushed during the pause.
+Run CI on the exact intended source revision, resolve failures, and retain the
+normal main-branch and environment approval gates before any release.
+
 ## What the customer asks
 
 Transparency on lifecycle management for configurations, extensions and
@@ -50,12 +80,11 @@ saw, not a claim they have to believe.
 
 | Environment | Purpose | Data |
 | --- | --- | --- |
-| `crmshowdev` | Build | Synthetic |
-| `crmshowtest` | Automated regression + demo | Synthetic |
-| UAT | Business acceptance | `[TBD — anonymised?]` |
-| Prod | Live | Real (customer-side; out of scope for the showcase) |
+| DEV | Unmanaged authoring | Synthetic |
+| TEST | Managed-solution regression and integration | Synthetic |
+| PROD | Controlled managed demo release | Synthetic |
 
-Detail on the two showcase environments and how they are provisioned:
+Details on the three existing Caldova environments and their private configuration:
 [ENVIRONMENTS.md](./ENVIRONMENTS.md).
 
 ## Rollback
@@ -82,13 +111,17 @@ install the Power Platform CLI once:
 # broken NuGet package at the time of writing)
 dotnet tool install --global Microsoft.PowerApps.CLI.Tool --version 1.43.6
 
-# Sign in per environment (device-code, one browser prompt each)
-pac auth create --name crmshowdev  --url https://crmshowdev.crm.dynamics.com  --deviceCode
-pac auth create --name crmshowtest --url https://crmshowtest.crm.dynamics.com --deviceCode
+# Read verified targets from ignored local configuration.
+. .\infra\scripts\Get-PlatformConfiguration.ps1
+$platform = Get-PlatformConfiguration
+foreach ($slot in @('dev', 'test', 'prod')) {
+  pac auth create --name "caldova-crm-$slot" `
+    --environment $platform.environments[$slot].url --tenant $platform.tenantId --deviceCode
+}
 
 # Switch between them
-pac auth select --name crmshowdev
-pac auth select --name crmshowtest
+pac auth select --name caldova-crm-dev
+pac auth select --name caldova-crm-test
 
 # Verify the active connection
 pac org who

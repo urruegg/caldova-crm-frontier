@@ -1,4 +1,4 @@
-# Design Principles — CRM Frontier Firm Showcase
+# Design Principles — Caldova CRM Frontier
 
 | Field | Value |
 | --- | --- |

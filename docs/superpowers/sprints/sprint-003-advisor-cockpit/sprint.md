@@ -42,13 +42,13 @@ DESIGN-SENSITIVE streams run **attended**; EXECUTION-ONLY may run headless.
 | foundational-tables (slices 1–5) | 2 | #57 | DESIGN-SENSITIVE | ✅ DEV-authored (2026-08-14, run 31805085480); source not yet intake-exported |
 | cockpit-tables (nba + provenance) | 3 | #58 | EXECUTION-ONLY | ✅ DEV-authored (2026-08-14, run 31805085480); source not yet intake-exported |
 | seed-pipeline wiring | 5.3 | #60 (follow-up) | EXECUTION-ONLY | ✅ code-complete (2026-08-14/15) — claims mapping, `crmshow_seedkey`, the `Get-AccountKeyMap` resolver, account upserts, and the CD-DEV pipeline step all done; not yet verified live; contacts/roles and policies deferred |
-| mda-app + custom pages | 9 | #64 | DESIGN-SENSITIVE | ✅ closed 2026-08-17 — both PCF controls live in DEV under final `crmshow_PCF.*` names; Contact-form binding carried over as [#122](https://github.com/urruegg/CRMShowcase/issues/122) |
-| e2e DEV→TEST verify | 10 | #65 | EXECUTION-ONLY | 🟡 closed partial 2026-08-17 — `crmshow_Foundation`/`DataModel`/`Integration` promoted to TEST; `crmshow_Sales` carried over as [#121](https://github.com/urruegg/CRMShowcase/issues/121) |
+| mda-app + custom pages | 9 | #64 | DESIGN-SENSITIVE | ✅ closed 2026-08-17 — both PCF controls live in DEV under final `crmshow_PCF.*` names; Contact-form binding carried over as [#122](https://github.com/urruegg/caldova-crm-frontier/issues/122) |
+| e2e DEV→TEST verify | 10 | #65 | EXECUTION-ONLY | 🟡 closed partial 2026-08-17 — `crmshow_Foundation`/`DataModel`/`Integration` promoted to TEST; `crmshow_Sales` carried over as [#121](https://github.com/urruegg/caldova-crm-frontier/issues/121) |
 | nba-agent (Copilot Studio) | 6 | #61 | DESIGN-SENSITIVE | ⏸ deferred (out of sprint) |
 
 > **Sprint closed 2026-08-17** — see [STATUS.md § Sprint closed](./STATUS.md#sprint-closed-2026-08-17)
 > for the full Definition-of-Done accounting and the five carry-over issues
-> ([#120](https://github.com/urruegg/CRMShowcase/issues/120)–[#124](https://github.com/urruegg/CRMShowcase/issues/124)).
+> ([#120](https://github.com/urruegg/caldova-crm-frontier/issues/120)–[#124](https://github.com/urruegg/caldova-crm-frontier/issues/124)).
 > Closed by owner decision to start a repo-hygiene/consistency sprint next.
 
 #56 (foundation-choices, base + addendum) and #57/#58 (foundational + cockpit
@@ -78,7 +78,7 @@ that remains the "DEV-gated" step for the #56 addendum and for #57/#58.
 **CD-DEV gate verified green end-to-end (2026-08-14).** The automated DEV
 authoring/convergence pipeline (`cd-solution-dev.yml`) ran fully against live
 Dataverse for the first time this sprint — run
-[31695020608](https://github.com/urruegg/CRMShowcase/actions/runs/31695020608):
+[31695020608](https://github.com/urruegg/caldova-crm-frontier/actions/runs/31695020608):
 `validate` + `author` both succeed and convergence reports **68/68**
 component/child `State` entries `Ready`, zero `ContractConflict`. This closed
 the last two structural blockers (#92, #86; merged PR #94, full offline
@@ -98,7 +98,7 @@ high-severity `npm audit` advisories (transitive dev-dependency tree; not yet
 triaged — filed as a follow-up, not a build blocker).
 
 **#56 addendum + #57/#58 DEV-authored (2026-08-14, run
-[31805085480](https://github.com/urruegg/CRMShowcase/actions/runs/31805085480)).**
+[31805085480](https://github.com/urruegg/caldova-crm-frontier/actions/runs/31805085480)).**
 Dispatched `cd-solution-dev.yml` against the rescoped schema (commit `d2e05e0`):
 `validate` succeeded in 12m22s (full offline Pester suite), `author` succeeded
 in 9m13s (languages reconciled, demo-safe metadata reconciled, convergence

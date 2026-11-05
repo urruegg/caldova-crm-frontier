@@ -1,6 +1,6 @@
 locals {
   environments_with_dv = {
-    for k, v in var.environments : k => v
+    for k, v in(var.manage_environments ? var.environments : {}) : k => v
   }
 }
 
@@ -20,6 +20,7 @@ resource "powerplatform_environment" "this" {
   }
 
   lifecycle {
+    prevent_destroy = true
     ignore_changes = [
       # environment_type is set at creation for trials and is not changeable.
       environment_type,
@@ -34,6 +35,7 @@ resource "powerplatform_environment" "this" {
 }
 
 resource "powerplatform_tenant_settings" "this" {
+  count = var.manage_tenant_settings ? 1 : 0
   power_platform = {
     power_apps = {
       disable_share_with_everyone              = var.tenant_settings.disable_share_with_everyone
@@ -57,4 +59,3 @@ resource "powerplatform_tenant_settings" "this" {
 # returns 404 when creating them from scratch). We use a script instead
 # (`infra/scripts/add-ci-app-users.ps1`) as documented in ADR-0005. This is
 # recorded here as a comment so the module's contract is clear.
-

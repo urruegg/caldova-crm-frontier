@@ -1,0 +1,11 @@
+{
+  "tenantId": "00000000-0000-0000-0000-000000000000",
+  "githubOwner": "your-github-owner",
+  "githubRepository": "caldova-crm-frontier",
+  "azureDevOpsOrganizationUrl": "",
+  "environments": {
+    "dev": { "url": "", "environmentId": "", "organizationId": "", "clientId": "" },
+    "test": { "url": "", "environmentId": "", "organizationId": "", "clientId": "" },
+    "prod": { "url": "", "environmentId": "", "organizationId": "", "clientId": "" }
+  }
+}

@@ -1,4 +1,4 @@
-# Glossary — CRM Frontier Firm Showcase
+# Glossary — Caldova CRM Frontier
 
 ## Frontier Firm concepts
 

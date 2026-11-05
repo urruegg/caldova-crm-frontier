@@ -61,7 +61,7 @@ copilot-studio/advisor-nba-agent/…                  (agent export + eval)
 
 Run:
 ```powershell
-gh api repos/urruegg/CRMShowcase/milestones -f title="Sprint 3 - Advisor Cockpit" -f state=open
+gh api repos/urruegg/caldova-crm-frontier/milestones -f title="Sprint 3 - Advisor Cockpit" -f state=open
 gh issue create --title "[Epic] Sprint 3 - Advisor Cockpit" --body "Implements docs/superpowers/specs/2026-08-11-advisor-cockpit-design.md. Child issues per phase." --milestone "Sprint 3 - Advisor Cockpit"
 ```
 Expected: milestone JSON returned; epic issue URL printed.

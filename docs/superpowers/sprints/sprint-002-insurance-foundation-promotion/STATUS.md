@@ -26,7 +26,7 @@ See the [charter](./sprint.md) and the
 
 ## Live promotion evidence
 
-**Run 1 — [31485409186](https://github.com/urruegg/CRMShowcase/actions/runs/31485409186) (main, after PR #50 merge).**
+**Run 1 — [31485409186](https://github.com/urruegg/caldova-crm-frontier/actions/runs/31485409186) (main, after PR #50 merge).**
 
 | Step | Result |
 | --- | --- |
@@ -53,7 +53,7 @@ failure throws instead of reporting a false clean.
 protected-environment approval (the human gate), and the smoke evaluator records
 the TEST result here.
 
-**Run 2 — [31487139644](https://github.com/urruegg/CRMShowcase/actions/runs/31487139644) (main, after fix #51). ✅ SUCCESS — Proof #2 complete end to end.**
+**Run 2 — [31487139644](https://github.com/urruegg/caldova-crm-frontier/actions/runs/31487139644) (main, after fix #51). ✅ SUCCESS — Proof #2 complete end to end.**
 
 | Step | Result |
 | --- | --- |

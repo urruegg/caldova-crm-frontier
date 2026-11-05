@@ -14,8 +14,8 @@
 
 ## 1. Outcome
 
-Sprint 3 delivers the first deployable insurance data-model slice into the CRM
-Showcase DEV environment, validates tenant-feasible metadata convergence, and
+Sprint 3 delivers the first deployable insurance data-model slice into the
+Caldova CRM Frontier DEV environment, validates tenant-feasible metadata convergence, and
 exports exact Foundation/DataModel managed and unmanaged packages from the
 reviewed DEV state. It proves four things before the broader relocation use
 case is built:
@@ -484,7 +484,7 @@ the follow-up solution-versioning sprint.
 Universal server-side effective-date enforcement is not a Sprint 3 completion
 criterion. It is tracked as
 [OR-001](../../requirements/OR-001-effective-date-integrity.md) and
-[feature #9](https://github.com/urruegg/CRMShowcase/issues/9).
+[feature #9](https://github.com/urruegg/caldova-crm-frontier/issues/9).
 
 > **Proof #2 scope refinement (2026-08-11).** The managed TEST promotion in
 > [2026-08-11-insurance-foundation-promotion-design.md](./2026-08-11-insurance-foundation-promotion-design.md)

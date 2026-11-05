@@ -174,7 +174,7 @@ Create `solution/schema/advisor-cockpit-app.json`:
   "appModule": {
     "uniqueName": "crmshow_advisorcockpitapp",
     "name": "Advisor Cockpit",
-    "description": "Sales advisory cockpit and leader dashboard for the CRM Showcase.",
+    "description": "Sales advisory cockpit and leader dashboard for the Caldova CRM Frontier.",
     "clientType": "<CONFIRM-IN-TASK-1>",
     "formFactor": "<CONFIRM-IN-TASK-1>",
     "navigationType": 0
@@ -371,7 +371,7 @@ consistent with this plan's other Task-1-dependent facts.
         $body = ConvertTo-AppModuleUpsertBody -AppModule $contract.appModule -PublisherId '11111111-1111-1111-1111-111111111111'
         $body.name | Should -Be 'Advisor Cockpit'
         $body.uniquename | Should -Be 'crmshow_advisorcockpitapp'
-        $body.description | Should -Be 'Sales advisory cockpit and leader dashboard for the CRM Showcase.'
+        $body.description | Should -Be 'Sales advisory cockpit and leader dashboard for the Caldova CRM Frontier.'
         $body.navigationtype | Should -Be 0
         $body.'publisherid@odata.bind' | Should -Be '/publishers(11111111-1111-1111-1111-111111111111)'
     }

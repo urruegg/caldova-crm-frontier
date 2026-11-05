@@ -753,7 +753,7 @@ Describe "Get-SprintStatus" {
             'HEAD abc123'
             'branch refs/heads/feat/sprint-001-stream-A'
             ''
-            'worktree C:/Users/urruegg/source/urruegg/CRMShowcase'
+            'worktree C:/Users/urruegg/source/urruegg/caldova-crm-frontier'
             'HEAD def456'
             'branch refs/heads/main'
             ''

@@ -4,6 +4,13 @@ Generated on 2026-08-08 from the unmanaged `Contoso Insurance` solution with Pow
 Platform CLI 1.43.6 and enriched with filtered Dataverse model metadata for
 package-omitted table definitions.
 
+This published inventory is sanitized legacy reference evidence. Customer-
+carrying identifiers, display names and `sourcePath` values use fictional
+aliases (including Caldova24); they are not literal private snapshot paths.
+The branding migration preserves item counts, classification and mapping
+keys across the CSV, JSON and domain map, without changing the raw export.
+Adapted labels do not imply Caldova ownership or source-customer endorsement.
+
 ## Safety boundary
 
 - No Dataverse records were exported.

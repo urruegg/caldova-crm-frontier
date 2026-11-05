@@ -1,6 +1,10 @@
 terraform {
   required_version = ">= 1.9.0"
 
+  backend "local" {
+    path = ".terraform-caldova/terraform.tfstate"
+  }
+
   required_providers {
     powerplatform = {
       source  = "microsoft/power-platform"

@@ -1,0 +1,26 @@
+{
+  "name": "@caldova/fluent-brandkit",
+  "version": "0.1.0",
+  "description": "Caldova Fluent UI v9 brand kit — themes, tokens and components for React apps and Power Apps PCF controls",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "sideEffects": ["*.css"],
+  "exports": {
+    ".": "./src/index.ts",
+    "./pcf": "./pcf/CaldovaPcfProvider.tsx",
+    "./tokens.css": "./src/styles/caldova.tokens.css",
+    "./design-tokens.json": "./tokens/design-tokens.json"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@fluentui/react-components": "^9.46.0",
+    "react": "^16.14.0 || ^17 || ^18",
+    "react-dom": "^16.14.0 || ^17 || ^18"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}

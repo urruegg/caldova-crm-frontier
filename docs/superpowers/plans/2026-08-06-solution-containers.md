@@ -201,8 +201,8 @@ Create `solution/manifest.schema.json`:
 ```json
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/urruegg/CRMShowcase/main/solution/manifest.schema.json",
-  "title": "CRM Showcase Solution Manifest",
+  "$id": "https://raw.githubusercontent.com/urruegg/caldova-crm-frontier/main/solution/manifest.schema.json",
+  "title": "Caldova CRM Frontier Solution Manifest",
   "type": "object",
   "required": ["publisher", "versioning", "solutions"],
   "additionalProperties": false,
@@ -258,7 +258,7 @@ Create `solution/manifest.json`:
 {
   "$schema": "./manifest.schema.json",
   "publisher": {
-    "displayName": "CRM Showcase",
+    "displayName": "Caldova CRM Frontier",
     "uniqueName": "CRMShowcase",
     "prefix": "crmshow",
     "customizationOptionValuePrefix": 10000
@@ -276,7 +276,7 @@ Create `solution/manifest.json`:
   "solutions": [
     {
       "uniqueName": "crmshow_Foundation",
-      "displayName": "CRM Showcase - Foundation",
+      "displayName": "Caldova CRM Frontier - Foundation",
       "path": "core/foundation",
       "version": "1.0.0.0",
       "dependsOn": [],
@@ -285,7 +285,7 @@ Create `solution/manifest.json`:
     },
     {
       "uniqueName": "crmshow_DataModel",
-      "displayName": "CRM Showcase - Data Model",
+      "displayName": "Caldova CRM Frontier - Data Model",
       "path": "core/datamodel",
       "version": "1.0.0.0",
       "dependsOn": ["crmshow_Foundation"],
@@ -294,7 +294,7 @@ Create `solution/manifest.json`:
     },
     {
       "uniqueName": "crmshow_Integration",
-      "displayName": "CRM Showcase - Integration",
+      "displayName": "Caldova CRM Frontier - Integration",
       "path": "core/integration",
       "version": "1.0.0.0",
       "dependsOn": ["crmshow_Foundation"],
@@ -303,7 +303,7 @@ Create `solution/manifest.json`:
     },
     {
       "uniqueName": "crmshow_Sales",
-      "displayName": "CRM Showcase - Sales",
+      "displayName": "Caldova CRM Frontier - Sales",
       "path": "apps/sales",
       "version": "1.0.0.0",
       "dependsOn": ["crmshow_Foundation", "crmshow_DataModel", "crmshow_Integration"],
@@ -312,7 +312,7 @@ Create `solution/manifest.json`:
     },
     {
       "uniqueName": "crmshow_Service",
-      "displayName": "CRM Showcase - Service",
+      "displayName": "Caldova CRM Frontier - Service",
       "path": "apps/service",
       "version": "1.0.0.0",
       "dependsOn": ["crmshow_Foundation", "crmshow_DataModel", "crmshow_Integration"],
@@ -321,7 +321,7 @@ Create `solution/manifest.json`:
     },
     {
       "uniqueName": "crmshow_Marketing",
-      "displayName": "CRM Showcase - Marketing",
+      "displayName": "Caldova CRM Frontier - Marketing",
       "path": "apps/marketing",
       "version": "1.0.0.0",
       "dependsOn": ["crmshow_Foundation", "crmshow_DataModel", "crmshow_Integration"],
@@ -1029,7 +1029,7 @@ if ($existing.value.Count -gt 0) {
 } else {
     $body = @{
         uniquename = 'CRMShowcase'
-        friendlyname = 'CRM Showcase'
+        friendlyname = 'Caldova CRM Frontier'
         customizationprefix = 'crmshow'
         customizationoptionvalueprefix = 10000
     } | ConvertTo-Json -Compress
@@ -1062,12 +1062,12 @@ $publisherId = $publisherResp.value[0].publisherid
 if (-not $publisherId) { throw "CRMShowcase publisher not found - re-run Step 2" }
 
 $solutions = @(
-    @{ n='crmshow_Foundation';   d='CRM Showcase - Foundation' }
-    @{ n='crmshow_DataModel';    d='CRM Showcase - Data Model' }
-    @{ n='crmshow_Integration';  d='CRM Showcase - Integration' }
-    @{ n='crmshow_Sales';        d='CRM Showcase - Sales' }
-    @{ n='crmshow_Service';      d='CRM Showcase - Service' }
-    @{ n='crmshow_Marketing';    d='CRM Showcase - Marketing' }
+    @{ n='crmshow_Foundation';   d='Caldova CRM Frontier - Foundation' }
+    @{ n='crmshow_DataModel';    d='Caldova CRM Frontier - Data Model' }
+    @{ n='crmshow_Integration';  d='Caldova CRM Frontier - Integration' }
+    @{ n='crmshow_Sales';        d='Caldova CRM Frontier - Sales' }
+    @{ n='crmshow_Service';      d='Caldova CRM Frontier - Service' }
+    @{ n='crmshow_Marketing';    d='Caldova CRM Frontier - Marketing' }
 )
 
 foreach ($s in $solutions) {
@@ -1434,18 +1434,18 @@ Via GitHub UI: repo → Settings → Environments → `test` → **Required revi
 Or via CLI:
 
 ```powershell
-gh api -X PUT /repos/urruegg/CRMShowcase/environments/test `
+gh api -X PUT /repos/urruegg/caldova-crm-frontier/environments/test `
     -f "reviewers[][type]=User" -f "reviewers[][id]=46865858" `
     -f "deployment_branch_policy[protected_branches]=false" `
     -f "deployment_branch_policy[custom_branch_policies]=true"
 
-gh api -X POST /repos/urruegg/CRMShowcase/environments/test/deployment-branch-policies -f name=main
+gh api -X POST /repos/urruegg/caldova-crm-frontier/environments/test/deployment-branch-policies -f name=main
 ```
 
 Verify:
 
 ```powershell
-gh api /repos/urruegg/CRMShowcase/environments/test --jq '{name, protection_rules}'
+gh api /repos/urruegg/caldova-crm-frontier/environments/test --jq '{name, protection_rules}'
 ```
 
 Expected: one `required_reviewers` rule listed.
@@ -2036,7 +2036,7 @@ gh workflow run solution-deploy-test.yml -f commit_sha=$sha
 
 - [ ] **Step 5: Approve the deployment in the `test` GitHub Environment**
 
-Open https://github.com/urruegg/CRMShowcase/actions → find the Solution Deploy — TEST run → click Review deployments → Approve.
+Open https://github.com/urruegg/caldova-crm-frontier/actions → find the Solution Deploy — TEST run → click Review deployments → Approve.
 
 - [ ] **Step 6: Watch it complete**
 

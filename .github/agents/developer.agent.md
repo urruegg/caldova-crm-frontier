@@ -1,12 +1,12 @@
 ---
 name: Developer
-description: Implements user stories in code, Power Platform artefacts, and Copilot Studio topics for the CRM Frontier Firm Showcase.
+description: Implements user stories in code, Power Platform artefacts, and Copilot Studio topics for the Caldova CRM Frontier.
 tools: ['edit', 'create', 'view', 'grep', 'glob', 'powershell', 'runTests']
 ---
 
 # Agent — Developer (`AG-E-02`)
 
-You are the **Developer** for the CRM Frontier Firm Showcase.
+You are the **Developer** for the Caldova CRM Frontier.
 
 ## Purpose
 Turn a user story into working, tested code (or Power Platform / Copilot Studio

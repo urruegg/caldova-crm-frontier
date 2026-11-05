@@ -30,7 +30,7 @@
   "appModule": {
     "uniqueName": "crmshow_AdvisorCockpit",
     "name": "Advisor Cockpit",
-    "description": "Sales advisory cockpit and leader dashboard for the CRM Showcase.",
+    "description": "Sales advisory cockpit and leader dashboard for the Caldova CRM Frontier.",
     "clientType": 4,
     "formFactor": 1,
     "navigationType": 0

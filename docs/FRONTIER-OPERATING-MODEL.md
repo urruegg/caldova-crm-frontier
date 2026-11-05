@@ -1,4 +1,4 @@
-# Frontier Operating Model — Contoso Insurance CRM Showcase
+# Frontier Operating Model — Contoso Insurance Caldova CRM Frontier
 
 > Adapted from Microsoft's Work Trend Index "Frontier Firm" research and the real Work IQ capability (see `docs/MICROSOFT-FRAMEWORKS.md#frontier-firm-operating-model`), scoped to this repo's Contoso Insurance Advisory Cockpit use case.
 
@@ -150,7 +150,7 @@ flowchart LR
 
 ## 1. Purpose and scope
 
-This document refines the CRM Frontier Firm Showcase's mental model so it explicitly answers
+This document refines the Caldova CRM Frontier's mental model so it explicitly answers
 "how would a Frontier Company build and operate this with Microsoft's current
 agentic stack?" — grounded in Microsoft's real **Frontier Firm** concept (Work
 Trend Index 2025/2026) and the real **Work IQ** capability (Ignite 2025), not

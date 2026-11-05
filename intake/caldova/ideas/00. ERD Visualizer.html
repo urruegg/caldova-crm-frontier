@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mobiliar CRM ERD Visualizer</title>
+  <title>Caldova CRM ERD Visualizer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -748,11 +748,12 @@
   </style>
 </head>
 <body>
+<aside role="note">Adapted sanitized legacy design reference. Caldova is a fictional demo alias, not a claim of source ownership or customer endorsement. Historical schema examples are not deployable solution metadata.</aside>
   <div class="shell">
     <section class="hero">
       <div>
-        <h1>Mobiliar CRM ERD Visualizer</h1>
-        <p>Interactive entity map for the Mobiliar Dynamics 365 CRM solution — an account-led, thin-CRM-over-insurance-engines model spanning household/business/broker 360, lead clustering, after-sales, Mobi24 assistance, broker steering, consent guardrails, and Copilot-grounded next best actions.</p>
+        <h1>Caldova CRM ERD Visualizer</h1>
+        <p>Interactive entity map for the Caldova Dynamics 365 CRM solution — an account-led, thin-CRM-over-insurance-engines model spanning household/business/broker 360, lead clustering, after-sales, Caldova24 assistance, broker steering, consent guardrails, and Copilot-grounded next best actions.</p>
       </div>
       <div class="hero-metrics">
         <div class="metric">
@@ -786,7 +787,7 @@
           <input id="searchInput" type="search" placeholder="Filter tables, columns, or logical names" />
         </div>
         <div class="toolbar-row microcopy">
-          Use mouse wheel to zoom, drag the background to pan, drag a table header to reposition a card, and click a table card to expand its columns. The documented Mobiliar baseline is available immediately; live Dataverse solution metadata can be overlaid if an unpacked solution export is selected.
+          Use mouse wheel to zoom, drag the background to pan, drag a table header to reposition a card, and click a table card to expand its columns. The documented Caldova baseline is available immediately; live Dataverse solution metadata can be overlaid if an unpacked solution export is selected.
         </div>
       </div>
 
@@ -808,7 +809,7 @@
             <span class="legend-chip"><span class="legend-dot" style="background:#0c8ea5"></span>Portfolio</span>
             <span class="legend-chip"><span class="legend-dot" style="background:#0f8f6f"></span>Demand &amp; AI</span>
             <span class="legend-chip"><span class="legend-dot" style="background:#c4456f"></span>Service</span>
-            <span class="legend-chip"><span class="legend-dot" style="background:#d66a22"></span>Mobi24 &amp; Broker</span>
+            <span class="legend-chip"><span class="legend-dot" style="background:#d66a22"></span>Caldova24 &amp; Broker</span>
           </div>
         </div>
         <div class="viewport" id="viewport">
@@ -1786,18 +1787,18 @@
         logicalName: "account",
         collectionName: "accounts",
         domain: "party",
-        description: "Centre of gravity for the Mobiliar 360. A single account model covers Household, Business/Geschäftspartner, and Broker, with portfolio and steering context at account level.",
+        description: "Centre of gravity for the Caldova 360. A single account model covers Household, Business/Geschäftspartner, and Broker, with portfolio and steering context at account level.",
         x: 80,
         y: 80,
         columns: [
           { logicalName: "accountid", displayName: "Account", type: "guid", role: "PK" },
           { logicalName: "name", displayName: "Name", type: "nvarchar" },
-          { logicalName: "mobi_accounttype", displayName: "Account Type", type: "choice: Household | Business | Broker" },
-          { logicalName: "mobi_segment", displayName: "Segment", type: "choice" },
+          { logicalName: "caldova_accounttype", displayName: "Account Type", type: "choice: Household | Business | Broker" },
+          { logicalName: "caldova_segment", displayName: "Segment", type: "choice" },
           { logicalName: "primarycontactid", displayName: "Primary Contact", type: "lookup(Contact)", role: "FK" },
-          { logicalName: "mobi_generalagencyid", displayName: "General Agency", type: "lookup(GeneralAgency)", role: "FK" },
-          { logicalName: "mobi_healthscore", displayName: "Customer Health Score", type: "whole number" },
-          { logicalName: "mobi_salesblock", displayName: "Sales Block", type: "two options" }
+          { logicalName: "caldova_generalagencyid", displayName: "General Agency", type: "lookup(GeneralAgency)", role: "FK" },
+          { logicalName: "caldova_healthscore", displayName: "Customer Health Score", type: "whole number" },
+          { logicalName: "caldova_salesblock", displayName: "Sales Block", type: "two options" }
         ]
       },
       {
@@ -1816,61 +1817,61 @@
           { logicalName: "lastname", displayName: "Last Name", type: "nvarchar" },
           { logicalName: "telephone1", displayName: "Phone", type: "phone" },
           { logicalName: "emailaddress1", displayName: "Email", type: "email" },
-          { logicalName: "mobi_preferredchannel", displayName: "Preferred Channel", type: "choice" }
+          { logicalName: "caldova_preferredchannel", displayName: "Preferred Channel", type: "choice" }
         ]
       },
       {
-        key: "mobi_contactrole",
-        folder: "mobi_contactrole",
+        key: "caldova_contactrole",
+        folder: "caldova_contactrole",
         title: "Contact Role",
-        logicalName: "mobi_contactrole",
-        collectionName: "mobi_contactroles",
+        logicalName: "caldova_contactrole",
+        collectionName: "caldova_contactroles",
         domain: "party",
         description: "Associative table that says which role a contact plays for an account: Hauptkontakt, Mitentscheider, Kontext, Makler-Betreuer, and similar.",
         x: 420,
         y: 280,
         columns: [
-          { logicalName: "mobi_contactroleid", displayName: "Contact Role", type: "guid", role: "PK" },
-          { logicalName: "mobi_accountid", displayName: "Account", type: "lookup(Account)", role: "FK" },
-          { logicalName: "mobi_contactid", displayName: "Contact", type: "lookup(Contact)", role: "FK" },
-          { logicalName: "mobi_role", displayName: "Role", type: "choice" },
-          { logicalName: "mobi_isprimary", displayName: "Primary Role", type: "two options" }
+          { logicalName: "caldova_contactroleid", displayName: "Contact Role", type: "guid", role: "PK" },
+          { logicalName: "caldova_accountid", displayName: "Account", type: "lookup(Account)", role: "FK" },
+          { logicalName: "caldova_contactid", displayName: "Contact", type: "lookup(Contact)", role: "FK" },
+          { logicalName: "caldova_role", displayName: "Role", type: "choice" },
+          { logicalName: "caldova_isprimary", displayName: "Primary Role", type: "two options" }
         ]
       },
       {
-        key: "mobi_consent",
-        folder: "mobi_consent",
+        key: "caldova_consent",
+        folder: "caldova_consent",
         title: "Consent",
-        logicalName: "mobi_consent",
-        collectionName: "mobi_consents",
+        logicalName: "caldova_consent",
+        collectionName: "caldova_consents",
         domain: "party",
-        description: "Contact-level consent and channel preference guardrail used by sales, service, journeys, and Mobi24 notifications.",
+        description: "Contact-level consent and channel preference guardrail used by sales, service, journeys, and Caldova24 notifications.",
         x: 420,
         y: 600,
         columns: [
-          { logicalName: "mobi_consentid", displayName: "Consent", type: "guid", role: "PK" },
-          { logicalName: "mobi_contactid", displayName: "Contact", type: "lookup(Contact)", role: "FK" },
-          { logicalName: "mobi_channel", displayName: "Channel", type: "choice: Phone | Email | SMS | Newsletter" },
-          { logicalName: "mobi_status", displayName: "Status", type: "choice: Allowed | Denied | Not Relevant" },
-          { logicalName: "mobi_source", displayName: "Source", type: "nvarchar" },
-          { logicalName: "mobi_capturedon", displayName: "Captured On", type: "datetime" }
+          { logicalName: "caldova_consentid", displayName: "Consent", type: "guid", role: "PK" },
+          { logicalName: "caldova_contactid", displayName: "Contact", type: "lookup(Contact)", role: "FK" },
+          { logicalName: "caldova_channel", displayName: "Channel", type: "choice: Phone | Email | SMS | Newsletter" },
+          { logicalName: "caldova_status", displayName: "Status", type: "choice: Allowed | Denied | Not Relevant" },
+          { logicalName: "caldova_source", displayName: "Source", type: "nvarchar" },
+          { logicalName: "caldova_capturedon", displayName: "Captured On", type: "datetime" }
         ]
       },
       {
-        key: "mobi_generalagency",
-        folder: "mobi_generalagency",
+        key: "caldova_generalagency",
+        folder: "caldova_generalagency",
         title: "General Agency",
-        logicalName: "mobi_generalagency",
-        collectionName: "mobi_generalagencies",
+        logicalName: "caldova_generalagency",
+        collectionName: "caldova_generalagencies",
         domain: "org",
         description: "Federation anchor for the roughly 80 local general agencies. Maps cleanly to business-unit and hierarchical-security design.",
         x: 80,
         y: 760,
         columns: [
-          { logicalName: "mobi_generalagencyid", displayName: "General Agency", type: "guid", role: "PK" },
-          { logicalName: "mobi_name", displayName: "Name", type: "nvarchar" },
-          { logicalName: "mobi_region", displayName: "Region", type: "nvarchar" },
-          { logicalName: "mobi_directorate", displayName: "Direktion", type: "nvarchar" }
+          { logicalName: "caldova_generalagencyid", displayName: "General Agency", type: "guid", role: "PK" },
+          { logicalName: "caldova_name", displayName: "Name", type: "nvarchar" },
+          { logicalName: "caldova_region", displayName: "Region", type: "nvarchar" },
+          { logicalName: "caldova_directorate", displayName: "Direktion", type: "nvarchar" }
         ]
       },
       {
@@ -1880,72 +1881,72 @@
         logicalName: "systemuser",
         collectionName: "systemusers",
         domain: "org",
-        description: "VB, VS, UW, Mobi24 agent, supervisor, and manager users assigned into the federated operating model.",
+        description: "VB, VS, UW, Caldova24 agent, supervisor, and manager users assigned into the federated operating model.",
         x: 420,
         y: 920,
         columns: [
           { logicalName: "systemuserid", displayName: "User", type: "guid", role: "PK" },
           { logicalName: "fullname", displayName: "Name", type: "nvarchar" },
-          { logicalName: "mobi_role", displayName: "Mobiliar Role", type: "choice" },
-          { logicalName: "mobi_generalagencyid", displayName: "General Agency", type: "lookup(GeneralAgency)", role: "FK" }
+          { logicalName: "caldova_role", displayName: "Caldova Role", type: "choice" },
+          { logicalName: "caldova_generalagencyid", displayName: "General Agency", type: "lookup(GeneralAgency)", role: "FK" }
         ]
       },
       {
-        key: "mobi_product",
-        folder: "mobi_product",
+        key: "caldova_product",
+        folder: "caldova_product",
         title: "Product",
-        logicalName: "mobi_product",
-        collectionName: "mobi_products",
+        logicalName: "caldova_product",
+        collectionName: "caldova_products",
         domain: "portfolio",
         description: "Synced product catalog by Sparte, used to interpret policy portfolio and quote context without making CRM the product engine.",
         x: 820,
         y: 80,
         columns: [
-          { logicalName: "mobi_productid", displayName: "Product", type: "guid", role: "PK" },
-          { logicalName: "mobi_sparte", displayName: "Sparte", type: "choice" },
-          { logicalName: "mobi_name", displayName: "Name", type: "nvarchar" }
+          { logicalName: "caldova_productid", displayName: "Product", type: "guid", role: "PK" },
+          { logicalName: "caldova_sparte", displayName: "Sparte", type: "choice" },
+          { logicalName: "caldova_name", displayName: "Name", type: "nvarchar" }
         ]
       },
       {
-        key: "mobi_policy",
-        folder: "mobi_policy",
+        key: "caldova_policy",
+        folder: "caldova_policy",
         title: "Policy",
-        logicalName: "mobi_policy",
-        collectionName: "mobi_policies",
+        logicalName: "caldova_policy",
+        collectionName: "caldova_policies",
         domain: "portfolio",
         description: "Thin account-level policy reference. CRM carries the 360 context and external key; the policy engine remains system of record.",
         x: 820,
         y: 340,
         columns: [
-          { logicalName: "mobi_policyid", displayName: "Policy", type: "guid", role: "PK" },
-          { logicalName: "mobi_policynumber", displayName: "Policy Number", type: "nvarchar / external SoR ref" },
-          { logicalName: "mobi_accountid", displayName: "Account", type: "lookup(Account)", role: "FK" },
-          { logicalName: "mobi_productid", displayName: "Product", type: "lookup(Product)", role: "FK" },
-          { logicalName: "mobi_sparte", displayName: "Sparte", type: "choice" },
-          { logicalName: "mobi_annualpremium", displayName: "Annual Premium", type: "money" },
-          { logicalName: "mobi_expirydate", displayName: "Expiry Date", type: "date" },
-          { logicalName: "mobi_status", displayName: "Status", type: "choice" }
+          { logicalName: "caldova_policyid", displayName: "Policy", type: "guid", role: "PK" },
+          { logicalName: "caldova_policynumber", displayName: "Policy Number", type: "nvarchar / external SoR ref" },
+          { logicalName: "caldova_accountid", displayName: "Account", type: "lookup(Account)", role: "FK" },
+          { logicalName: "caldova_productid", displayName: "Product", type: "lookup(Product)", role: "FK" },
+          { logicalName: "caldova_sparte", displayName: "Sparte", type: "choice" },
+          { logicalName: "caldova_annualpremium", displayName: "Annual Premium", type: "money" },
+          { logicalName: "caldova_expirydate", displayName: "Expiry Date", type: "date" },
+          { logicalName: "caldova_status", displayName: "Status", type: "choice" }
         ]
       },
       {
-        key: "mobi_claim",
-        folder: "mobi_claim",
+        key: "caldova_claim",
+        folder: "caldova_claim",
         title: "Claim",
-        logicalName: "mobi_claim",
-        collectionName: "mobi_claims",
+        logicalName: "caldova_claim",
+        collectionName: "caldova_claims",
         domain: "portfolio",
         description: "Thin claim reference for after-sales and claim-to-lead orchestration. Settlement stays in the claims engine.",
         x: 820,
         y: 700,
         columns: [
-          { logicalName: "mobi_claimid", displayName: "Claim", type: "guid", role: "PK" },
-          { logicalName: "mobi_claimnumber", displayName: "Claim Number", type: "nvarchar / external SoR ref" },
-          { logicalName: "mobi_accountid", displayName: "Account", type: "lookup(Account)", role: "FK" },
-          { logicalName: "mobi_policyid", displayName: "Policy", type: "lookup(Policy)", role: "FK" },
-          { logicalName: "mobi_type", displayName: "Claim Type", type: "choice" },
-          { logicalName: "mobi_status", displayName: "Status", type: "choice" },
-          { logicalName: "mobi_openedon", displayName: "Opened On", type: "date" },
-          { logicalName: "mobi_generatedleadid", displayName: "Generated Lead", type: "lookup(Lead)", role: "FK" }
+          { logicalName: "caldova_claimid", displayName: "Claim", type: "guid", role: "PK" },
+          { logicalName: "caldova_claimnumber", displayName: "Claim Number", type: "nvarchar / external SoR ref" },
+          { logicalName: "caldova_accountid", displayName: "Account", type: "lookup(Account)", role: "FK" },
+          { logicalName: "caldova_policyid", displayName: "Policy", type: "lookup(Policy)", role: "FK" },
+          { logicalName: "caldova_type", displayName: "Claim Type", type: "choice" },
+          { logicalName: "caldova_status", displayName: "Status", type: "choice" },
+          { logicalName: "caldova_openedon", displayName: "Opened On", type: "date" },
+          { logicalName: "caldova_generatedleadid", displayName: "Generated Lead", type: "lookup(Lead)", role: "FK" }
         ]
       },
       {
@@ -1961,30 +1962,30 @@
         columns: [
           { logicalName: "leadid", displayName: "Lead", type: "guid", role: "PK" },
           { logicalName: "parentaccountid", displayName: "Account", type: "lookup(Account)", role: "FK" },
-          { logicalName: "mobi_clusterid", displayName: "Lead Cluster", type: "lookup(LeadCluster)", role: "FK" },
+          { logicalName: "caldova_clusterid", displayName: "Lead Cluster", type: "lookup(LeadCluster)", role: "FK" },
           { logicalName: "ownerid", displayName: "Owner", type: "lookup(SystemUser)", role: "FK" },
           { logicalName: "leadsourcecode", displayName: "Source", type: "choice" },
-          { logicalName: "mobi_channel", displayName: "Channel", type: "choice" },
-          { logicalName: "mobi_trigger", displayName: "Trigger", type: "nvarchar" },
-          { logicalName: "mobi_aiscore", displayName: "AI Score", type: "whole number" },
+          { logicalName: "caldova_channel", displayName: "Channel", type: "choice" },
+          { logicalName: "caldova_trigger", displayName: "Trigger", type: "nvarchar" },
+          { logicalName: "caldova_aiscore", displayName: "AI Score", type: "whole number" },
           { logicalName: "statuscode", displayName: "Status", type: "choice" }
         ]
       },
       {
-        key: "mobi_leadcluster",
-        folder: "mobi_leadcluster",
+        key: "caldova_leadcluster",
+        folder: "caldova_leadcluster",
         title: "Lead Cluster",
-        logicalName: "mobi_leadcluster",
-        collectionName: "mobi_leadclusters",
+        logicalName: "caldova_leadcluster",
+        collectionName: "caldova_leadclusters",
         domain: "demand",
         description: "Anti-over-contact bundle: multiple triggers become one respectful conversation while preserving the lead history.",
         x: 1240,
         y: 480,
         columns: [
-          { logicalName: "mobi_leadclusterid", displayName: "Lead Cluster", type: "guid", role: "PK" },
-          { logicalName: "mobi_accountid", displayName: "Account", type: "lookup(Account)", role: "FK" },
-          { logicalName: "mobi_primaryleadid", displayName: "Primary Lead", type: "lookup(Lead)", role: "FK" },
-          { logicalName: "mobi_contactpressure", displayName: "Contact Pressure", type: "choice: Low | Medium | High" }
+          { logicalName: "caldova_leadclusterid", displayName: "Lead Cluster", type: "guid", role: "PK" },
+          { logicalName: "caldova_accountid", displayName: "Account", type: "lookup(Account)", role: "FK" },
+          { logicalName: "caldova_primaryleadid", displayName: "Primary Lead", type: "lookup(Lead)", role: "FK" },
+          { logicalName: "caldova_contactpressure", displayName: "Contact Pressure", type: "choice: Low | Medium | High" }
         ]
       },
       {
@@ -2019,30 +2020,30 @@
         columns: [
           { logicalName: "quoteid", displayName: "Quote", type: "guid", role: "PK" },
           { logicalName: "opportunityid", displayName: "Opportunity", type: "lookup(Opportunity)", role: "FK" },
-          { logicalName: "mobi_productid", displayName: "Product", type: "lookup(Product)", role: "FK" },
+          { logicalName: "caldova_productid", displayName: "Product", type: "lookup(Product)", role: "FK" },
           { logicalName: "totalamount", displayName: "Premium", type: "money" },
           { logicalName: "statecode", displayName: "Status", type: "choice" },
-          { logicalName: "mobi_engineref", displayName: "Quoting Engine Reference", type: "nvarchar / external ref" }
+          { logicalName: "caldova_engineref", displayName: "Quoting Engine Reference", type: "nvarchar / external ref" }
         ]
       },
       {
-        key: "mobi_nextbestaction",
-        folder: "mobi_nextbestaction",
+        key: "caldova_nextbestaction",
+        folder: "caldova_nextbestaction",
         title: "Next Best Action",
-        logicalName: "mobi_nextbestaction",
-        collectionName: "mobi_nextbestactions",
+        logicalName: "caldova_nextbestaction",
+        collectionName: "caldova_nextbestactions",
         domain: "ai",
         description: "Explainable Copilot/NBA recommendation with reason, confidence, and feedback loop for model improvement.",
         x: 1620,
         y: 120,
         columns: [
-          { logicalName: "mobi_nextbestactionid", displayName: "Next Best Action", type: "guid", role: "PK" },
-          { logicalName: "mobi_accountid", displayName: "Account", type: "lookup(Account)", role: "FK" },
-          { logicalName: "mobi_leadid", displayName: "Lead", type: "lookup(Lead)", role: "FK" },
-          { logicalName: "mobi_recommendation", displayName: "Recommendation", type: "multiline text" },
-          { logicalName: "mobi_reason", displayName: "Why", type: "multiline text" },
-          { logicalName: "mobi_confidence", displayName: "Confidence", type: "whole number" },
-          { logicalName: "mobi_feedback", displayName: "Feedback", type: "choice: None | Helpful | Not Helpful" }
+          { logicalName: "caldova_nextbestactionid", displayName: "Next Best Action", type: "guid", role: "PK" },
+          { logicalName: "caldova_accountid", displayName: "Account", type: "lookup(Account)", role: "FK" },
+          { logicalName: "caldova_leadid", displayName: "Lead", type: "lookup(Lead)", role: "FK" },
+          { logicalName: "caldova_recommendation", displayName: "Recommendation", type: "multiline text" },
+          { logicalName: "caldova_reason", displayName: "Why", type: "multiline text" },
+          { logicalName: "caldova_confidence", displayName: "Confidence", type: "whole number" },
+          { logicalName: "caldova_feedback", displayName: "Feedback", type: "choice: None | Helpful | Not Helpful" }
         ]
       },
       {
@@ -2058,13 +2059,13 @@
         columns: [
           { logicalName: "activityid", displayName: "Activity", type: "guid", role: "PK" },
           { logicalName: "regardingobjectid", displayName: "Regarding", type: "customer / lookup", role: "FK" },
-          { logicalName: "mobi_contactid", displayName: "Contact", type: "lookup(Contact)", role: "FK" },
+          { logicalName: "caldova_contactid", displayName: "Contact", type: "lookup(Contact)", role: "FK" },
           { logicalName: "activitytypecode", displayName: "Type", type: "choice" },
           { logicalName: "scheduledstart", displayName: "Scheduled On", type: "datetime" },
           { logicalName: "statecode", displayName: "Status", type: "choice" },
-          { logicalName: "mobi_transcript", displayName: "Transcript", type: "multiline text" },
-          { logicalName: "mobi_aisummary", displayName: "AI Summary", type: "multiline text" },
-          { logicalName: "mobi_sentiment", displayName: "Sentiment", type: "choice" }
+          { logicalName: "caldova_transcript", displayName: "Transcript", type: "multiline text" },
+          { logicalName: "caldova_aisummary", displayName: "AI Summary", type: "multiline text" },
+          { logicalName: "caldova_sentiment", displayName: "Sentiment", type: "choice" }
         ]
       },
       {
@@ -2083,157 +2084,157 @@
           { logicalName: "primarycontactid", displayName: "Reporting Contact", type: "lookup(Contact)", role: "FK" },
           { logicalName: "casetypecode", displayName: "Type", type: "choice: Anliegen | Beschwerde" },
           { logicalName: "title", displayName: "Subject", type: "nvarchar" },
-          { logicalName: "mobi_channel", displayName: "Channel", type: "choice" },
+          { logicalName: "caldova_channel", displayName: "Channel", type: "choice" },
           { logicalName: "statuscode", displayName: "Status", type: "choice" },
-          { logicalName: "mobi_generatedleadid", displayName: "Generated Lead", type: "lookup(Lead)", role: "FK" }
+          { logicalName: "caldova_generatedleadid", displayName: "Generated Lead", type: "lookup(Lead)", role: "FK" }
         ]
       },
       {
-        key: "mobi_vehicle",
-        folder: "mobi_vehicle",
+        key: "caldova_vehicle",
+        folder: "caldova_vehicle",
         title: "Vehicle",
-        logicalName: "mobi_vehicle",
-        collectionName: "mobi_vehicles",
+        logicalName: "caldova_vehicle",
+        collectionName: "caldova_vehicles",
         domain: "assistance",
-        description: "Affected asset for Mobi24 assistance, identified by plate and associated to account-level portfolio context.",
+        description: "Affected asset for Caldova24 assistance, identified by plate and associated to account-level portfolio context.",
         x: 2020,
         y: 520,
         columns: [
-          { logicalName: "mobi_vehicleid", displayName: "Vehicle", type: "guid", role: "PK" },
-          { logicalName: "mobi_accountid", displayName: "Account", type: "lookup(Account)", role: "FK" },
-          { logicalName: "mobi_plate", displayName: "Plate", type: "nvarchar" },
-          { logicalName: "mobi_category", displayName: "Category", type: "choice" }
+          { logicalName: "caldova_vehicleid", displayName: "Vehicle", type: "guid", role: "PK" },
+          { logicalName: "caldova_accountid", displayName: "Account", type: "lookup(Account)", role: "FK" },
+          { logicalName: "caldova_plate", displayName: "Plate", type: "nvarchar" },
+          { logicalName: "caldova_category", displayName: "Category", type: "choice" }
         ]
       },
       {
-        key: "mobi_assistancecase",
-        folder: "mobi_assistancecase",
+        key: "caldova_assistancecase",
+        folder: "caldova_assistancecase",
         title: "Assistance Case",
-        logicalName: "mobi_assistancecase",
-        collectionName: "mobi_assistancecases",
+        logicalName: "caldova_assistancecase",
+        collectionName: "caldova_assistancecases",
         domain: "assistance",
-        description: "Mobi24 orchestration record: IVR concern, caller, coverage, location, vehicle, partner dispatch, customer status link, and live updates.",
+        description: "Caldova24 orchestration record: IVR concern, caller, coverage, location, vehicle, partner dispatch, customer status link, and live updates.",
         x: 2020,
         y: 860,
         columns: [
-          { logicalName: "mobi_assistancecaseid", displayName: "Assistance Case", type: "guid", role: "PK" },
-          { logicalName: "mobi_accountid", displayName: "Account", type: "lookup(Account)", role: "FK" },
-          { logicalName: "mobi_contactid", displayName: "Caller", type: "lookup(Contact)", role: "FK" },
-          { logicalName: "mobi_policyid", displayName: "Policy", type: "lookup(Policy)", role: "FK" },
-          { logicalName: "mobi_vehicleid", displayName: "Vehicle", type: "lookup(Vehicle)", role: "FK" },
-          { logicalName: "mobi_concerntype", displayName: "Concern Type", type: "choice" },
-          { logicalName: "mobi_location", displayName: "Location", type: "nvarchar" },
-          { logicalName: "mobi_status", displayName: "Status", type: "choice" }
+          { logicalName: "caldova_assistancecaseid", displayName: "Assistance Case", type: "guid", role: "PK" },
+          { logicalName: "caldova_accountid", displayName: "Account", type: "lookup(Account)", role: "FK" },
+          { logicalName: "caldova_contactid", displayName: "Caller", type: "lookup(Contact)", role: "FK" },
+          { logicalName: "caldova_policyid", displayName: "Policy", type: "lookup(Policy)", role: "FK" },
+          { logicalName: "caldova_vehicleid", displayName: "Vehicle", type: "lookup(Vehicle)", role: "FK" },
+          { logicalName: "caldova_concerntype", displayName: "Concern Type", type: "choice" },
+          { logicalName: "caldova_location", displayName: "Location", type: "nvarchar" },
+          { logicalName: "caldova_status", displayName: "Status", type: "choice" }
         ]
       },
       {
-        key: "mobi_assistancepartner",
-        folder: "mobi_assistancepartner",
+        key: "caldova_assistancepartner",
+        folder: "caldova_assistancepartner",
         title: "Assistance Partner",
-        logicalName: "mobi_assistancepartner",
-        collectionName: "mobi_assistancepartners",
+        logicalName: "caldova_assistancepartner",
+        collectionName: "caldova_assistancepartners",
         domain: "assistance",
         description: "Partner master data for dispatch ranking: skills, coverage area, availability, SLA, and rating.",
         x: 2420,
         y: 540,
         columns: [
-          { logicalName: "mobi_assistancepartnerid", displayName: "Assistance Partner", type: "guid", role: "PK" },
-          { logicalName: "mobi_name", displayName: "Name", type: "nvarchar" },
-          { logicalName: "mobi_skills", displayName: "Skills", type: "multiline text" },
-          { logicalName: "mobi_coveragearea", displayName: "Coverage Area", type: "nvarchar" },
-          { logicalName: "mobi_availability", displayName: "Availability", type: "choice" },
-          { logicalName: "mobi_slaminutes", displayName: "SLA Minutes", type: "decimal" },
-          { logicalName: "mobi_rating", displayName: "Rating", type: "decimal" }
+          { logicalName: "caldova_assistancepartnerid", displayName: "Assistance Partner", type: "guid", role: "PK" },
+          { logicalName: "caldova_name", displayName: "Name", type: "nvarchar" },
+          { logicalName: "caldova_skills", displayName: "Skills", type: "multiline text" },
+          { logicalName: "caldova_coveragearea", displayName: "Coverage Area", type: "nvarchar" },
+          { logicalName: "caldova_availability", displayName: "Availability", type: "choice" },
+          { logicalName: "caldova_slaminutes", displayName: "SLA Minutes", type: "decimal" },
+          { logicalName: "caldova_rating", displayName: "Rating", type: "decimal" }
         ]
       },
       {
-        key: "mobi_dispatch",
-        folder: "mobi_dispatch",
+        key: "caldova_dispatch",
+        folder: "caldova_dispatch",
         title: "Dispatch",
-        logicalName: "mobi_dispatch",
-        collectionName: "mobi_dispatches",
+        logicalName: "caldova_dispatch",
+        collectionName: "caldova_dispatches",
         domain: "assistance",
         description: "Digital partner assignment, ETA, acceptance receipt, live status updates, and fallback escalation point.",
         x: 2420,
         y: 900,
         columns: [
-          { logicalName: "mobi_dispatchid", displayName: "Dispatch", type: "guid", role: "PK" },
-          { logicalName: "mobi_assistancecaseid", displayName: "Assistance Case", type: "lookup(AssistanceCase)", role: "FK" },
-          { logicalName: "mobi_partnerid", displayName: "Partner", type: "lookup(AssistancePartner)", role: "FK" },
-          { logicalName: "mobi_etaminutes", displayName: "ETA Minutes", type: "whole number" },
-          { logicalName: "mobi_status", displayName: "Status", type: "choice: Sent | Accepted | EnRoute | OnSite | Closed" }
+          { logicalName: "caldova_dispatchid", displayName: "Dispatch", type: "guid", role: "PK" },
+          { logicalName: "caldova_assistancecaseid", displayName: "Assistance Case", type: "lookup(AssistanceCase)", role: "FK" },
+          { logicalName: "caldova_partnerid", displayName: "Partner", type: "lookup(AssistancePartner)", role: "FK" },
+          { logicalName: "caldova_etaminutes", displayName: "ETA Minutes", type: "whole number" },
+          { logicalName: "caldova_status", displayName: "Status", type: "choice: Sent | Accepted | EnRoute | OnSite | Closed" }
         ]
       },
       {
-        key: "mobi_servicelineitem",
-        folder: "mobi_servicelineitem",
+        key: "caldova_servicelineitem",
+        folder: "caldova_servicelineitem",
         title: "Service Line Item",
-        logicalName: "mobi_servicelineitem",
-        collectionName: "mobi_servicelineitems",
+        logicalName: "caldova_servicelineitem",
+        collectionName: "caldova_servicelineitems",
         domain: "assistance",
         description: "Line items imported from partner rapport and used by the billing/faktura dossier without manual re-entry.",
         x: 2800,
         y: 920,
         columns: [
-          { logicalName: "mobi_servicelineitemid", displayName: "Service Line Item", type: "guid", role: "PK" },
-          { logicalName: "mobi_dispatchid", displayName: "Dispatch", type: "lookup(Dispatch)", role: "FK" },
-          { logicalName: "mobi_description", displayName: "Description", type: "nvarchar" },
-          { logicalName: "mobi_amount", displayName: "Amount", type: "money" }
+          { logicalName: "caldova_servicelineitemid", displayName: "Service Line Item", type: "guid", role: "PK" },
+          { logicalName: "caldova_dispatchid", displayName: "Dispatch", type: "lookup(Dispatch)", role: "FK" },
+          { logicalName: "caldova_description", displayName: "Description", type: "nvarchar" },
+          { logicalName: "caldova_amount", displayName: "Amount", type: "money" }
         ]
       },
       {
-        key: "mobi_brokerscorecard",
-        folder: "mobi_brokerscorecard",
+        key: "caldova_brokerscorecard",
+        folder: "caldova_brokerscorecard",
         title: "Broker Scorecard",
-        logicalName: "mobi_brokerscorecard",
-        collectionName: "mobi_brokerscorecards",
+        logicalName: "caldova_brokerscorecard",
+        collectionName: "caldova_brokerscorecards",
         domain: "broker",
         description: "Broker-account performance scorecard for volume, offer-to-bind conversion, target achievement, and anomaly detection.",
         x: 2800,
         y: 80,
         columns: [
-          { logicalName: "mobi_brokerscorecardid", displayName: "Broker Scorecard", type: "guid", role: "PK" },
-          { logicalName: "mobi_accountid", displayName: "Broker Account", type: "lookup(Account)", role: "FK" },
-          { logicalName: "mobi_newbusinessytd", displayName: "New Business YTD", type: "money" },
-          { logicalName: "mobi_conversionrate", displayName: "Conversion Rate", type: "decimal" },
-          { logicalName: "mobi_targetachievement", displayName: "Target Achievement", type: "decimal" }
+          { logicalName: "caldova_brokerscorecardid", displayName: "Broker Scorecard", type: "guid", role: "PK" },
+          { logicalName: "caldova_accountid", displayName: "Broker Account", type: "lookup(Account)", role: "FK" },
+          { logicalName: "caldova_newbusinessytd", displayName: "New Business YTD", type: "money" },
+          { logicalName: "caldova_conversionrate", displayName: "Conversion Rate", type: "decimal" },
+          { logicalName: "caldova_targetachievement", displayName: "Target Achievement", type: "decimal" }
         ]
       },
       {
-        key: "mobi_brokerreview",
-        folder: "mobi_brokerreview",
+        key: "caldova_brokerreview",
+        folder: "caldova_brokerreview",
         title: "Broker Review",
-        logicalName: "mobi_brokerreview",
-        collectionName: "mobi_brokerreviews",
+        logicalName: "caldova_brokerreview",
+        collectionName: "caldova_brokerreviews",
         domain: "broker",
-        description: "Annual broker review with Word/SharePoint protocol generation in Mobiliar format and agreed measures.",
+        description: "Annual broker review with Word/SharePoint protocol generation in Caldova format and agreed measures.",
         x: 2800,
         y: 420,
         columns: [
-          { logicalName: "mobi_brokerreviewid", displayName: "Broker Review", type: "guid", role: "PK" },
-          { logicalName: "mobi_accountid", displayName: "Broker Account", type: "lookup(Account)", role: "FK" },
+          { logicalName: "caldova_brokerreviewid", displayName: "Broker Review", type: "guid", role: "PK" },
+          { logicalName: "caldova_accountid", displayName: "Broker Account", type: "lookup(Account)", role: "FK" },
           { logicalName: "ownerid", displayName: "Owner", type: "lookup(SystemUser)", role: "FK" },
-          { logicalName: "mobi_reviewdate", displayName: "Review Date", type: "date" },
-          { logicalName: "mobi_protocoldocref", displayName: "Protocol Doc Ref", type: "nvarchar / SharePoint" }
+          { logicalName: "caldova_reviewdate", displayName: "Review Date", type: "date" },
+          { logicalName: "caldova_protocoldocref", displayName: "Protocol Doc Ref", type: "nvarchar / SharePoint" }
         ]
       },
       {
-        key: "mobi_measure",
-        folder: "mobi_measure",
+        key: "caldova_measure",
+        folder: "caldova_measure",
         title: "Measure",
-        logicalName: "mobi_measure",
-        collectionName: "mobi_measures",
+        logicalName: "caldova_measure",
+        collectionName: "caldova_measures",
         domain: "broker",
         description: "Massnahme lifecycle for broker steering and local execution: open, done, overdue, with due date and accountability.",
         x: 3160,
         y: 560,
         columns: [
-          { logicalName: "mobi_measureid", displayName: "Measure", type: "guid", role: "PK" },
-          { logicalName: "mobi_reviewid", displayName: "Broker Review", type: "lookup(BrokerReview)", role: "FK" },
-          { logicalName: "mobi_accountid", displayName: "Account", type: "lookup(Account)", role: "FK" },
-          { logicalName: "mobi_description", displayName: "Description", type: "multiline text" },
-          { logicalName: "mobi_status", displayName: "Status", type: "choice: Open | Done | Overdue" },
-          { logicalName: "mobi_duedate", displayName: "Due Date", type: "date" }
+          { logicalName: "caldova_measureid", displayName: "Measure", type: "guid", role: "PK" },
+          { logicalName: "caldova_reviewid", displayName: "Broker Review", type: "lookup(BrokerReview)", role: "FK" },
+          { logicalName: "caldova_accountid", displayName: "Account", type: "lookup(Account)", role: "FK" },
+          { logicalName: "caldova_description", displayName: "Description", type: "multiline text" },
+          { logicalName: "caldova_status", displayName: "Status", type: "choice: Open | Done | Overdue" },
+          { logicalName: "caldova_duedate", displayName: "Due Date", type: "date" }
         ]
       },
       {
@@ -2249,53 +2250,53 @@
         columns: [
           { logicalName: "campaignid", displayName: "Campaign", type: "guid", role: "PK" },
           { logicalName: "name", displayName: "Name", type: "nvarchar" },
-          { logicalName: "mobi_guardrails", displayName: "Guardrails", type: "multiline text" },
+          { logicalName: "caldova_guardrails", displayName: "Guardrails", type: "multiline text" },
           { logicalName: "statecode", displayName: "Status", type: "choice" }
         ]
       }
     ];
 
     baselineRelationships = [
-      { from: "mobi_generalagency", to: "account", fromCard: "1", toCard: "N", label: "owns market", style: "commercial" },
-      { from: "mobi_generalagency", to: "systemuser", fromCard: "1", toCard: "N", label: "staffs", style: "commercial" },
+      { from: "caldova_generalagency", to: "account", fromCard: "1", toCard: "N", label: "owns market", style: "commercial" },
+      { from: "caldova_generalagency", to: "systemuser", fromCard: "1", toCard: "N", label: "staffs", style: "commercial" },
       { from: "account", to: "contact", fromCard: "N", toCard: "1", label: "primary contact", style: "commercial" },
-      { from: "account", to: "mobi_contactrole", fromCard: "1", toCard: "N", label: "has roles", style: "commercial" },
-      { from: "contact", to: "mobi_contactrole", fromCard: "1", toCard: "N", label: "plays role", style: "commercial" },
-      { from: "contact", to: "mobi_consent", fromCard: "1", toCard: "N", label: "grants", style: "commercial" },
-      { from: "account", to: "mobi_policy", fromCard: "1", toCard: "N", label: "holds", style: "activity" },
-      { from: "mobi_product", to: "mobi_policy", fromCard: "1", toCard: "N", label: "instantiates", style: "activity" },
-      { from: "account", to: "mobi_claim", fromCard: "1", toCard: "N", label: "incurs", style: "activity" },
-      { from: "mobi_policy", to: "mobi_claim", fromCard: "1", toCard: "N", label: "against", style: "activity" },
+      { from: "account", to: "caldova_contactrole", fromCard: "1", toCard: "N", label: "has roles", style: "commercial" },
+      { from: "contact", to: "caldova_contactrole", fromCard: "1", toCard: "N", label: "plays role", style: "commercial" },
+      { from: "contact", to: "caldova_consent", fromCard: "1", toCard: "N", label: "grants", style: "commercial" },
+      { from: "account", to: "caldova_policy", fromCard: "1", toCard: "N", label: "holds", style: "activity" },
+      { from: "caldova_product", to: "caldova_policy", fromCard: "1", toCard: "N", label: "instantiates", style: "activity" },
+      { from: "account", to: "caldova_claim", fromCard: "1", toCard: "N", label: "incurs", style: "activity" },
+      { from: "caldova_policy", to: "caldova_claim", fromCard: "1", toCard: "N", label: "against", style: "activity" },
       { from: "account", to: "lead", fromCard: "1", toCard: "N", label: "originates", style: "signal" },
       { from: "campaign", to: "lead", fromCard: "1", toCard: "N", label: "feeds", style: "signal" },
       { from: "systemuser", to: "lead", fromCard: "1", toCard: "N", label: "owns", style: "signal" },
-      { from: "account", to: "mobi_leadcluster", fromCard: "1", toCard: "N", label: "groups for", style: "signal" },
-      { from: "mobi_leadcluster", to: "lead", fromCard: "1", toCard: "N", label: "bundles", style: "signal" },
+      { from: "account", to: "caldova_leadcluster", fromCard: "1", toCard: "N", label: "groups for", style: "signal" },
+      { from: "caldova_leadcluster", to: "lead", fromCard: "1", toCard: "N", label: "bundles", style: "signal" },
       { from: "lead", to: "opportunity", fromCard: "1", toCard: "1", label: "converts", style: "signal" },
       { from: "account", to: "opportunity", fromCard: "1", toCard: "N", label: "pursues", style: "signal" },
       { from: "opportunity", to: "quote", fromCard: "1", toCard: "N", label: "produces", style: "signal" },
-      { from: "mobi_product", to: "quote", fromCard: "1", toCard: "N", label: "priced as", style: "activity" },
-      { from: "account", to: "mobi_nextbestaction", fromCard: "1", toCard: "N", label: "receives", style: "signal" },
-      { from: "lead", to: "mobi_nextbestaction", fromCard: "1", toCard: "N", label: "triggers", style: "signal" },
+      { from: "caldova_product", to: "quote", fromCard: "1", toCard: "N", label: "priced as", style: "activity" },
+      { from: "account", to: "caldova_nextbestaction", fromCard: "1", toCard: "N", label: "receives", style: "signal" },
+      { from: "lead", to: "caldova_nextbestaction", fromCard: "1", toCard: "N", label: "triggers", style: "signal" },
       { from: "account", to: "activitypointer", fromCard: "1", toCard: "N", label: "interacts", style: "service" },
       { from: "contact", to: "activitypointer", fromCard: "1", toCard: "N", label: "party to", style: "service" },
       { from: "account", to: "incident", fromCard: "1", toCard: "N", label: "raises", style: "service" },
       { from: "contact", to: "incident", fromCard: "1", toCard: "N", label: "reports", style: "service" },
       { from: "incident", to: "lead", fromCard: "1", toCard: "0..1", label: "service-to-lead", style: "service" },
-      { from: "mobi_claim", to: "lead", fromCard: "1", toCard: "0..1", label: "claim-to-lead", style: "service" },
-      { from: "account", to: "mobi_vehicle", fromCard: "1", toCard: "N", label: "owns asset", style: "service" },
-      { from: "account", to: "mobi_assistancecase", fromCard: "1", toCard: "N", label: "opens", style: "service" },
-      { from: "contact", to: "mobi_assistancecase", fromCard: "1", toCard: "N", label: "caller", style: "service" },
-      { from: "mobi_policy", to: "mobi_assistancecase", fromCard: "1", toCard: "N", label: "covers", style: "service" },
-      { from: "mobi_vehicle", to: "mobi_assistancecase", fromCard: "1", toCard: "N", label: "affected asset", style: "service" },
-      { from: "mobi_assistancecase", to: "mobi_dispatch", fromCard: "1", toCard: "N", label: "dispatches", style: "service" },
-      { from: "mobi_assistancepartner", to: "mobi_dispatch", fromCard: "1", toCard: "N", label: "fulfils", style: "service" },
-      { from: "mobi_dispatch", to: "mobi_servicelineitem", fromCard: "1", toCard: "N", label: "bills", style: "service" },
-      { from: "account", to: "mobi_brokerscorecard", fromCard: "1", toCard: "1", label: "scored by", style: "activity" },
-      { from: "account", to: "mobi_brokerreview", fromCard: "1", toCard: "N", label: "reviewed in", style: "activity" },
-      { from: "systemuser", to: "mobi_brokerreview", fromCard: "1", toCard: "N", label: "owns", style: "activity" },
-      { from: "mobi_brokerreview", to: "mobi_measure", fromCard: "1", toCard: "N", label: "agrees", style: "activity" },
-      { from: "account", to: "mobi_measure", fromCard: "1", toCard: "N", label: "accountable", style: "activity" }
+      { from: "caldova_claim", to: "lead", fromCard: "1", toCard: "0..1", label: "claim-to-lead", style: "service" },
+      { from: "account", to: "caldova_vehicle", fromCard: "1", toCard: "N", label: "owns asset", style: "service" },
+      { from: "account", to: "caldova_assistancecase", fromCard: "1", toCard: "N", label: "opens", style: "service" },
+      { from: "contact", to: "caldova_assistancecase", fromCard: "1", toCard: "N", label: "caller", style: "service" },
+      { from: "caldova_policy", to: "caldova_assistancecase", fromCard: "1", toCard: "N", label: "covers", style: "service" },
+      { from: "caldova_vehicle", to: "caldova_assistancecase", fromCard: "1", toCard: "N", label: "affected asset", style: "service" },
+      { from: "caldova_assistancecase", to: "caldova_dispatch", fromCard: "1", toCard: "N", label: "dispatches", style: "service" },
+      { from: "caldova_assistancepartner", to: "caldova_dispatch", fromCard: "1", toCard: "N", label: "fulfils", style: "service" },
+      { from: "caldova_dispatch", to: "caldova_servicelineitem", fromCard: "1", toCard: "N", label: "bills", style: "service" },
+      { from: "account", to: "caldova_brokerscorecard", fromCard: "1", toCard: "1", label: "scored by", style: "activity" },
+      { from: "account", to: "caldova_brokerreview", fromCard: "1", toCard: "N", label: "reviewed in", style: "activity" },
+      { from: "systemuser", to: "caldova_brokerreview", fromCard: "1", toCard: "N", label: "owns", style: "activity" },
+      { from: "caldova_brokerreview", to: "caldova_measure", fromCard: "1", toCard: "N", label: "agrees", style: "activity" },
+      { from: "account", to: "caldova_measure", fromCard: "1", toCard: "N", label: "accountable", style: "activity" }
     ];
 
     const state = {
@@ -2883,7 +2884,7 @@
       const results = [];
       const failures = [];
       for (const entity of state.entities) {
-        const path = `../Solutions/mobiliar_unpacked/Entities/${entity.folder}/Entity.xml`;
+        const path = `../Solutions/caldova_unpacked/Entities/${entity.folder}/Entity.xml`;
         try {
           const response = await fetch(path, { cache: "no-store" });
           if (!response.ok) {

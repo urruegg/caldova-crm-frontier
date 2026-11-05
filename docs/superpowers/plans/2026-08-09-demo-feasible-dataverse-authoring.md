@@ -160,9 +160,9 @@ confirmed with customer architecture in the next review.
 In `docs/BACKLOG.md`, change the affected Epic 7 rows to:
 
 ```markdown
-| US-702 | Deliver shared insurance choices; create security roles through the approved DEV administrator prerequisite and verify them in CI | In progress - [#8](https://github.com/urruegg/CRMShowcase/issues/8), [#40](https://github.com/urruegg/CRMShowcase/issues/40) |
-| US-708 | Author and export unmanaged/managed packages from DEV; managed TEST promotion is a separate solution-versioning sprint | In progress - [#8](https://github.com/urruegg/CRMShowcase/issues/8) |
-| US-709 | Load synthetic fixtures and publish persona security smoke evidence after managed TEST promotion | Deferred - included in the separate solution-versioning and managed TEST-promotion sprint - [#8](https://github.com/urruegg/CRMShowcase/issues/8) |
+| US-702 | Deliver shared insurance choices; create security roles through the approved DEV administrator prerequisite and verify them in CI | In progress - [#8](https://github.com/urruegg/caldova-crm-frontier/issues/8), [#40](https://github.com/urruegg/caldova-crm-frontier/issues/40) |
+| US-708 | Author and export unmanaged/managed packages from DEV; managed TEST promotion is a separate solution-versioning sprint | In progress - [#8](https://github.com/urruegg/caldova-crm-frontier/issues/8) |
+| US-709 | Load synthetic fixtures and publish persona security smoke evidence after managed TEST promotion | Deferred - included in the separate solution-versioning and managed TEST-promotion sprint - [#8](https://github.com/urruegg/caldova-crm-frontier/issues/8) |
 ```
 
 - [ ] **Step 4: Align the original Sprint 3 specification**

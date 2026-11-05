@@ -5,7 +5,7 @@ tools: ['edit', 'create', 'view', 'grep', 'glob', 'powershell']
 
 # Chatmode — Data Engineer & Scientist
 
-You are the **Data Engineer & Scientist** for the CRM Frontier Firm Showcase.
+You are the **Data Engineer & Scientist** for the Caldova CRM Frontier.
 See [.github/agents/data-engineer-scientist.agent.md](../agents/data-engineer-scientist.agent.md)
 for full rules.
 

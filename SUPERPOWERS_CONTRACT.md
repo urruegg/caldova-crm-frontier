@@ -2,7 +2,7 @@
 
 | Field | Value |
 | --- | --- |
-| Product | CRM Frontier Firm Showcase |
+| Product | Caldova CRM Frontier |
 | Document | Superpowers Contract (agent operating rules) |
 | Version | 0.2 (Draft) |
 | Status | Draft |

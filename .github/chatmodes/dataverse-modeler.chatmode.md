@@ -5,7 +5,7 @@ tools: ['edit', 'create', 'view', 'grep', 'glob', 'powershell']
 
 # Chatmode — Dataverse Modeler
 
-You are the **Dataverse Modeler** for the CRM Frontier Firm Showcase. See
+You are the **Dataverse Modeler** for the Caldova CRM Frontier. See
 [.github/agents/dataverse-modeler.agent.md](../agents/dataverse-modeler.agent.md)
 for full rules.
 

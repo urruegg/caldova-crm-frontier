@@ -6,7 +6,7 @@
 - **Autonomy class:** DESIGN-SENSITIVE (attended — control-plane session implemented directly)
 - **Branch:** feat/sprint-004-fixture-enrichment
 - **Worktree:** C:\Users\urruegg\source\urruegg\wt\sprint-004-fixture-enrichment
-- **Approved design ref:** docs/superpowers/specs/2026-08-17-advisor-cockpit-demo-data-design.md · docs/superpowers/plans/2026-08-17-advisor-cockpit-demo-data.md (Task 5) · intake/mobiliar/mappings/curveball-to-fixture-map.md (Task 3 output)
+- **Approved design ref:** docs/superpowers/specs/2026-08-17-advisor-cockpit-demo-data-design.md · docs/superpowers/plans/2026-08-17-advisor-cockpit-demo-data.md (Task 5) · intake/caldova/mappings/curveball-to-fixture-map.md (Task 3 output)
 
 ## Goal / Definition of Done
 

@@ -1,6 +1,10 @@
-# Mobiliar demo curveballs → Advisor Cockpit fixture enrichment map
+# Caldova demo curveballs → Advisor Cockpit fixture enrichment map
 
-Source: `../ideas/Mobiliar - Demo Curveballs & Architecture.html`, 8 concrete
+Adapted from sanitized legacy design inputs under a fictional demo alias,
+not a claim of Caldova ownership or source-customer endorsement. Historical
+contact-center labels below are illustrative aliases, not product claims.
+
+Source: `../ideas/Caldova - Demo Curveballs & Architecture.html`, 8 concrete
 demo scenarios. Cross-checked against the current fixtures under
 [`data/scenarios/advisor-cockpit/`](../../../data/scenarios/advisor-cockpit/)
 (read 2026-08-17: `accounts-contacts.json`, `leads.json`, `policies.json`,
@@ -23,7 +27,7 @@ schema change (per the sprint-004 design spec's guardrail).
 ## Not fixture-relevant (already covered elsewhere)
 
 The curveball document's two contact-center integration patterns (GA Sales
-Hub Dialer, Mobi24/Luware Nimbus contact center) and the "coexistence
+Hub Dialer, Caldova24/Luware Nimbus contact center) and the "coexistence
 watch-outs" section are voice/telephony architecture, not Advisor Cockpit
 data — already reflected in ADR-0015 (voice-channel-boundary) and ADR-0016
 (governed-outbound). No fixture change recommended.

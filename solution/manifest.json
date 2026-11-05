@@ -1,7 +1,7 @@
 {
   "$schema": "./manifest.schema.json",
   "publisher": {
-    "displayName": "CRM Showcase",
+    "displayName": "Caldova CRM Frontier",
     "uniqueName": "CRMShowcase",
     "prefix": "crmshow",
     "customizationOptionValuePrefix": 10000
@@ -19,7 +19,7 @@
   "solutions": [
     {
       "uniqueName": "crmshow_Foundation",
-      "displayName": "CRM Showcase - Foundation",
+      "displayName": "Caldova CRM Frontier - Foundation",
       "path": "core/foundation",
       "version": "1.1.0.0",
       "dependsOn": [],
@@ -28,7 +28,7 @@
     },
     {
       "uniqueName": "crmshow_DataModel",
-      "displayName": "CRM Showcase - Data Model",
+      "displayName": "Caldova CRM Frontier - Data Model",
       "path": "core/datamodel",
       "version": "1.2.0.0",
       "dependsOn": ["crmshow_Foundation"],
@@ -37,7 +37,7 @@
     },
     {
       "uniqueName": "crmshow_Integration",
-      "displayName": "CRM Showcase - Integration",
+      "displayName": "Caldova CRM Frontier - Integration",
       "path": "core/integration",
       "version": "1.0.0.0",
       "dependsOn": ["crmshow_Foundation"],
@@ -46,7 +46,7 @@
     },
     {
       "uniqueName": "crmshow_Sales",
-      "displayName": "CRM Showcase - Sales",
+      "displayName": "Caldova CRM Frontier - Sales",
       "path": "apps/sales",
       "version": "1.1.0.0",
       "dependsOn": ["crmshow_Foundation", "crmshow_DataModel", "crmshow_Integration"],
@@ -55,7 +55,7 @@
     },
     {
       "uniqueName": "crmshow_Service",
-      "displayName": "CRM Showcase - Service",
+      "displayName": "Caldova CRM Frontier - Service",
       "path": "apps/service",
       "version": "1.0.0.0",
       "dependsOn": ["crmshow_Foundation", "crmshow_DataModel", "crmshow_Integration"],
@@ -64,7 +64,7 @@
     },
     {
       "uniqueName": "crmshow_Marketing",
-      "displayName": "CRM Showcase - Marketing",
+      "displayName": "Caldova CRM Frontier - Marketing",
       "path": "apps/marketing",
       "version": "1.0.0.0",
       "dependsOn": ["crmshow_Foundation", "crmshow_DataModel", "crmshow_Integration"],

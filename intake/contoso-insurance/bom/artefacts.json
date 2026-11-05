@@ -20441,7 +20441,7 @@
         "domain":  "Foundation and shared configuration",
         "targetSolution":  "None",
         "disposition":  "Retire",
-        "rationale":  "Customer-specific branding is not copied into the anonymized CRM Showcase.",
+        "rationale":  "Customer-specific branding is not copied into the anonymized Caldova CRM Frontier.",
         "licenceReview":  "Investigate",
         "maturityReview":  "Not required",
         "sourceOnly":  true
@@ -20462,7 +20462,7 @@
         "domain":  "Foundation and shared configuration",
         "targetSolution":  "None",
         "disposition":  "Retire",
-        "rationale":  "Customer-specific branding is not copied into the anonymized CRM Showcase.",
+        "rationale":  "Customer-specific branding is not copied into the anonymized Caldova CRM Frontier.",
         "licenceReview":  "Investigate",
         "maturityReview":  "Not required",
         "sourceOnly":  true
@@ -20826,9 +20826,9 @@
     },
     {
         "componentType":  "WebResource",
-        "logicalName":  "cr7e8_ucmobi24page11mobi24assistancecase",
-        "displayName":  "ucmobi24-page-11-mobi24-assistance-case",
-        "sourcePath":  "WebResources/cr7e8_ucmobi24page11mobi24assistancecase",
+        "logicalName":  "cr7e8_uccaldova24page11caldova24assistancecase",
+        "displayName":  "uccaldova24-page-11-caldova24-assistance-case",
+        "sourcePath":  "WebResources/cr7e8_uccaldova24page11caldova24assistancecase",
         "parent":  "",
         "dependencies":  [
 
@@ -20847,9 +20847,9 @@
     },
     {
         "componentType":  "WebResource",
-        "logicalName":  "cr7e8_ucmobi24page17mobi24operationssupervisor",
-        "displayName":  "ucmobi24-page-17-mobi24-operations-supervisor",
-        "sourcePath":  "WebResources/cr7e8_ucmobi24page17mobi24operationssupervisor",
+        "logicalName":  "cr7e8_uccaldova24page17caldova24operationssupervisor",
+        "displayName":  "uccaldova24-page-17-caldova24-operations-supervisor",
+        "sourcePath":  "WebResources/cr7e8_uccaldova24page17caldova24operationssupervisor",
         "parent":  "",
         "dependencies":  [
 
@@ -20868,9 +20868,9 @@
     },
     {
         "componentType":  "WebResource",
-        "logicalName":  "cr7e8_ucmobi24page19bsupervisordailycommandcenter",
-        "displayName":  "ucmobi24-page-19b-supervisor-daily-command-center",
-        "sourcePath":  "WebResources/cr7e8_ucmobi24page19bsupervisordailycommandcenter",
+        "logicalName":  "cr7e8_uccaldova24page19bsupervisordailycommandcenter",
+        "displayName":  "uccaldova24-page-19b-supervisor-daily-command-center",
+        "sourcePath":  "WebResources/cr7e8_uccaldova24page19bsupervisordailycommandcenter",
         "parent":  "",
         "dependencies":  [
 

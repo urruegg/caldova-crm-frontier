@@ -2,7 +2,7 @@
 applyTo: "**"
 ---
 
-# CRM Showcase Superpowers — Path-Scoped Rules
+# Caldova CRM Frontier Superpowers — Path-Scoped Rules
 
 Apply these rules to all edits in this repository.
 

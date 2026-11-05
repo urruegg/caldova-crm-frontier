@@ -1,8 +1,12 @@
 # Sprint-004 — Advisor Cockpit demo data realism — Implementation Plan
 
+> Branding note: Caldova intake names are fictional aliases for adapted,
+> sanitized legacy evidence, not ownership or endorsement claims. Existing
+> ignored snapshots and scan reports remain at their original local locations.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Deliver a demo-realistic, presenter-personalized Advisor Cockpit data set — evaluated from the Mobiliar reference intake, seeded with `ownerid` resolved to the DEV/TEST System Administrator, wired into both `cd-solution-dev.yml` and `cd-solution-test.yml`, and closed out with full live DEV+TEST evidence — after first clearing the three inherited sprint-003 blockers (#120, #121, #124) that currently prevent a clean TEST promotion.
+**Goal:** Deliver a demo-realistic, presenter-personalized Advisor Cockpit data set — evaluated from the sanitized legacy reference intake, seeded with `ownerid` resolved to the DEV/TEST System Administrator, wired into both `cd-solution-dev.yml` and `cd-solution-test.yml`, and closed out with full live DEV+TEST evidence — after first clearing the three inherited sprint-003 blockers (#120, #121, #124) that currently prevent a clean TEST promotion.
 
 **Architecture:** Follows this repo's [Sprint Operating Model](../SPRINT-OPERATING-MODEL.md) exactly: one GitHub Sprint-004 charter issue, one stream issue + handover packet per stream below, each stream built in its own isolated `wt/sprint-004-<stream>` worktree, dispatched headless (`EXECUTION-ONLY`) or attended (`DESIGN-SENSITIVE`) per the [Handover Contract](../contracts/HANDOVER-CONTRACT.md), returned to trunk via `Complete-StreamIntake.ps1` (push + PR, never merge — merge stays a human act).
 
@@ -24,7 +28,7 @@ This task runs directly on the trunk (`docs/s3-test-evidence-e2e-verify` or `mai
 - [ ] **Step 1: Create the Sprint-004 charter issue**
 
 ```powershell
-gh issue create --repo urruegg/CRMShowcase `
+gh issue create --repo urruegg/caldova-crm-frontier `
   --title "sprint-004: Advisor Cockpit demo data realism (charter)" `
   --label "sprint:004" `
   --body @'
@@ -38,7 +42,7 @@ Operating model: docs/superpowers/SPRINT-OPERATING-MODEL.md
 ## Streams
 1. prereq-fixes (#120, #124) — EXECUTION-ONLY
 2. mcp-agent-decision (#121) — DESIGN-SENSITIVE
-3. mobiliar-intake-governance — DESIGN-SENSITIVE
+3. caldova-intake-governance — DESIGN-SENSITIVE
 4. tenant-user-inventory — DESIGN-SENSITIVE
 5. fixture-enrichment — DESIGN-SENSITIVE
 6. seed-owner-wiring — EXECUTION-ONLY
@@ -60,31 +64,31 @@ substituted for `<charter-issue>` in every step below.
 Run once per stream (adjust `--title`/`--body`, keep `--label`):
 
 ```powershell
-gh issue create --repo urruegg/CRMShowcase --label "sprint:004" `
+gh issue create --repo urruegg/caldova-crm-frontier --label "sprint:004" `
   --title "sprint-004/prereq-fixes: fix #120 lookup creation + #124 intake-export" `
   --body "Stream of sprint-004 charter #<charter-issue>. Autonomy class: EXECUTION-ONLY. Closes #120, #124. See docs/superpowers/plans/2026-08-17-advisor-cockpit-demo-data.md Task 1."
 
-gh issue create --repo urruegg/CRMShowcase --label "sprint:004" `
+gh issue create --repo urruegg/caldova-crm-frontier --label "sprint:004" `
   --title "sprint-004/mcp-agent-decision: resolve #121 TEST promotion blocker" `
   --body "Stream of sprint-004 charter #<charter-issue>. Autonomy class: DESIGN-SENSITIVE. Closes #121. See docs/superpowers/plans/2026-08-17-advisor-cockpit-demo-data.md Task 2."
 
-gh issue create --repo urruegg/CRMShowcase --label "sprint:004" `
-  --title "sprint-004/mobiliar-intake-governance: finish intake/mobiliar governance" `
+gh issue create --repo urruegg/caldova-crm-frontier --label "sprint:004" `
+  --title "sprint-004/caldova-intake-governance: finish intake/caldova governance" `
   --body "Stream of sprint-004 charter #<charter-issue>. Autonomy class: DESIGN-SENSITIVE. See docs/superpowers/plans/2026-08-17-advisor-cockpit-demo-data.md Task 3."
 
-gh issue create --repo urruegg/CRMShowcase --label "sprint:004" `
+gh issue create --repo urruegg/caldova-crm-frontier --label "sprint:004" `
   --title "sprint-004/tenant-user-inventory: resolve DEV/TEST presenter identity" `
   --body "Stream of sprint-004 charter #<charter-issue>. Autonomy class: DESIGN-SENSITIVE. See docs/superpowers/plans/2026-08-17-advisor-cockpit-demo-data.md Task 4."
 
-gh issue create --repo urruegg/CRMShowcase --label "sprint:004" `
+gh issue create --repo urruegg/caldova-crm-frontier --label "sprint:004" `
   --title "sprint-004/fixture-enrichment: enrich Advisor Cockpit fixtures" `
   --body "Stream of sprint-004 charter #<charter-issue>. Autonomy class: DESIGN-SENSITIVE. See docs/superpowers/plans/2026-08-17-advisor-cockpit-demo-data.md Task 5."
 
-gh issue create --repo urruegg/CRMShowcase --label "sprint:004" `
+gh issue create --repo urruegg/caldova-crm-frontier --label "sprint:004" `
   --title "sprint-004/seed-owner-wiring: wire presenter ownerid + TEST seed step" `
   --body "Stream of sprint-004 charter #<charter-issue>. Autonomy class: EXECUTION-ONLY. See docs/superpowers/plans/2026-08-17-advisor-cockpit-demo-data.md Task 6."
 
-gh issue create --repo urruegg/CRMShowcase --label "sprint:004" `
+gh issue create --repo urruegg/caldova-crm-frontier --label "sprint:004" `
   --title "sprint-004/e2e-dev-test-verify: live DEV+TEST evidence" `
   --body "Stream of sprint-004 charter #<charter-issue>. Autonomy class: EXECUTION-ONLY. See docs/superpowers/plans/2026-08-17-advisor-cockpit-demo-data.md Task 7."
 ```
@@ -356,7 +360,7 @@ only, not the PCF controls), `docs/superpowers/specs/**`,
 
 **Verification commands:**
 ```
-gh workflow run cd-solution-test.yml --repo urruegg/CRMShowcase
+gh workflow run cd-solution-test.yml --repo urruegg/caldova-crm-frontier
 ```
 (dispatched only after the decision is implemented in DEV and re-exported —
 this is the actual test of whether the blocker is resolved: the TEST
@@ -383,16 +387,16 @@ question back to the control-plane chat rather than guessing.
 
 ---
 
-## Task 3: `mobiliar-intake-governance` stream (DESIGN-SENSITIVE)
+## Task 3: `caldova-intake-governance` stream (DESIGN-SENSITIVE)
 
 **Worktree setup:**
 
 ```powershell
-New-SprintWorktree -SprintId 'sprint-004' -StreamId 'mobiliar-intake-governance' `
+New-SprintWorktree -SprintId 'sprint-004' -StreamId 'caldova-intake-governance' `
   -IssueNumber <N3> -AutonomyClass 'DESIGN-SENSITIVE' -DesignRef 'docs/superpowers/specs/2026-08-17-advisor-cockpit-demo-data-design.md'
 ```
 
-**Goal / Definition of Done:** `intake/mobiliar/` has the same governance
+**Goal / Definition of Done:** `intake/caldova/` has the same governance
 shape as `intake/contoso-insurance/`: a `README.md` stating the same
 evidence-only boundary (no Dataverse records, no branded/PII content
 committed, raw ZIP/scan stay in ignored `.raw/`/`.scan/`), a `bom/` folder
@@ -400,34 +404,34 @@ with a component inventory (mirroring
 `intake/contoso-insurance/bom/artefacts.csv`'s columns —
 disposition/targetSolution/licenceReview — regenerated via
 `scripts/solution/New-SolutionBom.ps1` against the existing
-`intake/mobiliar/.scan/source-scan.json` and `.raw` snapshot, re-validating
+the local ignored legacy scan report and raw snapshot, re-validating
 with `scripts/solution/Test-IntakeSnapshot.ps1` first if the snapshot's
-staleness is in doubt), and a `mappings/` folder documenting which Mobiliar
+staleness is in doubt), and a `mappings/` folder documenting which Caldova
 source concepts (e.g. `cr7e8_sharedpage01advisorcockpit`,
 `cr7e8_ucmb1page18brunnercustomer360`, the ERD visualizer HTML) map to which
 Advisor Cockpit fixture or concept. It concludes with a short evaluation
-report (`intake/mobiliar/evaluation.md` or a section in the `README.md`)
+report (`intake/caldova/evaluation.md` or a section in the `README.md`)
 naming **concrete** fixture-field enrichments for Task 5 to implement (e.g.
 specific product lines, claim statuses, additional lead-cluster examples,
-richer activity types) — grounded in what the Mobiliar reference artefacts
+richer activity types) — grounded in what the sanitized legacy reference artefacts
 actually show, not invented.
 
-**Allowed scope (paths):** `intake/mobiliar/**` (excluding the already
+**Allowed scope (paths):** `intake/caldova/**` (excluding the already
 git-ignored `.raw/`/`.scan/` raw contents — only governance artefacts are
 committed).
 
 **Verification commands:**
 ```
-pwsh scripts/solution/Test-IntakeSnapshot.ps1 -IntakeRoot intake/mobiliar
+pwsh scripts/solution/Test-IntakeSnapshot.ps1 -IntakeRoot intake/caldova
 ```
 
 **Guardrails:** Inherit `SUPERPOWERS_CONTRACT.md` §1 rules 1 and 3 exactly as
 `intake/contoso-insurance/README.md` already states them for that source —
-this stream must state and follow the identical boundary for Mobiliar. Never
+this stream must state and follow the identical boundary for Caldova. Never
 commit raw exported web resources, customer-branded content, or
 source-environment identifiers — only sanitized structural metadata, counts,
 classifications, and design decisions, exactly as the existing
-`intake/mobiliar/.scan/source-scan.json` PII scan already demonstrates
+The local ignored legacy PII scan already demonstrates
 (13 matches: `EmailAddress`, `SourceEnvironment` — these categories must not
 leak into any committed governance artefact).
 
@@ -439,11 +443,11 @@ incomplete for the governance write-up, regenerate it per
 known-stale data.
 
 - [ ] Confirm/regenerate the `.raw`/`.scan` snapshot if stale.
-- [ ] Write `intake/mobiliar/README.md` mirroring the contoso-insurance boundary language.
-- [ ] Write `intake/mobiliar/bom/` (component inventory) via `New-SolutionBom.ps1`.
-- [ ] Write `intake/mobiliar/mappings/` documenting source-concept → Advisor Cockpit fixture/concept mapping.
+- [ ] Write `intake/caldova/README.md` mirroring the contoso-insurance boundary language.
+- [ ] Write `intake/caldova/bom/` (component inventory) via `New-SolutionBom.ps1`.
+- [ ] Write `intake/caldova/mappings/` documenting source-concept → Advisor Cockpit fixture/concept mapping.
 - [ ] Write the evaluation report naming concrete fixture enrichments for Task 5.
-- [ ] Run `Test-IntakeSnapshot.ps1` against `intake/mobiliar` and confirm it passes (no PII categories in committed files).
+- [ ] Run `Test-IntakeSnapshot.ps1` against `intake/caldova` and confirm it passes (no PII categories in committed files).
 - [ ] Commit and report `DONE` back to the control plane.
 
 ---
@@ -613,7 +617,7 @@ New-SprintWorktree -SprintId 'sprint-004' -StreamId 'fixture-enrichment' `
   -IssueNumber <N5> -AutonomyClass 'DESIGN-SENSITIVE' -DesignRef 'docs/superpowers/specs/2026-08-17-advisor-cockpit-demo-data-design.md'
 ```
 
-**Depends on:** Task 3's evaluation report (`intake/mobiliar/README.md` or
+**Depends on:** Task 3's evaluation report (`intake/caldova/README.md` or
 `evaluation.md`) — read it first; it names the concrete enrichments this
 stream implements. Do not start this stream until Task 3 has merged (or at
 minimum, until its evaluation report is committed on its own branch and can
@@ -646,10 +650,10 @@ whatever schema-validation approach the repo already uses for that contract
 (check `api/advisor-cockpit/` for an existing validation script/test first).
 
 **Guardrails:** SUPERPOWERS_CONTRACT.md §1 rule 3 (no real customer data) is
-the binding constraint here — Task 3's Mobiliar findings inform *what kind*
+the binding constraint here — Task 3's Caldova findings inform *what kind*
 of data is realistic (e.g. typical Swiss motor/household/legal-protection
 product mix, claim status vocabulary), never real names/values copied from
-the Mobiliar source.
+the Caldova source.
 
 **Escalation rule:** If Task 3's evaluation report is ambiguous about what to
 change, or a proposed enrichment would require a new fixture field with no
@@ -826,8 +830,8 @@ New-SprintWorktree -SprintId 'sprint-004' -StreamId 'e2e-dev-test-verify' `
 - [ ] **Step 1: Dispatch `cd-solution-dev.yml`**
 
 ```powershell
-gh workflow run cd-solution-dev.yml --repo urruegg/CRMShowcase
-gh run list --repo urruegg/CRMShowcase --workflow cd-solution-dev.yml --limit 1
+gh workflow run cd-solution-dev.yml --repo urruegg/caldova-crm-frontier
+gh run list --repo urruegg/caldova-crm-frontier --workflow cd-solution-dev.yml --limit 1
 ```
 Wait for completion; record the run URL and, from its logs, the offline
 Pester pass/fail counts (e.g. "N passed, 0 failed, M skipped").
@@ -846,8 +850,8 @@ az rest --method GET --url "https://<crmshowdev-url>/api/data/v9.2/accounts?`$se
 - [ ] **Step 3: Dispatch TEST promotion**
 
 ```powershell
-gh workflow run cd-solution-test.yml --repo urruegg/CRMShowcase
-gh run list --repo urruegg/CRMShowcase --workflow cd-solution-test.yml --limit 1
+gh workflow run cd-solution-test.yml --repo urruegg/caldova-crm-frontier
+gh run list --repo urruegg/caldova-crm-frontier --workflow cd-solution-test.yml --limit 1
 ```
 Wait for completion; record the run URL and build a step-by-step result
 table (one row per pipeline step, ✅/❌/⚠️, any defects found+fixed called

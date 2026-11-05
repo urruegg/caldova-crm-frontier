@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mobiliar — CRM Architecture Decisions (Screens Design)</title>
+<title>Caldova — CRM Architecture Decisions (Screens Design)</title>
 <style>
   :root{
     --bg:#0f1419;--panel:#171f2b;--panel-2:#1e2836;--ink:#e8edf4;--muted:#9fb0c3;
@@ -90,11 +90,12 @@
 </style>
 </head>
 <body>
+<aside role="note">Adapted sanitized legacy design reference. Caldova is a fictional demo alias, not a claim of source ownership or customer endorsement. Historical architecture proposals remain reference evidence, not current product commitments.</aside>
 <div class="wrap">
   <header>
     <h1>CRM Architecture Decisions — captured from the "04. Screens" design</h1>
     <p class="sub">Decisions made while building the implemented screens around Data Model · AI &amp; Agents · Outbound · UI/Platform</p>
-    <p class="meta">Schweizerische Mobiliar · D365 Contact Center + Customer Insights · org cr7e8 / Mobiliar solution</p>
+    <p class="meta">Schweizerische Caldova · D365 Contact Center + Customer Insights · org cr7e8 / Caldova solution</p>
   </header>
 
   <div class="tagkey">
@@ -115,7 +116,7 @@
       <h3>Account is the centre of gravity</h3>
       <div class="tags"><span class="tag t-custom">Custom build</span><span class="tag t-pattern">Design pattern</span></div>
       <p>One <code>Account</code> entity with an <code>accountType</code> discriminator (<b>Household · Business · Broker</b>) covers all party types.</p>
-      <p class="why">Avoids Salesforce's Person‑Account one‑way door and B2C/B2B split. Mobi24 and broker reuse the same account model, just extended.</p>
+      <p class="why">Avoids Salesforce's Person‑Account one‑way door and B2C/B2B split. Caldova24 and broker reuse the same account model, just extended.</p>
       <div class="edge"><span class="vs">vs SF</span>FSC pulls you into heavyweight Policy/Claim/Producer objects → CRM becomes a 2nd policy system. <span class="vs">vs BSI</span>BSI ships Swiss‑insurance data models too — we match the fit <b>and</b> stay schema‑flexible on open Dataverse, not a packaged suite schema.</div>
     </div>
     <div class="adr k">
@@ -131,7 +132,7 @@
       <div class="tags"><span class="tag t-pattern">Design pattern</span></div>
       <p><code>Policy</code>, <code>Claim</code>, <code>Quote</code> carry <b>external reference keys</b> to SAP / MCS / quoting engines. CRM does not become a second policy system.</p>
       <p class="why">RFP §4.1.3 explicit requirement — Versicherungstechnik stays in existing apps; avoids the FSC over‑modelling trap.</p>
-      <div class="edge"><span class="vs">vs SF &amp; BSI</span>Both incumbents tempt you to absorb insurance logic into the CRM suite. Our bet is the one the RFP asked for — thin orchestration over the engines — so Mobiliar keeps one source of truth and avoids dual‑system reconciliation.</div>
+      <div class="edge"><span class="vs">vs SF &amp; BSI</span>Both incumbents tempt you to absorb insurance logic into the CRM suite. Our bet is the one the RFP asked for — thin orchestration over the engines — so Caldova keeps one source of truth and avoids dual‑system reconciliation.</div>
     </div>
     <div class="adr">
       <div class="id">DM‑04</div>
@@ -175,7 +176,7 @@
 
   <!-- ================= B2C / PRIVATE CUSTOMER ================= -->
   <h2 class="section" style="border-left-color:var(--green)"><span class="ic">👨‍👩‍👧</span> B2C / Private‑customer modeling <span class="cnt">· 2.3M Privatkunden · 2M Interessenten · 300k Prospects</span></h2>
-  <p class="sec-sub">Mobiliar is overwhelmingly retail. The same account‑led model carries B2C — the <b>household is the account</b>, the private person is a contact‑with‑roles, and identity is shared with PDV.</p>
+  <p class="sec-sub">Caldova is overwhelmingly retail. The same account‑led model carries B2C — the <b>household is the account</b>, the private person is a contact‑with‑roles, and identity is shared with PDV.</p>
   <div class="grid">
     <div class="adr k">
       <div class="id">B2C‑01</div>
@@ -224,7 +225,7 @@
 
   <!-- ================= LEAD MODELING ================= -->
   <h2 class="section" style="border-left-color:var(--amber)"><span class="ic">🎯</span> Lead modeling <span class="cnt">· a Lead = an expression of interest on a pre‑existing person</span></h2>
-  <p class="sec-sub">Mobiliar's semantics: a person (existing <b>Contact</b> or <b>Prospect</b>) can hold <b>many leads</b>, and leads can be <b>grouped</b>. That inverts the native D365 "lead‑as‑person‑stub" model — so we keep the native table but change how it's wired.</p>
+  <p class="sec-sub">Caldova's semantics: a person (existing <b>Contact</b> or <b>Prospect</b>) can hold <b>many leads</b>, and leads can be <b>grouped</b>. That inverts the native D365 "lead‑as‑person‑stub" model — so we keep the native table but change how it's wired.</p>
 
   <div class="decision">
     <div class="lbl">✔ Decision — chosen model</div>
@@ -263,7 +264,7 @@
       <h3>Native lead, inverted + LeadCluster</h3>
       <div class="tags"><span class="tag t-native">Native</span><span class="tag t-custom">+ custom group</span></div>
       <p>Keep the native <code>lead</code> for scoring/BPF/routing/cockpit; always set <code>parentcontactid</code>; add <code>LeadCluster</code> for grouping.</p>
-      <p class="why"><b>Why:</b> best of both — free AI scoring &amp; tooling, plus Mobiliar's "person owns many leads" semantics and anti‑over‑contact bundling.</p>
+      <p class="why"><b>Why:</b> best of both — free AI scoring &amp; tooling, plus Caldova's "person owns many leads" semantics and anti‑over‑contact bundling.</p>
     </div>
   </div>
 
@@ -441,7 +442,7 @@
       <div class="id">UI‑04</div>
       <h3>In‑app navigation, no new tab</h3>
       <div class="tags"><span class="tag t-custom">Custom build</span><span class="tag t-pattern">Design pattern</span></div>
-      <p><code>mobiNav(etn,id,url)</code> → <code>Xrm.Navigation.openForm</code> (same tab), falls back to top‑window redirect. No <code>target=_blank</code> / <code>window.open</code>.</p>
+      <p><code>caldovaNav(etn,id,url)</code> → <code>Xrm.Navigation.openForm</code> (same tab), falls back to top‑window redirect. No <code>target=_blank</code> / <code>window.open</code>.</p>
     </div>
     <div class="adr">
       <div class="id">UI‑05</div>
@@ -528,7 +529,7 @@
       <h3>vs Salesforce — they'll benchmark against vanilla D365</h3>
       <div class="tags"><span class="tag t-edge">Edge</span></div>
       <p><b>Their strawman:</b> "better UX, mature AI/Agentforce, prebuilt FSC insurance model, Person‑Account householding, one platform."</p>
-      <p class="why"><b>How we collapse it:</b> the Fluent cockpits + account‑led model mean Mobiliar isn't buying vanilla D365. Thin‑CRM beats the FSC "rebuild insurance in CRM" trap; <b>Household‑as‑Account</b> beats the Person‑Account one‑way door (household + business + broker in one model); the <b>person‑centric, multi‑lead, grouped</b> lead model has no per‑cloud silos; Copilot grounds on Dataverse with <b>no Data Cloud tax</b>; native ACS voice vs Amazon Connect; mixed multi‑persona licensing for 6,500 staff vs full‑seat clouds; GitHub Copilot + mockups‑as‑accelerator removes the "custom UX needs developers" objection.</p>
+      <p class="why"><b>How we collapse it:</b> the Fluent cockpits + account‑led model mean Caldova isn't buying vanilla D365. Thin‑CRM beats the FSC "rebuild insurance in CRM" trap; <b>Household‑as‑Account</b> beats the Person‑Account one‑way door (household + business + broker in one model); the <b>person‑centric, multi‑lead, grouped</b> lead model has no per‑cloud silos; Copilot grounds on Dataverse with <b>no Data Cloud tax</b>; native ACS voice vs Amazon Connect; mixed multi‑persona licensing for 6,500 staff vs full‑seat clouds; GitHub Copilot + mockups‑as‑accelerator removes the "custom UX needs developers" objection.</p>
       <p><b>On Agentforce:</b> our agents are <b>event/scheduled, advisory, human‑accountable</b> and grounded on one Dataverse — stronger governance &amp; economics for a regulated insurer than per‑conversation autonomous agents.</p>
       <p><b>Only claim left alive:</b> AppExchange / named‑logo breadth — reframe to fit + M365 + Swiss residency.</p>
       <div class="sowhat">
@@ -564,12 +565,12 @@
   </div>
   <div class="adr" style="margin-top:16px;border-color:var(--teal)">
     <div class="id">POSITIONING LINE</div>
-    <p style="font-size:14px;color:var(--ink);margin-top:4px">Salesforce makes you <b>rebuild insurance in CRM</b>; BSI gives you a <b>Swiss point‑suite with a platform ceiling</b>. Mobiliar gets the RFP's own bet — <b>a thin, account‑led CRM over the insurance engines</b>, with one household model spanning B2C + business + broker, a person‑centric lead loop, and advisory agents that recommend at scale while a human stays accountable — on a Swiss‑resident, M365‑native, Copilot‑grounded hyperscale platform, delivered at near‑config speed by GitHub Copilot from these very mockups.</p>
+    <p style="font-size:14px;color:var(--ink);margin-top:4px">Salesforce makes you <b>rebuild insurance in CRM</b>; BSI gives you a <b>Swiss point‑suite with a platform ceiling</b>. Caldova gets the RFP's own bet — <b>a thin, account‑led CRM over the insurance engines</b>, with one household model spanning B2C + business + broker, a person‑centric lead loop, and advisory agents that recommend at scale while a human stays accountable — on a Swiss‑resident, M365‑native, Copilot‑grounded hyperscale platform, delivered at near‑config speed by GitHub Copilot from these very mockups.</p>
   </div>
 
   <footer>
-    Captured from: Mobiliar CRM ERD &amp; design principles · Outbound Messaging Capability Notes · UC‑M1 campaign pages review · interactive‑realism pattern · UX review findings · Dataverse lead‑scoring / @odata.bind / cr7e8 entity &amp; OCStreamControl lessons · Voice Integration Architecture.
-    &nbsp;|&nbsp; <span class="rfp">RFP touchpoints: §4.1.1 (digital workplace, 360°, NBA), §4.1.3 (thin CRM over Versicherungstechnik), §4.1.1.4 (marketing/CI), §4.1.1.8 (Mobi24/outbound/AI).</span>
+    Captured from: Caldova CRM ERD &amp; design principles · Outbound Messaging Capability Notes · UC‑M1 campaign pages review · interactive‑realism pattern · UX review findings · Dataverse lead‑scoring / @odata.bind / cr7e8 entity &amp; OCStreamControl lessons · Voice Integration Architecture.
+    &nbsp;|&nbsp; <span class="rfp">RFP touchpoints: §4.1.1 (digital workplace, 360°, NBA), §4.1.3 (thin CRM over Versicherungstechnik), §4.1.1.4 (marketing/CI), §4.1.1.8 (Caldova24/outbound/AI).</span>
   </footer>
 </div>
 </body>

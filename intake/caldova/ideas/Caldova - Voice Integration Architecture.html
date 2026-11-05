@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mobiliar — Voice Integration Architecture (Teams + D365 Contact Center)</title>
+<title>Caldova — Voice Integration Architecture (Teams + D365 Contact Center)</title>
 <style>
   :root{
     --bg:#0f1419;
@@ -147,11 +147,12 @@
 </style>
 </head>
 <body>
+<aside role="note">Adapted sanitized legacy design reference. Caldova and Caldova24 are fictional demo aliases, not claims of source ownership or customer/vendor endorsement. Retained third-party product names identify their respective products.</aside>
 <div class="wrap">
   <header>
     <h1>Voice Integration Architecture — Teams + Dynamics 365 Contact Center</h1>
     <p class="sub">Phone/telephony integration model for the new CRM platform · real‑time transcript &amp; Copilot voice features</p>
-    <p class="meta">Schweizerische Mobiliar · Switzerland data residency / FINMA · Mobi24 &amp; Contact Center</p>
+    <p class="meta">Schweizerische Caldova · Switzerland data residency / FINMA · Caldova24 &amp; Contact Center</p>
   </header>
 
   <div class="legend">
@@ -214,7 +215,7 @@
         <ul>
           <li>Live transcription, sentiment, Copilot suggestions out‑of‑the‑box</li>
           <li>Programmatic stream via ACS Call Automation <code>TranscriptionData</code></li>
-          <li>SIP context preserved → clean Mobi24 → Pannenhilfe partner handoff</li>
+          <li>SIP context preserved → clean Caldova24 → Pannenhilfe partner handoff</li>
           <li>Reuses existing Swiss carrier/numbers (RFP §4.1.4)</li>
         </ul>
       </div>
@@ -250,7 +251,7 @@
   </table>
 
   <h2 class="section">Adjacent scenario — General Agency (Sales) voice <span class="pill" style="border-color:var(--amber);color:#ffd27a">Sales Hub Dialer · preview</span></h2>
-  <p style="font-size:13.5px;color:var(--muted);margin:0 0 16px;max-width:1000px">The A vs B decision above is about <b>Mobi24 / Contact Center</b> voice. The <b>Generalagentur</b> journeys (e.g. <b>UC‑AS1</b> Sales Support — a direct‑dial call with <i>no</i> ACD queue) are a different population, served by the <b>D365 Sales Hub Dialer</b>: a Sales‑native softphone built on the <b>same ACS voice platform</b> as Option B. It gives GA sellers screen‑pop, auto‑logged activities and Copilot call summaries <b>without a Contact Center seat</b> — the Sales‑side equivalent of the native‑voice direction.</p>
+  <p style="font-size:13.5px;color:var(--muted);margin:0 0 16px;max-width:1000px">The A vs B decision above is about <b>Caldova24 / Contact Center</b> voice. The <b>Generalagentur</b> journeys (e.g. <b>UC‑AS1</b> Sales Support — a direct‑dial call with <i>no</i> ACD queue) are a different population, served by the <b>D365 Sales Hub Dialer</b>: a Sales‑native softphone built on the <b>same ACS voice platform</b> as Option B. It gives GA sellers screen‑pop, auto‑logged activities and Copilot call summaries <b>without a Contact Center seat</b> — the Sales‑side equivalent of the native‑voice direction.</p>
   <div class="grid2">
     <div class="opt rec">
       <h3>C · Sales Hub Dialer (GA / Sales) <span class="pill" style="border-color:var(--amber);color:#ffd27a">PREVIEW</span></h3>
@@ -315,7 +316,7 @@
       <div class="out good">
         <b>Coexistence with Luware / native channel</b>
         <ul>
-          <li>Split by population: <b>Sales Hub Dialer @ GA</b> vs <b>Mobi24 voice</b> (Luware today → native ACS, Option B)</li>
+          <li>Split by population: <b>Sales Hub Dialer @ GA</b> vs <b>Caldova24 voice</b> (Luware today → native ACS, Option B)</li>
           <li>One Teams Phone user = one PSTN identity → give GA sellers <b>dedicated numbers via resource accounts</b></li>
           <li>One owner per number/flow — don't double‑route the same inbound through an ACD queue <i>and</i> the dialer</li>
           <li>CH PSTN = Operator Connect / Direct Routing — the same connectivity Luware already uses</li>
@@ -383,7 +384,7 @@
       <div class="lc ok"><h4>Must‑have design controls</h4><p>Announce + capture consent before transcript · honor decline &amp; mid‑call revocation instantly · log consent state · keep data in CH geo + retention/deletion (RMS).</p></div>
       <div class="lc ok"><h4>Graceful degradation = compliant</h4><p>AI prefill, NBA &amp; summaries are <b>enhancements, not dependencies</b>. The no‑consent path must run as a full manual workflow.</p></div>
     </div>
-    <p class="disc">Not legal advice — to be validated by Mobiliar Legal / DPO and FINMA stakeholders.</p>
+    <p class="disc">Not legal advice — to be validated by Caldova Legal / DPO and FINMA stakeholders.</p>
   </div>
 
   <h2 class="section">Recommendation</h2>
@@ -391,7 +392,7 @@
     <div class="card k">
       <div class="n">1</div>
       <h4>Target = native voice on ACS</h4>
-      <p>Run voice on the <b>native D365 Contact Center voice channel</b>, provisioned via <b>direct routing (BYOC)</b> reusing Mobiliar's Swiss SBC, carrier and numbers.</p>
+      <p>Run voice on the <b>native D365 Contact Center voice channel</b>, provisioned via <b>direct routing (BYOC)</b> reusing Caldova's Swiss SBC, carrier and numbers.</p>
     </div>
     <div class="card">
       <div class="n">2</div>
@@ -411,7 +412,7 @@
     <div class="card">
       <div class="n">5</div>
       <h4>Phase with the roadmap</h4>
-      <p>Outcome 1 = Omnichannel foundation for Mobi24; advanced CC routing/queuing = Outcome 3 (mid‑2031). Stage the voice cutover, avoid big‑bang.</p>
+      <p>Outcome 1 = Omnichannel foundation for Caldova24; advanced CC routing/queuing = Outcome 3 (mid‑2031). Stage the voice cutover, avoid big‑bang.</p>
     </div>
     <div class="card k">
       <div class="n">6</div>
@@ -421,7 +422,7 @@
   </div>
 
   <footer>
-    Sources: Microsoft Learn — D365 Contact Center international availability &amp; supported cloud locations for voice channel · Voice channel deployment approaches (direct routing / BYOC) · ACS data residency &amp; EU Data Boundary · ACS Call Automation real‑time transcription · Configure call recording, transcription &amp; real‑time translation · Consent‑based recording (GA May 2026) · Pause/Resume Recording &amp; Transcription API (GA Jun 2025) · Channel Integration Framework 2.0 · Luware KB — Nimbus Integration Possibilities (no native CIF widget; calls answered in Teams, verified Jun 2026). &nbsp;|&nbsp; Mapped to Mobiliar RfP §4.1.1.8, §4.1.4, §5.4, §7.4.3, §7.4.13–17. &nbsp;|&nbsp; Legal references (Art. 179bis/179ter StGB, revFADP/nDSG) are informational, not legal advice.
+    Sources: Microsoft Learn — D365 Contact Center international availability &amp; supported cloud locations for voice channel · Voice channel deployment approaches (direct routing / BYOC) · ACS data residency &amp; EU Data Boundary · ACS Call Automation real‑time transcription · Configure call recording, transcription &amp; real‑time translation · Consent‑based recording (GA May 2026) · Pause/Resume Recording &amp; Transcription API (GA Jun 2025) · Channel Integration Framework 2.0 · Luware KB — Nimbus Integration Possibilities (no native CIF widget; calls answered in Teams, verified Jun 2026). &nbsp;|&nbsp; Mapped to Caldova RfP §4.1.1.8, §4.1.4, §5.4, §7.4.3, §7.4.13–17. &nbsp;|&nbsp; Legal references (Art. 179bis/179ter StGB, revFADP/nDSG) are informational, not legal advice.
   </footer>
 </div>
 </body>

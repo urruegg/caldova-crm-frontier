@@ -1,62 +1,57 @@
 <#
 .SYNOPSIS
-    Import existing Power Platform environments into the local Terraform state.
-
+    Import the three existing, verified environments into isolated Caldova state.
 .DESCRIPTION
-    Reads terraform.tfvars for environment IDs and issues one `terraform import`
-    per environment slot. Idempotent — if a resource is already in state, the
-    import is skipped.
-
-.NOTES
-    Prerequisites:
-      - Terraform >= 1.9
-      - az login into the target tenant
-      - terraform.tfvars filled in with real environment IDs
+    Never creates environments or applies Terraform. The caller must initialize
+    the Caldova local backend and supply a complete private var-file first.
 #>
-
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess)]
 param(
-    [Parameter()]
+    [string]$ConfigurationPath = (Join-Path $PSScriptRoot '..\..\.platform.local.json'),
+    [Parameter(Mandatory)] [string]$VariableFile,
     [string]$TerraformDir = (Join-Path $PSScriptRoot '..\terraform')
 )
-
 $ErrorActionPreference = 'Stop'
+. (Join-Path $PSScriptRoot 'PlatformConnection.ps1')
+$ConfigurationPath = (Resolve-Path -LiteralPath $ConfigurationPath).Path
+$config = Get-PlatformConfiguration -Path $ConfigurationPath
+$variables = Get-Content -LiteralPath $VariableFile -Raw | ConvertFrom-Json -AsHashtable
+if ($variables.manage_environments -ne $true) {
+    throw 'Environment import requires an approved manage_environments=true var-file. Reference-only mode needs no import.'
+}
+if ($variables.tenant_id -ne $config.tenantId) { throw 'Terraform var-file tenant mismatch.' }
+foreach ($slot in @('dev', 'test', 'prod')) {
+    if ($variables.environments[$slot].id -ne $config.environments[$slot].environmentId) {
+        throw "Terraform var-file environment mismatch for $slot."
+    }
+}
+$fullVarFile = (Resolve-Path $VariableFile).Path
 Push-Location $TerraformDir
 try {
-    # Parse terraform.tfvars for environment IDs (very small parser — only supports the shape in the .example)
-    $tfvarsPath = Join-Path $TerraformDir 'terraform.tfvars'
-    if (-not (Test-Path $tfvarsPath)) {
-        throw "terraform.tfvars not found. Copy terraform.tfvars.example to terraform.tfvars and fill in real values first."
-    }
-    $tfvars = Get-Content $tfvarsPath -Raw
-
-    $slots = @('dev','test')
-    foreach ($slot in $slots) {
-        # Grab the id = "..." line inside the block for this slot
-        $rx = [regex]::new("(?ms)$slot\s*=\s*\{[^}]*?id\s*=\s*""([^""]+)""")
-        $m = $rx.Match($tfvars)
-        if (-not $m.Success) { Write-Warning "No id found for slot '$slot' in terraform.tfvars — skipping."; continue }
-        $envId = $m.Groups[1].Value
-        if ($envId -eq '' -or $envId -eq '00000000-0000-0000-0000-000000000000') {
-            Write-Host "Slot '$slot' has no id set (fresh tenant path) — will be created by apply."
-            continue
+    foreach ($slot in @('dev', 'test', 'prod')) {
+        $address = "module.powerplatform.powerplatform_environment.this[`"$slot`"]"
+        if (-not $PSCmdlet.ShouldProcess($address, 'Import verified existing environment into Caldova state')) { continue }
+        Test-PlatformConnection -ConfigurationPath $ConfigurationPath -Slot $slot | Out-Null
+        $state = @()
+        if (Test-Path -LiteralPath '.terraform-caldova\terraform.tfstate') {
+            $state = & terraform state list
+            if ($LASTEXITCODE -ne 0) { throw 'Cannot read isolated Terraform state. Initialize the Caldova backend first.' }
         }
-
-        $addr = "module.powerplatform.powerplatform_environment.this[""$slot""]"
-        # Skip if already in state
-        $inState = & terraform state list 2>$null | Select-String -Pattern ([regex]::Escape($addr)) -Quiet
-        if ($inState) {
-            Write-Host "Already in state: $addr — skipping."
-            continue
+        if ($address -in @($state)) {
+            $current = & terraform show -json | ConvertFrom-Json
+            if ($LASTEXITCODE -ne 0) { throw 'Cannot verify existing Terraform state.' }
+            $resource = @($current.values.root_module.child_modules |
+                Where-Object address -eq 'module.powerplatform').resources |
+                Where-Object address -eq $address
+            if ($resource.values.id -ne $config.environments[$slot].environmentId) {
+                throw "Existing state does not match configured environment $slot."
+            }
+            Write-Output "Verified existing import for $slot."
+        } else {
+            & terraform import "-var-file=$fullVarFile" $address $config.environments[$slot].environmentId
+            if ($LASTEXITCODE -ne 0) { throw "Terraform import failed for $slot." }
         }
-
-        Write-Host "Importing $addr -> $envId ..."
-        & terraform import $addr $envId
-        if ($LASTEXITCODE -ne 0) { throw "terraform import failed for slot '$slot'." }
     }
-
-    Write-Host "`nDone. Now review the drift with: terraform plan"
-}
-finally {
+} finally {
     Pop-Location
 }

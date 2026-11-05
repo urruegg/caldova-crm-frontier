@@ -1,4 +1,8 @@
-# Mobiliar prototype — BOM cross-reference
+# Caldova prototype — BOM cross-reference
+
+Sanitized legacy evidence adapted under the fictional Caldova alias, not
+Caldova-owned source material or evidence of source-customer endorsement.
+Existing private snapshots have not moved with these sanitized documents.
 
 **Not a second component inventory.** See
 [`../README.md`](../README.md#key-finding--this-is-the-same-underlying-export-already-governed-as-intake-contoso-insurance)
@@ -13,7 +17,7 @@ customer name it carries.
 
 ```powershell
 . scripts/solution/New-SolutionBom.ps1
-$items = New-SolutionBom -SourceFolder intake/mobiliar/source -MetadataModelFolder intake/mobiliar/.raw/model
+$items = New-SolutionBom -SourceFolder $localIgnoredSource -MetadataModelFolder $localIgnoredMetadata
 $mapping = Import-Csv intake/contoso-insurance/mappings/domain-map.csv
 $mappingByKey = @{}
 foreach ($row in $mapping) { $mappingByKey["$($row.componentType)|$($row.logicalName)|$($row.parent)"] = $row }
@@ -55,5 +59,5 @@ one already applies.
   [`intake/contoso-insurance/mappings/domain-map.csv`](../../contoso-insurance/mappings/domain-map.csv).
 - [`../mappings/curveball-to-fixture-map.md`](../mappings/curveball-to-fixture-map.md)
   is this folder's own, non-duplicate contribution: concrete Advisor Cockpit
-  fixture enrichments derived from `ideas/Mobiliar - Demo Curveballs &
+  fixture enrichments derived from `ideas/Caldova - Demo Curveballs &
   Architecture.html`.

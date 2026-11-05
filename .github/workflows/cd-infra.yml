@@ -6,7 +6,7 @@ name: CD — Infra (Terraform)
 # Guardrails
 # - Pull-request runs get NO tenant access. They only validate + fmt-check.
 # - Push-to-main and workflow_dispatch runs sign in via OIDC federation to the
-#   `dev` GitHub Environment's app registration (crm-showcase-ci-dev) and print
+#   selected GitHub Environment's Caldova app registration and print
 #   the resulting identity — no writes yet. A future PR adds remote state and a
 #   real `terraform plan` here.
 #
@@ -30,7 +30,7 @@ on:
         required: true
         default: 'dev'
         type: choice
-        options: [dev, test]
+        options: [dev, test, prod]
 
 permissions:
   contents: read
@@ -38,6 +38,8 @@ permissions:
 
 jobs:
   validate:
+    permissions:
+      contents: read
     # PR-safe: never touches the tenant.
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
@@ -45,10 +47,12 @@ jobs:
       run:
         working-directory: infra/terraform
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+        uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3.1.2
         with:
           terraform_version: "1.9.8"
 
@@ -67,19 +71,25 @@ jobs:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment || 'dev' }}
+    env:
+      AZURE_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
+      POWER_PLATFORM_ENV_URL: ${{ vars.POWER_PLATFORM_ENV_URL }}
+      POWER_PLATFORM_ORG_ID: ${{ vars.POWER_PLATFORM_ORG_ID }}
+      TARGET_SLOT: ${{ inputs.environment || 'dev' }}
     steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
       - name: Sign in to Entra via OIDC federation
-        uses: azure/login@v2
+        uses: azure/login@7184910d9eb2b1c5e48f7073824a90609bb9b6d6 # v2.3.1
         with:
           client-id: ${{ vars.AZURE_CLIENT_ID }}
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           allow-no-subscriptions: true
 
-      - name: Report resolved identity + tenant + Power Platform target
+      - name: Verify configured Dataverse identity
+        shell: pwsh
         run: |
-          echo "Signed in as:"
-          az account show --output json | jq '{tenantId, user}'
-          echo ""
-          echo "Configured Power Platform environment:"
-          echo "  URL: ${{ vars.POWER_PLATFORM_ENV_URL }}"
-          echo "  ID:  ${{ vars.POWER_PLATFORM_ENV_ID }}"
+          ./infra/scripts/Test-PlatformConnection.ps1 -Slot $env:TARGET_SLOT `
+            -TenantId $env:AZURE_TENANT_ID -EnvironmentUrl $env:POWER_PLATFORM_ENV_URL `
+            -OrganizationId $env:POWER_PLATFORM_ORG_ID

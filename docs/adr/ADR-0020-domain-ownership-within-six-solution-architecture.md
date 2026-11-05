@@ -8,7 +8,7 @@
 | **Confidence** | Medium — the current ALM structure and domain map support the choice; core-system and data-platform integration details remain incomplete |
 | **Deciders** | Enterprise Architect, Dataverse Modeler, Integration Engineer, SecDevOps; customer architecture confirmation required |
 | **Topic area** | A1 — Architecture vision · A2 — Data model · A4 — Extensibility · A8 — ALM |
-| **Use case** | [GitHub issue #6](https://github.com/urruegg/CRMShowcase/issues/6) · Option C from [ADR-0019](./ADR-0019-provisional-insurance-data-model-shape.md) |
+| **Use case** | [GitHub issue #6](https://github.com/urruegg/caldova-crm-frontier/issues/6) · Option C from [ADR-0019](./ADR-0019-provisional-insurance-data-model-shape.md) |
 | **Licence** | 🧩 configuration / own build — solution packaging is an ALM design choice, not a product capability claim |
 | **Upgrade impact** | Medium — component ownership and dependency direction affect every future Dataverse extension |
 | **CAF methodology** | Plan · Ready · Adopt · Govern · Manage |
@@ -384,7 +384,7 @@ never drift silently.
 
 ## Reusable hypothesis-driven decision pattern
 
-Use this pattern for architecture decisions during CRM Showcase implementation
+Use this pattern for architecture decisions during Caldova CRM Frontier implementation
 sprints when material evidence is incomplete:
 
 1. State the outcome and decision pressure.

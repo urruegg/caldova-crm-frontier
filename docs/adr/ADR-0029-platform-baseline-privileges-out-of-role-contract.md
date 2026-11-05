@@ -17,7 +17,7 @@
 
 ## Context
 
-The reviewed Insurance Foundation security roles (`CRM Showcase Insurance
+The reviewed Insurance Foundation security roles (`Caldova CRM Frontier Insurance
 Reader` / `Data Steward`) are authored from the contract and verified with an
 **exact privilege-set** check ([`Test-InsuranceSecurityRoles.ps1`](../../scripts/solution/Test-InsuranceSecurityRoles.ps1)):
 any privilege on the role that is not in the contract is a `ContractConflict`.

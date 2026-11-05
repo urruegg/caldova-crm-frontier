@@ -1,18 +1,18 @@
 # Sprint-004 STATUS
 
-**Charter:** [#125](https://github.com/urruegg/CRMShowcase/issues/125) · **Started:** 2026-08-17
+**Charter:** [#125](https://github.com/urruegg/caldova-crm-frontier/issues/125) · **Started:** 2026-08-17
 
 ## Streams
 
 | Stream | Issue | Class | State |
 | --- | --- | --- | --- |
-| prereq-fixes | [#126](https://github.com/urruegg/CRMShowcase/issues/126) | EXECUTION-ONLY | 🟡 #120 fixed + merged ([PR #137](https://github.com/urruegg/CRMShowcase/pull/137), commit `1da315c`); #124 re-authoring blocked on GitHub outage (see below) |
-| mcp-agent-decision | [#127](https://github.com/urruegg/CRMShowcase/issues/127) | DESIGN-SENSITIVE | 🟡 decision recorded; mechanical Maker-Portal step deferred to owner |
-| mobiliar-intake-governance | [#128](https://github.com/urruegg/CRMShowcase/issues/128) | DESIGN-SENSITIVE | ✅ merged ([PR #133](https://github.com/urruegg/CRMShowcase/pull/133)) |
-| tenant-user-inventory | [#129](https://github.com/urruegg/CRMShowcase/issues/129) | DESIGN-SENSITIVE | ✅ merged ([PR #135](https://github.com/urruegg/CRMShowcase/pull/135)) |
-| fixture-enrichment | [#130](https://github.com/urruegg/CRMShowcase/issues/130) | DESIGN-SENSITIVE | ✅ merged ([PR #134](https://github.com/urruegg/CRMShowcase/pull/134)) |
-| seed-owner-wiring | [#131](https://github.com/urruegg/CRMShowcase/issues/131) | EXECUTION-ONLY | 🟡 [PR #136](https://github.com/urruegg/CRMShowcase/pull/136) open, `gate1` green once but rerun hit the GitHub outage — needs one more clean check run |
-| e2e-dev-test-verify | [#132](https://github.com/urruegg/CRMShowcase/issues/132) | EXECUTION-ONLY | ⬜ not started — blocked on the two items above + #124 re-authoring |
+| prereq-fixes | [#126](https://github.com/urruegg/caldova-crm-frontier/issues/126) | EXECUTION-ONLY | 🟡 #120 fixed + merged ([PR #137](https://github.com/urruegg/caldova-crm-frontier/pull/137), commit `1da315c`); #124 re-authoring blocked on GitHub outage (see below) |
+| mcp-agent-decision | [#127](https://github.com/urruegg/caldova-crm-frontier/issues/127) | DESIGN-SENSITIVE | 🟡 decision recorded; mechanical Maker-Portal step deferred to owner |
+| caldova-intake-governance | [#128](https://github.com/urruegg/caldova-crm-frontier/issues/128) | DESIGN-SENSITIVE | ✅ merged ([PR #133](https://github.com/urruegg/caldova-crm-frontier/pull/133)) |
+| tenant-user-inventory | [#129](https://github.com/urruegg/caldova-crm-frontier/issues/129) | DESIGN-SENSITIVE | ✅ merged ([PR #135](https://github.com/urruegg/caldova-crm-frontier/pull/135)) |
+| fixture-enrichment | [#130](https://github.com/urruegg/caldova-crm-frontier/issues/130) | DESIGN-SENSITIVE | ✅ merged ([PR #134](https://github.com/urruegg/caldova-crm-frontier/pull/134)) |
+| seed-owner-wiring | [#131](https://github.com/urruegg/caldova-crm-frontier/issues/131) | EXECUTION-ONLY | 🟡 [PR #136](https://github.com/urruegg/caldova-crm-frontier/pull/136) open, `gate1` green once but rerun hit the GitHub outage — needs one more clean check run |
+| e2e-dev-test-verify | [#132](https://github.com/urruegg/caldova-crm-frontier/issues/132) | EXECUTION-ONLY | ⬜ not started — blocked on the two items above + #124 re-authoring |
 
 **2026-08-17.** Charter #125 + 7 stream issues (#126–#132) opened. Confirmed
 live `pac auth` / `az rest` access to both `crmshowdev` and `crmshowtest` as
@@ -54,7 +54,7 @@ POST count 21→20, new RelationshipDefinitions POST assertion, corrected
 integration-test request-sequence array), no `Assert-MockCalled` regressions.
 Pushed to `feat/sprint-004-prereq-fixes`; live DEV re-authoring dispatched
 against that branch to verify before merge — run
-[32031985164](https://github.com/urruegg/CRMShowcase/actions/runs/32031985164),
+[32031985164](https://github.com/urruegg/caldova-crm-frontier/actions/runs/32031985164),
 in progress.
 
 **#124 finding: the expected DEV-authored tables no longer exist live
@@ -78,7 +78,7 @@ then redo the intake-export. Sequenced after the fix's live-verify run above.
 **PR #137 opened for prereq-fixes; live re-authoring blocked on merge to
 `main` (2026-08-17).** Dispatched `cd-solution-dev.yml` against
 `feat/sprint-004-prereq-fixes` (run
-[32031985164](https://github.com/urruegg/CRMShowcase/actions/runs/32031985164))
+[32031985164](https://github.com/urruegg/caldova-crm-frontier/actions/runs/32031985164))
 to verify the #120 fix live before merging. Result: `validate` job (the
 full offline Pester suite) **succeeded in 23m12s** — this independently
 re-confirms the fix's 424/0/2 pass count. The `author` job (which would
@@ -108,7 +108,7 @@ subsequent sprint-004 PRs directly for the rest of this build. `gh pr merge
 #120 fix — dispatched `cd-solution-dev.yml` against `main` (not a feature
 branch, since the `dev` environment's branch policy only allows that) to
 re-author the missing #124 tables live: run
-[32037106837](https://github.com/urruegg/CRMShowcase/actions/runs/32037106837),
+[32037106837](https://github.com/urruegg/caldova-crm-frontier/actions/runs/32037106837),
 in progress.
 
 ## Live DEV + TEST evidence
@@ -134,17 +134,17 @@ errors from `gh api`/`gh pr view` calls during this session.
 ### What is safely done (merged to `main`)
 
 - **#120 closed** — `Invoke-NativeLookupExtensionReconciliation` fix merged
-  via [PR #137](https://github.com/urruegg/CRMShowcase/pull/137) (commit
+  via [PR #137](https://github.com/urruegg/caldova-crm-frontier/pull/137) (commit
   `1da315c`). Verified twice: full offline suite 424/0/2 (local) and a
   live `validate` job re-run 424/0/2 green (in CI, twice — both DEV dispatch
   attempts today got past `validate` cleanly; only `author`'s job **setup**
   hit the outage).
-- **mobiliar-intake-governance** merged via
-  [PR #133](https://github.com/urruegg/CRMShowcase/pull/133).
+- **caldova-intake-governance** merged via
+  [PR #133](https://github.com/urruegg/caldova-crm-frontier/pull/133).
 - **tenant-user-inventory** (`Get-DemoPresenterUser.ps1`) merged via
-  [PR #135](https://github.com/urruegg/CRMShowcase/pull/135).
+  [PR #135](https://github.com/urruegg/caldova-crm-frontier/pull/135).
 - **fixture-enrichment** merged via
-  [PR #134](https://github.com/urruegg/CRMShowcase/pull/134).
+  [PR #134](https://github.com/urruegg/caldova-crm-frontier/pull/134).
 - All 4 corresponding worktrees retired (`Remove-SprintWorktree.ps1`); their
   branches remain on GitHub for history but are fully merged.
 
@@ -166,7 +166,7 @@ errors from `gh api`/`gh pr view` calls during this session.
    merge once the sprint's build phase is done). Then retire its worktree
    with `Remove-SprintWorktree.ps1`.
 3. **#124 (re-authoring the missing DEV tables)** — dispatch
-   `gh workflow run cd-solution-dev.yml --repo urruegg/CRMShowcase --ref main`
+   `gh workflow run cd-solution-dev.yml --repo urruegg/caldova-crm-frontier --ref main`
    once GitHub's Actions component is healthy. Expect it to succeed now that
    #120 is merged to `main` (the only two failures today were the outage
    hitting job setup, not the actual authoring logic — `validate` passed
@@ -192,7 +192,7 @@ errors from `gh api`/`gh pr view` calls during this session.
   latest `main`, no uncommitted changes.
 - `wt/sprint-004-seed-owner-wiring`: clean, fully pushed, PR #136 open.
 - The 4 merged streams' worktrees removed; their remote branches
-  (`feat/sprint-004-{prereq-fixes,mobiliar-intake-governance,
+  (`feat/sprint-004-{prereq-fixes,caldova-intake-governance,
   tenant-user-inventory,fixture-enrichment}`) still exist on GitHub
   (already merged — safe to delete whenever convenient, not urgent).
 
